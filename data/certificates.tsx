@@ -13,6 +13,14 @@ export type Certificate = {
 
 export const certificates: Certificate[] = [
   {
+    id: "mozilla-js-foundations-professional-certificate-2025-09",
+    name: "JavaScript Foundations Professional Certificate by Mozilla",
+    issuer: "Mozilla",
+    issueDate: "2025-09",
+    expirationDate: null,
+    skills: ["Web Development", "JavaScript"],
+  },
+  {
     id: "scrimba-intro-to-ai-engineering-2025-10",
     name: "Intro to AI Engineering",
     issuer: "Scrimba",
@@ -35,14 +43,6 @@ export const certificates: Certificate[] = [
     issueDate: "2025-09",
     expirationDate: null,
     skills: ["JavaScript"],
-  },
-  {
-    id: "mozilla-js-foundations-professional-certificate-2025-09",
-    name: "JavaScript Foundations Professional Certificate by Mozilla",
-    issuer: "Mozilla",
-    issueDate: "2025-09",
-    expirationDate: null,
-    skills: ["Web Development", "JavaScript"],
   },
   {
     id: "linkedin-network-administration-core-skills-2025-09",

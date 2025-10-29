@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import type { Certificate } from "@/data/certificates";
 import { certificates } from "@/data/certificates";
+import { Building2, GraduationCap, Linkedin, ExternalLink, FileText, IdCard } from "lucide-react";
 
 function formatMonth(date?: string) {
   if (!date) return null;
@@ -47,6 +48,15 @@ function inferRoles(c: Certificate): string[] {
     roles.add("Algorithms/CS");
 
   return Array.from(roles);
+}
+
+// Add an issuer icon helper
+function IssuerIcon({ issuer, className = "h-5 w-5" }: { issuer: string; className?: string }) {
+  const key = issuer.toLowerCase();
+  if (key.includes("university")) return <GraduationCap className={className} aria-hidden />;
+  if (key.includes("linkedin")) return <Linkedin className={className} aria-hidden />;
+  // Default
+  return <Building2 className={className} aria-hidden />;
 }
 
 export default function Credentials() {
@@ -109,21 +119,13 @@ export default function Credentials() {
                   className="p-5 bg-gray-800 text-white rounded-lg shadow hover:shadow-lg transition-shadow"
                 >
                   <div className="flex items-center gap-4 mb-4">
-                    {c.image ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={c.image}
-                        alt={c.name}
-                        className="h-12 w-12 rounded object-cover bg-gray-700"
-                      />
-                    ) : (
-                      <div className="h-12 w-12 rounded bg-gray-700 flex items-center justify-center text-sm">
-                        {c.issuer?.[0] ?? "C"}
-                      </div>
-                    )}
+                    
                     <div>
                       <h2 className="text-lg font-semibold leading-tight">{c.name}</h2>
-                      <p className="text-gray-300 text-sm">{c.issuer}</p>
+                      <p className="text-gray-300 text-sm flex items-center gap-1.5">
+                        <IssuerIcon issuer={c.issuer} className="h-4 w-4" />
+                        <span>{c.issuer}</span>
+                      </p>
                       <p className="text-gray-400 text-xs">
                         {issued ? `Issued ${issued}` : null}
                         {issued && expires ? " · " : null}
@@ -148,9 +150,11 @@ export default function Credentials() {
                         href={c.credentialUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-3 py-2 text-sm bg-blue-600 rounded hover:bg-blue-700 transition"
+                        className="px-3 py-2 text-sm bg-blue-600 rounded hover:bg-blue-700 transition inline-flex items-center gap-2"
                       >
-                        View on LinkedIn
+                        <Linkedin className="h-4 w-4" aria-hidden />
+                        <span>View on LinkedIn</span>
+                        <ExternalLink className="h-4 w-4 opacity-80" aria-hidden />
                       </a>
                     ) : null}
                     {c.certificateUrl ? (
@@ -158,14 +162,16 @@ export default function Credentials() {
                         href={c.certificateUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-3 py-2 text-sm bg-gray-700 rounded hover:bg-gray-600 transition"
+                        className="px-3 py-2 text-sm bg-gray-700 rounded hover:bg-gray-600 transition inline-flex items-center gap-2"
                       >
-                        Certificate
+                        <FileText className="h-4 w-4" aria-hidden />
+                        <span>Certificate</span>
                       </a>
                     ) : null}
                     {c.credentialId ? (
-                      <span className="ml-auto text-xs text-gray-300 self-center">
-                        ID: {c.credentialId}
+                      <span className="ml-auto text-xs text-gray-300 self-center inline-flex items-center gap-1.5">
+                        <IdCard className="h-4 w-4" aria-hidden />
+                        <span>ID: {c.credentialId}</span>
                       </span>
                     ) : null}
                   </div>
