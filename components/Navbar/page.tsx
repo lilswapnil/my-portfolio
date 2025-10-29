@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Navlink from "../../components/Navlink/page";
 
-export default function Header() {
+export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showInput, setShowInput] = useState(false);
 
@@ -26,7 +25,11 @@ export default function Header() {
 
         {/* Desktop Navbar - Center */}
         <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2">
-          <Navlink />
+          <nav className="flex flex-col lg:flex-row justify-center gap-8">
+            <a href="/about" className="text-gray-800 hover:text-blue-500 transition font-medium">About</a>
+            <a href="/credentials" className="text-gray-800 hover:text-blue-500 transition font-medium">Credentials</a>
+            <a href="/projects" className="text-gray-800 hover:text-blue-500 transition font-medium">Projects</a>
+          </nav>
         </div>
 
         {/* Desktop Input and Button - Right */}
@@ -70,7 +73,11 @@ export default function Header() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200 p-4 flex flex-col gap-4">
-          <Navlink />
+          <nav className="flex flex-col lg:flex-row justify-center gap-8">
+            <a href="/about" className="text-gray-800 hover:text-blue-500 transition font-medium">About</a>
+            <a href="/credentials" className="text-gray-800 hover:text-blue-500 transition font-medium">Credentials</a>
+            <a href="/projects" className="text-gray-800 hover:text-blue-500 transition font-medium">Projects</a>
+          </nav>
           <div className="flex flex-col gap-2">
             <input
               type="text"

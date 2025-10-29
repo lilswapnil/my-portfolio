@@ -3,12 +3,12 @@ import './about.css';
 import Image from 'next/image';
 import { FaChevronDown } from 'react-icons/fa';
 import { useEffect, useState, useRef, useMemo, ReactNode, memo } from 'react';
-import skillSet from '../data/skillset';
-import details from '../data/details';
-import workexperience from '../data/workexperience';
-import education from '../data/education';
-import { useIconsConfig } from '../hooks/useIconsConfig';
-import type { DetailItem, Experience, Education as EducationType, Skill } from '../types';
+import skillSet from '../../data/skillset';
+import details from '../../data/details';
+import workexperience from '../../data/workexperience';
+import education from '../../data/education';
+import { useIconsConfig } from '../../hooks/useIconsConfig';
+import type { DetailItem, Experience, Education as EducationType, Skill } from '../../types';
 
 export default function About() {
     const [yearsCount, setYearsCount] = useState<number>(0);
