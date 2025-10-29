@@ -162,25 +162,27 @@ interface SkillCardProps {
 function OrbitSection({ icons, yearsCount }: OrbitSectionProps) {
     return (
         <>
-            <div className="flex flex-col items-center relative w-96 h-96">
-                <div className="orbit-container absolute inset-0 flex items-center justify-center">
-                    <div className="absolute z-10">
-                        <Image src="/image.jpeg" alt="Profile" width={200} height={200} className="rounded-full" />
-                    </div>
-                    <div className="orbit absolute w-full h-full">
-                        {icons.map((item, index) => <OrbitIcon key={item.href} item={item} index={index} totalIcons={icons.length} />)}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-4 md:gap-8 w-full sm:w-auto">
+                <div className="flex flex-col items-center relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 flex-shrink-0">
+                    <div className="orbit-container absolute inset-0 flex items-center justify-center">
+                        <div className="absolute z-10">
+                            <Image src="/image.jpeg" alt="Profile" width={120} height={120} className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52" />
+                        </div>
+                        <div className="orbit absolute w-full h-full">
+                            {icons.map((item, index) => <OrbitIcon key={item.href} item={item} index={index} totalIcons={icons.length} />)}
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div className="text-left text-gray-800 ml-12 max-w-2xl">
-                <h1 className="mb-4 text-4xl font-bold">About Me</h1>
-                <p className="text-2xl max-w-xl text-gray-600">
-                    Hello! I'm a passionate developer with an enthusiasm for integrating GenAI in functional web applications.
-                    <br/> 
-                    <span className="font-bold text-4xl text-gray-950">{yearsCount}+</span> years of experience in various technologies, I enjoy solving complex problems.
-                </p>
-                <p className='text-right mt-4 text-gray-600 text-sm'>- Swapnil Satish Bhalerao</p>
+                
+                <div className="text-center sm:text-left text-gray-800 w-full sm:w-auto max-w-xs sm:max-w-sm md:max-w-2xl px-4 sm:px-0">
+                    <h1 className="mb-4 text-2xl sm:text-3xl md:text-4xl font-bold">About Me</h1>
+                    <p className="text-lg sm:text-xl md:text-2xl max-w-xs sm:max-w-sm md:max-w-xl text-gray-600">
+                        Hello! I'm a passionate developer with an enthusiasm for integrating GenAI in functional web applications.
+                        <br/> 
+                        <span className="font-bold text-2xl sm:text-3xl md:text-4xl text-gray-950">{yearsCount}+</span> years of experience in various technologies, I enjoy solving complex problems.
+                    </p>
+                    <p className='text-right mt-4 text-gray-600 text-xs sm:text-sm md:text-sm'>- Swapnil Satish Bhalerao</p>
+                </div>
             </div>
         </>
     );
@@ -220,9 +222,9 @@ function ArrowDown() {
 
 function HeaderSection({ isVisible, details }: HeaderSectionProps) {
     return (
-        <div className={`flex flex-col items-center border-b-1 border-gray-700 pb-6 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h1 className='text-4xl font-bold mb-2 text-gray-950'>Swapnil Satish Bhalerao</h1>
-            <div className='text-gray-700 mt-2 flex flex-wrap justify-center gap-2 px-4 max-w-6xl'>
+        <div className={`flex flex-col items-center border-b-1 border-gray-700 pb-6 px-4 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-gray-950'>Swapnil Satish Bhalerao</h1>
+            <div className='text-gray-700 mt-2 flex flex-wrap justify-center gap-2 px-2 sm:px-4 max-w-xs sm:max-w-2xl md:max-w-6xl text-xs sm:text-sm md:text-base'>
                 {details}
             </div>
         </div>
@@ -232,7 +234,7 @@ function HeaderSection({ isVisible, details }: HeaderSectionProps) {
 function SectionTitle({ title, isVisible, delay }: SectionTitleProps) {
     return (
         <h2 
-            className='text-3xl font-bold mb-4 mt-4 text-gray-900 transition-all duration-1000 transform'
+            className='text-xl sm:text-2xl md:text-3xl font-bold mb-4 mt-4 px-4 text-gray-900 transition-all duration-1000 transform'
             style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateX(0)' : 'translateX(-50px)',
@@ -249,7 +251,7 @@ const ExperienceCard = memo(function ExperienceCard({ exp, index, isVisible }: E
 
     return (
         <div 
-            className='experience-item border-l-4 border-gray-600 pl-6 pb-6 relative transition-all duration-1000 transform'
+            className='experience-item border-l-4 border-gray-600 pl-4 sm:pl-6 pb-6 relative transition-all duration-1000 transform mx-4 sm:mx-0'
             style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? `translateY(0) rotateX(0deg)` : `translateY(100px) rotateX(45deg)`,
@@ -267,30 +269,30 @@ const ExperienceCard = memo(function ExperienceCard({ exp, index, isVisible }: E
                         <Image 
                             src={exp.logo} 
                             alt={exp.company} 
-                            width={50} 
-                            height={50} 
-                            className='rounded cursor-pointer hover:scale-110 transition-transform duration-200' 
+                            width={40}
+                            height={40}
+                            className='rounded cursor-pointer hover:scale-110 transition-transform duration-200 sm:w-12 sm:h-12 md:w-[50px] md:h-[50px]'
                         />
                         {showLogoTooltip && (
-                            <div className='flex right-full mr-2 gray-800 px-3 py-1 rounded whitespace-nowrap text-sm font-semibold animate-fadeIn'>
+                            <div className='flex right-full mr-2 gray-800 px-3 py-1 rounded whitespace-nowrap text-xs sm:text-sm font-semibold animate-fadeIn'>
                                 {exp.company}
                             </div>
                         )}
                     </>
                 )}
             </div>
-            <h3 className='text-2xl font-bold text-gray-800'>{exp.position}</h3>
+            <h3 className='text-lg sm:text-xl md:text-2xl font-bold text-gray-800'>{exp.position}</h3>
             
-            <span className='text-gray-600 italic text-sm'>{exp.duration}</span>
+            <span className='text-gray-600 italic text-xs sm:text-sm'>{exp.duration}</span>
             <div className='mt-4 flex flex-wrap gap-2'>
-                <p className='text-gray-400'>Tech Stack:</p>
+                <p className='text-gray-400 text-sm'>Tech Stack:</p>
                 {exp.tech.map((tech) => (
-                    <span key={tech} className='bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold'>
+                    <span key={tech} className='bg-gray-100 text-gray-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold'>
                         {tech}
                     </span>
                 ))}
             </div>
-            <ul className='list-disc list-inside mt-4 text-gray-700 space-y-2'>
+            <ul className='list-disc list-inside mt-4 text-gray-700 space-y-2 text-sm sm:text-base'>
                 {exp.responsibilities.map((resp, i) => (
                     <li key={i}>{resp}</li>
                 ))}
@@ -304,7 +306,7 @@ const EducationCard = memo(function EducationCard({ edu, index, isVisible }: Edu
 
     return (
         <div 
-            className='education-item border-l-4 border-gray-600 pl-6 pb-6 relative transition-all duration-1000 transform'
+            className='education-item border-l-4 border-gray-600 pl-4 sm:pl-6 pb-6 relative transition-all duration-1000 transform mx-4 sm:mx-0'
             style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? `translateY(0) rotateX(0deg)` : `translateY(100px) rotateX(45deg)`,
@@ -322,23 +324,23 @@ const EducationCard = memo(function EducationCard({ edu, index, isVisible }: Edu
                         <Image 
                             src={edu.logo} 
                             alt={edu.institution} 
-                            width={50} 
-                            height={50} 
-                            className='rounded cursor-pointer hover:scale-110 transition-transform duration-200' 
+                            width={40}
+                            height={40}
+                            className='rounded cursor-pointer hover:scale-110 transition-transform duration-200 sm:w-12 sm:h-12 md:w-[50px] md:h-[50px]'
                         />
                         {showLogoTooltip && (
-                            <div className='flex right-full mr-2 gray-800 px-3 py-1 rounded whitespace-nowrap text-sm font-semibold animate-slideIn'>
+                            <div className='flex right-full mr-2 gray-800 px-3 py-1 rounded whitespace-nowrap text-xs sm:text-sm font-semibold animate-slideIn'>
                                 {edu.institution}
                             </div>
                         )}
                     </>
                 )}
             </div>
-            <h3 className='text-2xl font-bold text-gray-800'>{edu.degree}</h3>
+            <h3 className='text-lg sm:text-xl md:text-2xl font-bold text-gray-800'>{edu.degree}</h3>
             
-            <p className='text-gray-600 text-sm'>{edu.location}</p>
-            <span className='text-gray-600 italic text-sm'>{edu.duration}</span>
-            <ul className='list-disc list-inside mt-4 text-gray-700 space-y-2'>
+            <p className='text-gray-600 text-xs sm:text-sm'>{edu.location}</p>
+            <span className='text-gray-600 italic text-xs sm:text-sm'>{edu.duration}</span>
+            <ul className='list-disc list-inside mt-4 text-gray-700 space-y-2 text-sm sm:text-base'>
                 {edu.highlights.map((highlight, i) => (
                     <li key={i}>{highlight}</li>
                 ))}

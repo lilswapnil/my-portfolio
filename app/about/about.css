@@ -74,3 +74,13 @@
 .animate-slideIn {
     animation: slideIn 0.3s ease-out forwards;
 }
+
+h3 {
+    max-width: 36rem;
+}
+
+@media (max-width: 600px) {
+    h3 {
+        max-width: 16rem;
+    }
+}
