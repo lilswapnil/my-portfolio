@@ -13,6 +13,7 @@ export default function Navbar() {
         
         {/* Logo + Title */}
         <div className="flex items-center gap-3 flex-shrink-0">
+          <a href="/">
           <Image
             src="/logo.png"
             alt="Logo"
@@ -20,6 +21,7 @@ export default function Navbar() {
             height={40}
             priority
           />
+          </a>
           <a href="/" className="text-xl hidden sm:block">Scott's Portfolio</a>
         </div>
 
@@ -27,8 +29,8 @@ export default function Navbar() {
         <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2">
           <nav className="flex flex-col lg:flex-row justify-center gap-8">
             <a href="/about" className="text-gray-800 hover:text-blue-500 transition font-medium">About</a>
-            <a href="/credentials" className="text-gray-800 hover:text-blue-500 transition font-medium">Credentials</a>
             <a href="/projects" className="text-gray-800 hover:text-blue-500 transition font-medium">Projects</a>
+            <a href="/credentials" className="text-gray-800 hover:text-blue-500 transition font-medium">Credentials</a>
           </nav>
         </div>
 
