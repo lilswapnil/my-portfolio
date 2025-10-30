@@ -259,10 +259,7 @@ const ExperienceCard = memo(function ExperienceCard({ exp, index, isVisible }: E
                 transformOrigin: 'center top'
             }}
         >
-            <div 
-                className='absolute -top-2 -left-7 flex items-center justify-center w-6 h-6 bg-gray-600 rounded-full'
-            >
-            </div>
+            
             <div 
                 className='absolute top-0 right-0 flex items-center gap-2 group'
                 onMouseEnter={() => setShowLogoTooltip(true)}
