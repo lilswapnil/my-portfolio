@@ -174,7 +174,7 @@ function OrbitSection({ icons, yearsCount }: OrbitSectionProps) {
                     </div>
                 </div>
                 
-                <div className="text-center sm:text-left text-white-800 w-full sm:w-auto max-w-xs sm:max-w-sm md:max-w-2xl px-4 sm:px-0">
+                <div className="lg:text-center text-white-800 w-full sm:w-auto max-w-xs sm:text-left sm:max-w-sm md:max-w-2xl px-4 sm:px-0">
                     <h1 className="mb-4 text-2xl sm:text-3xl md:text-4xl font-bold">About Me</h1>
                     <p className="text-lg sm:text-xl md:text-2xl max-w-xs sm:max-w-sm md:max-w-xl text-white-600">
                         Hello! I'm a passionate developer with an enthusiasm for integrating GenAI in functional web applications.

@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <header 
-    className={`sticky top-0 z-50 mx-auto rounded-4xl glass-container max-w-7xl ${isDark ? 'dark' : ''}`}
+    className={`sticky top-2 z-50 mx-auto rounded-4xl glass-container max-w-7xl ${isDark ? 'dark' : ''}`}
     >
       <div className="flex items-center justify-between p-2 px-2">
         
@@ -44,6 +44,7 @@ export default function Navbar() {
             <a href="/about" className={`accent-hover transition font-medium ${isDark ? 'dark' : ''}`}>About</a>
             <a href="/projects" className={`accent-hover transition font-medium ${isDark ? 'dark' : ''}`}>Projects</a>
             <a href="/credentials" className={`accent-hover transition font-medium ${isDark ? 'dark' : ''}`}>Credentials</a>
+            <a href="/contact" className={`accent-hover transition font-medium ${isDark ? 'dark' : ''}`}>Contact</a>
           </nav>
         </div>
 
