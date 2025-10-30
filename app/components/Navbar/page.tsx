@@ -20,9 +20,9 @@ export default function Navbar() {
 
   return (
     <header 
-      className={`sticky top-0 z-50 border-b glass-container ${isDark ? 'dark' : ''}`}
+    className={`sticky top-0 z-50 mx-auto rounded-4xl glass-container max-w-7xl ${isDark ? 'dark' : ''}`}
     >
-      <div className="flex items-center justify-between p-2 max-w-7xl mx-auto">
+      <div className="flex items-center justify-between p-2 px-2">
         
         {/* Logo + Title */}
         <div className="flex items-center gap-3 flex-shrink-0">
@@ -69,7 +69,7 @@ export default function Navbar() {
                 alt="Ask Scotty"
                 width={20}
                 height={20}
-                style={{ filter: isDark ? "invert(1)" : "invert(0)" }}
+                style={{ filter: isDark ? "invert(0)" : "invert(1)"}}
               />
             </button>
           </div>
@@ -96,7 +96,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div 
-          className={`lg:hidden border-t p-4 flex flex-col gap-4 glass-container ${isDark ? 'dark' : ''}`}
+          className={`lg:hidden p-4 flex flex-col gap-4 glass-container ${isDark ? 'dark' : ''}`}
         >
           <nav className="flex flex-col lg:flex-row justify-center gap-8">
             <a href="/about" className={`accent-hover transition font-medium ${isDark ? 'dark' : ''}`}>About</a>

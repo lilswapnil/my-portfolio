@@ -63,6 +63,7 @@ function IssuerIcon({ issuer, className = "h-5 w-5" }: { issuer: string; classNa
 export default function Credentials() {
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
+  const [colors, setColors] = useState<{ primary: string; secondary: string }>({ primary: '', secondary: '' });
 
   const roleOptions = useMemo(() => {
     const set = new Set<string>();
@@ -79,6 +80,13 @@ export default function Credentials() {
 
   useEffect(() => {
     setMounted(true);
+    // Generate random green and blue hues
+    const greenShades = ['bg-green-500', 'bg-green-600', 'bg-emerald-500', 'bg-teal-500'];
+    const blueShades = ['bg-blue-500', 'bg-blue-600', 'bg-cyan-500', 'bg-indigo-500'];
+    setColors({
+      primary: greenShades[Math.floor(Math.random() * greenShades.length)],
+      secondary: blueShades[Math.floor(Math.random() * blueShades.length)]
+    });
   }, []);
 
   if (!mounted) return null;
@@ -88,10 +96,10 @@ export default function Credentials() {
 
   return (
     <div className={`min-h-screen py-16 ${isDark ? 'dark' : ''}`}>
-      {/* Background gradient blur effect */}
+      {/* Background gradient blur effect with molecular animation */}
       <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
-        <div className={`absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 ${isDark ? 'bg-green-600' : 'bg-green-400'}`} />
-        <div className={`absolute bottom-40 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 ${isDark ? 'bg-blue-600' : 'bg-blue-400'}`} />
+        <div className={`absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-1 ${colors.primary}`} />
+        <div className={`absolute bottom-40 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-2 ${colors.secondary}`} />
       </div>
 
       <div className="max-w-7xl mx-auto px-4">
@@ -189,8 +197,8 @@ export default function Credentials() {
                           key={s} 
                           className={`text-xs px-3 py-1 rounded-full font-medium border transition-all duration-300 ${
                             isDark 
-                              ? 'bg-purple-900/30 text-purple-300 border-purple-700/50 group-hover:bg-purple-800/50' 
-                              : 'bg-purple-100/40 text-purple-700 border-purple-200/70 group-hover:bg-purple-100/60'
+                              ? 'bg-purple-900/30 text-white-300 border-purple-700/50 group-hover:bg-purple-800/50' 
+                              : 'bg-purple-100/40 text-white-700 border-purple-200/70 group-hover:bg-purple-100/60'
                           }`}
                         >
                           {s}

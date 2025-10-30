@@ -92,8 +92,8 @@ export default function About() {
                 <OrbitSection icons={icons} yearsCount={yearsCount} />
                 <ArrowDown />
             </div>
-
-            <div id="resume" ref={resumeRef} className='resume-container bg-white py-12 border border-gray-300 shadow-lg transition-all duration-1000 transform'
+            <span id="resume"></span>
+            <div ref={resumeRef} className='resume-container m-32 bg-white py-12 border border-gray-300 shadow-lg transition-all duration-1000 transform'
                 style={getCardStyle(isResumeVisible, 0, 0)}>
                 <HeaderSection isVisible={isResumeVisible} details={detailsContent} />
                 
@@ -174,14 +174,14 @@ function OrbitSection({ icons, yearsCount }: OrbitSectionProps) {
                     </div>
                 </div>
                 
-                <div className="text-center sm:text-left text-gray-800 w-full sm:w-auto max-w-xs sm:max-w-sm md:max-w-2xl px-4 sm:px-0">
+                <div className="text-center sm:text-left text-white-800 w-full sm:w-auto max-w-xs sm:max-w-sm md:max-w-2xl px-4 sm:px-0">
                     <h1 className="mb-4 text-2xl sm:text-3xl md:text-4xl font-bold">About Me</h1>
-                    <p className="text-lg sm:text-xl md:text-2xl max-w-xs sm:max-w-sm md:max-w-xl text-gray-600">
+                    <p className="text-lg sm:text-xl md:text-2xl max-w-xs sm:max-w-sm md:max-w-xl text-white-600">
                         Hello! I'm a passionate developer with an enthusiasm for integrating GenAI in functional web applications.
                         <br/> 
-                        <span className="font-bold text-2xl sm:text-3xl md:text-4xl text-gray-950">{yearsCount}+</span> years of experience in various technologies, I enjoy solving complex problems.
+                        <span className="font-bold text-2xl sm:text-3xl md:text-4xl text-white-950">{yearsCount}+</span> years of experience in various technologies, I enjoy solving complex problems.
                     </p>
-                    <p className='text-right mt-4 text-gray-600 text-xs sm:text-sm md:text-sm'>- Swapnil Satish Bhalerao</p>
+                    <p className='text-right mt-4 text-white-100 text-xs sm:text-sm md:text-sm'>- Swapnil Satish Bhalerao</p>
                 </div>
             </div>
         </>
@@ -212,8 +212,8 @@ function OrbitIcon({ item, index, totalIcons }: OrbitIconProps) {
 function ArrowDown() {
     return (
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce flex flex-col items-center">
-            <a href="#resume" className="text-gray-600 hover:text-gray-900 transition duration-200 flex flex-col items-center gap-2">
-                <span className='text-sm font-semibold text-gray-700'>Resume</span>
+            <a href="#resume" className="text-white-600 hover:text-gray-900 transition duration-200 flex flex-col items-center gap-2">
+                <span className='text-sm font-semibold text-white-700'>Resume</span>
                 <FaChevronDown size={40} />
             </a>
         </div>

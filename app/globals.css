@@ -1,12 +1,18 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer base {
   :root {
     /* Color Palette */
     --white-smoke: #F5F5F5;
     --black-smoke: #1A1A1A;
-    --background: var(--white-smoke);
-    --foreground: #171717;
+
+    /* Default to dark mode */
+    --background: var(--bg-primary-dark);
+    --foreground: var(--text-primary-dark);
     
     /* Glass Theme Variables */
     --glass-bg-light: rgba(255, 255, 255, 0.4);
@@ -42,7 +48,7 @@
     --accent-hover-dark: #93C5FD;
     --input-bg-dark: rgba(55, 65, 81, 0.6);
     --input-border-dark: rgba(107, 114, 128, 0.7);
-    --button-bg-dark: rgba(96, 165, 250, 0.3);
+    --button-bg-dark: rgba(240, 243, 245, 0.3);
     --button-hover-dark: rgba(96, 165, 250, 0.5);
   }
 
@@ -53,7 +59,8 @@
   }
 
   html {
-    color-scheme: light;
+    /* Default to dark color scheme for form controls, etc. */
+    color-scheme: dark;
   }
 }
 
@@ -64,7 +71,7 @@ button {
 /* Reusable Theme Classes */
 @layer components {
   .glass-container {
-    @apply transition-all duration-300 border;
+    @apply transition-all duration-300 border rounded-4xl;
     background-color: var(--glass-bg-light);
     border-color: var(--glass-border-light);
     backdrop-filter: var(--glass-backdrop);
@@ -72,7 +79,8 @@ button {
     border-image: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.1) 100%) 1;
   }
 
-  .glass-container.dark {
+  /* Apply dark styles when a parent has the .dark class */
+  .dark .glass-container {
     background-color: var(--glass-bg-dark);
     border-color: var(--glass-border-dark);
     border-image: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(107,114,128,0.2) 100%) 1;
@@ -87,7 +95,7 @@ button {
     -webkit-backdrop-filter: var(--glass-backdrop);
   }
 
-  .glass-input.dark {
+  .dark .glass-input {
     background-color: var(--input-bg-dark);
     color: var(--text-primary-dark);
     border-color: var(--input-border-dark);
@@ -99,7 +107,7 @@ button {
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
 
-  .glass-input.dark:focus {
+  .dark .glass-input:focus {
     background-color: rgba(55, 65, 81, 0.8);
     border-color: var(--accent-dark);
     box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
@@ -118,13 +126,13 @@ button {
     background-color: var(--button-hover-light);
   }
 
-  .glass-button.dark {
+  .dark .glass-button {
     background-color: var(--button-bg-dark);
     color: var(--text-primary-dark);
     border-color: rgba(96, 165, 250, 0.3);
   }
 
-  .glass-button.dark:hover {
+  .dark .glass-button:hover {
     background-color: var(--button-hover-dark);
   }
 
@@ -132,7 +140,7 @@ button {
     color: var(--text-primary-light);
   }
 
-  .text-primary.dark {
+  .dark .text-primary {
     color: var(--text-primary-dark);
   }
 
@@ -140,7 +148,7 @@ button {
     color: var(--text-secondary-light);
   }
 
-  .text-secondary.dark {
+  .dark .text-secondary {
     color: var(--text-secondary-dark);
   }
 
@@ -148,7 +156,7 @@ button {
     color: var(--accent-light);
   }
 
-  .accent.dark {
+  .dark .accent {
     color: var(--accent-dark);
   }
 
@@ -156,7 +164,22 @@ button {
     color: var(--accent-hover-light);
   }
 
-  .accent-hover.dark:hover {
+  .dark .accent-hover:hover {
     color: var(--accent-hover-dark);
   }
 }
+
+@keyframes spiral-1 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(80px, 60px) rotate(180deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes spiral-2 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-80px, 80px) rotate(180deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+.spiral-1 { animation: spiral-1 12s infinite ease-in-out; }
+.spiral-2 { animation: spiral-2 14s infinite ease-in-out; }

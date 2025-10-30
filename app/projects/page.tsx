@@ -154,6 +154,7 @@ export default function Projects() {
 function ProjectsClient({ items }: { items: Enriched[] }) {
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
+  const [colors, setColors] = useState<{ primary: string; secondary: string }>({ primary: '', secondary: '' });
 
   const roleOptions = useMemo(() => {
     const set = new Set<string>();
@@ -170,6 +171,13 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
 
   useEffect(() => {
     setMounted(true);
+    // Generate random blue and purple hues
+    const blueShades = ['bg-blue-500', 'bg-blue-600', 'bg-cyan-500', 'bg-indigo-500'];
+    const purpleShades = ['bg-purple-500', 'bg-purple-600', 'bg-violet-500', 'bg-pink-500'];
+    setColors({
+      primary: blueShades[Math.floor(Math.random() * blueShades.length)],
+      secondary: purpleShades[Math.floor(Math.random() * purpleShades.length)]
+    });
   }, []);
 
   if (!mounted) return null;
@@ -178,10 +186,10 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
 
   return (
     <div className={`min-h-screen py-16 ${isDark ? 'dark' : ''}`}>
-      {/* Background gradient blur effect */}
+      {/* Background gradient blur effect with molecular animation */}
       <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
-        <div className={`absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 ${isDark ? 'bg-blue-600' : 'bg-blue-400'}`} />
-        <div className={`absolute bottom-40 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 ${isDark ? 'bg-purple-600' : 'bg-purple-400'}`} />
+        <div className={`absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-1 ${colors.primary}`} />
+        <div className={`absolute bottom-40 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-2 ${colors.secondary}`} />
       </div>
 
       <div className="max-w-7xl mx-auto px-4">
@@ -301,8 +309,8 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
               key={t} 
               className={`text-xs px-3 py-1 rounded-full font-medium border transition-all duration-300 ${
                 isDark 
-                  ? 'bg-blue-900/30 text-blue-300 border-blue-700/50 group-hover:bg-blue-800/50' 
-                  : 'bg-blue-100/40 text-blue-700 border-blue-200/70 group-hover:bg-blue-100/60'
+                  ? 'bg-blue-900/30 text-white-300 border-blue-700/50 group-hover:bg-blue-800/50' 
+                  : 'bg-blue-100/40 text-white-700 border-blue-200/70 group-hover:bg-blue-100/60'
               }`}
             >
               {t}

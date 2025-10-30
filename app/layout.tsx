@@ -1,42 +1,11 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Header from "./components/Navbar/page";
-import Footer from "./components/Footer/page";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "Scott Portfolio",
-  description: "Learn more about Scott's projects and experience.",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+import './globals.css';
+import Navbar from "./components/Navbar/page";
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-grow max-w-7xl mx-auto w-full">
-            {children}
-          </main>
-          <Footer />
-        </div>
-      </body>
+    <html lang="en" className="dark">
+      <body>
+        <Navbar />
+        {children}</body>
     </html>
   );
 }
