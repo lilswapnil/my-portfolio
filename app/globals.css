@@ -2,18 +2,49 @@
 
 @layer base {
   :root {
+    /* Color Palette */
     --white-smoke: #F5F5F5;
     --black-smoke: #1A1A1A;
     --background: var(--white-smoke);
     --foreground: #171717;
-  }
+    
+    /* Glass Theme Variables */
+    --glass-bg-light: rgba(255, 255, 255, 0.4);
+    --glass-bg-dark: rgba(24, 24, 27, 0.4);
+    --glass-border-light: rgba(255, 255, 255, 0.5);
+    --glass-border-dark: rgba(107, 114, 128, 0.3);
+    --glass-backdrop: blur(20px);
 
-  /* @media (prefers-color-scheme: dark) {
-    :root {
-      --background: #0a0a0a;
-      --foreground: #ededed;
-    }
-  } */
+    /* Light Mode Colors */
+    --text-primary-light: #171717;
+    --text-secondary-light: #666666;
+    --text-tertiary-light: #999999;
+    --bg-primary-light: #FFFFFF;
+    --bg-secondary-light: #F5F5F5;
+    --bg-tertiary-light: #EBEBEB;
+    --border-light: #E5E5E5;
+    --accent-light: #3B82F6;
+    --accent-hover-light: #2563EB;
+    --input-bg-light: rgba(255, 255, 255, 0.6);
+    --input-border-light: rgba(255, 255, 255, 0.7);
+    --button-bg-light: rgba(59, 130, 246, 0.4);
+    --button-hover-light: rgba(59, 130, 246, 0.6);
+
+    /* Dark Mode Colors */
+    --text-primary-dark: #FFFFFF;
+    --text-secondary-dark: #D1D5DB;
+    --text-tertiary-dark: #9CA3AF;
+    --bg-primary-dark: #0A0A0A;
+    --bg-secondary-dark: #1A1A1A;
+    --bg-tertiary-dark: #272727;
+    --border-dark: #374151;
+    --accent-dark: #60A5FA;
+    --accent-hover-dark: #93C5FD;
+    --input-bg-dark: rgba(55, 65, 81, 0.6);
+    --input-border-dark: rgba(107, 114, 128, 0.7);
+    --button-bg-dark: rgba(96, 165, 250, 0.3);
+    --button-hover-dark: rgba(96, 165, 250, 0.5);
+  }
 
   body {
     background: var(--background);
@@ -28,4 +59,104 @@
 
 button {
   cursor: pointer;
+}
+
+/* Reusable Theme Classes */
+@layer components {
+  .glass-container {
+    @apply transition-all duration-300 border;
+    background-color: var(--glass-bg-light);
+    border-color: var(--glass-border-light);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border-image: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.1) 100%) 1;
+  }
+
+  .glass-container.dark {
+    background-color: var(--glass-bg-dark);
+    border-color: var(--glass-border-dark);
+    border-image: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(107,114,128,0.2) 100%) 1;
+  }
+
+  .glass-input {
+    @apply rounded-md px-4 py-2 focus:outline-none transition-all duration-300 border;
+    background-color: var(--input-bg-light);
+    color: var(--text-primary-light);
+    border-color: var(--input-border-light);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+  }
+
+  .glass-input.dark {
+    background-color: var(--input-bg-dark);
+    color: var(--text-primary-dark);
+    border-color: var(--input-border-dark);
+  }
+
+  .glass-input:focus {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-color: var(--accent-light);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  .glass-input.dark:focus {
+    background-color: rgba(55, 65, 81, 0.8);
+    border-color: var(--accent-dark);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+  }
+
+  .glass-button {
+    @apply rounded-full p-2 transition duration-200 border font-medium;
+    background-color: var(--button-bg-light);
+    color: var(--text-primary-light);
+    border-color: rgba(59, 130, 246, 0.4);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+  }
+
+  .glass-button:hover {
+    background-color: var(--button-hover-light);
+  }
+
+  .glass-button.dark {
+    background-color: var(--button-bg-dark);
+    color: var(--text-primary-dark);
+    border-color: rgba(96, 165, 250, 0.3);
+  }
+
+  .glass-button.dark:hover {
+    background-color: var(--button-hover-dark);
+  }
+
+  .text-primary {
+    color: var(--text-primary-light);
+  }
+
+  .text-primary.dark {
+    color: var(--text-primary-dark);
+  }
+
+  .text-secondary {
+    color: var(--text-secondary-light);
+  }
+
+  .text-secondary.dark {
+    color: var(--text-secondary-dark);
+  }
+
+  .accent {
+    color: var(--accent-light);
+  }
+
+  .accent.dark {
+    color: var(--accent-dark);
+  }
+
+  .accent-hover:hover {
+    color: var(--accent-hover-light);
+  }
+
+  .accent-hover.dark:hover {
+    color: var(--accent-hover-dark);
+  }
 }

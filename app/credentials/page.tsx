@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useTheme } from "next-themes";
 import type { Certificate } from "@/data/certificates";
 import { certificates } from "@/data/certificates";
 import { Building2, GraduationCap, Linkedin, ExternalLink, FileText, IdCard } from "lucide-react";
@@ -60,6 +61,9 @@ function IssuerIcon({ issuer, className = "h-5 w-5" }: { issuer: string; classNa
 }
 
 export default function Credentials() {
+  const [mounted, setMounted] = useState(false);
+  const { theme } = useTheme();
+
   const roleOptions = useMemo(() => {
     const set = new Set<string>();
     certificates.forEach((c) => inferRoles(c).forEach((r) => set.add(r)));
@@ -73,42 +77,78 @@ export default function Credentials() {
     return certificates.filter((c) => inferRoles(c).includes(selectedRole));
   }, [selectedRole]);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const isDark = theme === 'dark';
   const hasCerts = visible.length > 0;
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-4xl font-bold text-gray-900 mb-6">Licence & Certificates</h1>
+    <div className={`min-h-screen py-16 ${isDark ? 'dark' : ''}`}>
+      {/* Background gradient blur effect */}
+      <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+        <div className={`absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 ${isDark ? 'bg-green-600' : 'bg-green-400'}`} />
+        <div className={`absolute bottom-40 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 ${isDark ? 'bg-blue-600' : 'bg-blue-400'}`} />
+      </div>
 
-        {/* Role filter chips */}
-        <div className="mb-8 -mx-4 px-4 overflow-x-auto">
-          <div className="flex gap-2 whitespace-nowrap">
-            {roleOptions.map((role) => {
-              const active = role === selectedRole;
-              return (
-                <button
-                  key={role}
-                  onClick={() => setSelectedRole(role)}
-                  className={[
-                    "px-3 py-1.5 rounded-full text-sm border transition",
-                    active
-                      ? "bg-blue-600 text-white border-blue-600"
-                      : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100",
-                  ].join(" ")}
-                >
-                  {role}
-                </button>
-              );
-            })}
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Header Section */}
+        <div className="mb-12">
+          <h1 className={`text-5xl md:text-6xl font-bold mb-3 text-primary ${isDark ? 'dark' : ''}`}>
+            Licenses & Certificates
+          </h1>
+          <p className={`text-lg text-secondary ${isDark ? 'dark' : ''}`}>
+            Professional credentials and achievements
+          </p>
+        </div>
+
+        {/* Filter Section */}
+        <div className="mb-12">
+          <div className={`glass-container rounded-2xl p-4 md:p-6 ${isDark ? 'dark' : ''}`}>
+            <h3 className={`text-sm font-semibold mb-4 text-secondary ${isDark ? 'dark' : ''} uppercase tracking-wider`}>
+              Filter by Category
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {roleOptions.map((role) => {
+                const active = role === selectedRole;
+                return (
+                  <button
+                    key={role}
+                    onClick={() => setSelectedRole(role)}
+                    className={`
+                      px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300
+                      ${
+                        active
+                          ? `glass-button ${isDark ? 'dark' : ''} scale-105 shadow-lg`
+                          : `border ${isDark ? 'border-gray-700/50 text-secondary' : 'border-white/40 text-secondary'} 
+                             hover:border-white/60 hover:scale-105 ${isDark ? 'dark' : ''}`
+                      }
+                    `}
+                  >
+                    {role}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
+        {/* Results Counter */}
+        <div className={`mb-8 text-sm text-tertiary ${isDark ? 'dark' : ''}`}>
+          Showing {visible.length} credential{visible.length !== 1 ? 's' : ''}
+        </div>
+
         {!hasCerts ? (
-          <div className="rounded-lg border border-dashed border-gray-300 p-8 text-gray-600">
-            No certificates for this role. Try a different filter.
+          <div className={`text-center py-16 glass-container rounded-2xl ${isDark ? 'dark' : ''}`}>
+            <p className={`text-lg text-secondary ${isDark ? 'dark' : ''}`}>
+              No credentials found for this category
+            </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {visible.map((c) => {
               const issued = formatMonth(c.issueDate);
               const expires = c.expirationDate ? formatMonth(c.expirationDate) : null;
@@ -116,63 +156,87 @@ export default function Credentials() {
               return (
                 <div
                   key={c.id}
-                  className="p-5 bg-gray-800 text-white rounded-lg shadow hover:shadow-lg transition-shadow"
+                  className={`group glass-container rounded-2xl p-6 h-full flex flex-col transition-all duration-500 
+                    hover:scale-105 hover:shadow-2xl shadow-lg ${isDark ? 'dark' : ''}`}
                 >
-                  <div className="flex items-center gap-4 mb-4">
-                    
-                    <div>
-                      <h2 className="text-lg font-semibold leading-tight">{c.name}</h2>
-                      <p className="text-gray-300 text-sm flex items-center gap-1.5">
-                        <IssuerIcon issuer={c.issuer} className="h-4 w-4" />
-                        <span>{c.issuer}</span>
-                      </p>
-                      <p className="text-gray-400 text-xs">
-                        {issued ? `Issued ${issued}` : null}
-                        {issued && expires ? " · " : null}
-                        {expires ? `Expires ${expires}` : null}
-                      </p>
+                  {/* Header */}
+                  <div className="mb-4">
+                    <div className="flex items-start gap-3 mb-3">
+                      
+                      <div className="flex-1">
+                        <h2 className={`text-lg font-bold text-primary group-hover:text-accent transition-colors duration-300 ${isDark ? 'dark' : ''}`}>
+                          {c.name}
+                        </h2>
+                        <p className={`text-secondary text-sm flex items-center gap-1.5 ${isDark ? 'dark' : ''}`}>
+                          {c.issuer}
+                        </p>
+                      </div>
                     </div>
+
+                    {/* Dates */}
+                    <p className={`text-xs text-tertiary ${isDark ? 'dark' : ''}`}>
+                      {issued ? `Issued ${issued}` : null}
+                      {issued && expires ? " · " : null}
+                      {expires ? `Expires ${expires}` : null}
+                    </p>
                   </div>
 
+                  {/* Skills/Tags */}
                   {c.skills?.length ? (
                     <div className="flex flex-wrap gap-2 mb-4">
                       {c.skills.map((s) => (
-                        <span key={s} className="text-xs bg-gray-700 px-2 py-1 rounded">
+                        <span 
+                          key={s} 
+                          className={`text-xs px-3 py-1 rounded-full font-medium border transition-all duration-300 ${
+                            isDark 
+                              ? 'bg-purple-900/30 text-purple-300 border-purple-700/50 group-hover:bg-purple-800/50' 
+                              : 'bg-purple-100/40 text-purple-700 border-purple-200/70 group-hover:bg-purple-100/60'
+                          }`}
+                        >
                           {s}
                         </span>
                       ))}
                     </div>
                   ) : null}
 
-                  <div className="flex gap-2 mt-2">
-                    {c.credentialUrl ? (
-                      <a
-                        href={c.credentialUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-2 text-sm bg-blue-600 rounded hover:bg-blue-700 transition inline-flex items-center gap-2"
-                      >
-                        <Linkedin className="h-4 w-4" aria-hidden />
-                        <span>View on LinkedIn</span>
-                        <ExternalLink className="h-4 w-4 opacity-80" aria-hidden />
-                      </a>
-                    ) : null}
-                    {c.certificateUrl ? (
-                      <a
-                        href={c.certificateUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-2 text-sm bg-gray-700 rounded hover:bg-gray-600 transition inline-flex items-center gap-2"
-                      >
-                        <FileText className="h-4 w-4" aria-hidden />
-                        <span>Certificate</span>
-                      </a>
-                    ) : null}
+                  {/* Actions */}
+                  <div className="mt-auto pt-6 border-t flex flex-col gap-3" style={{
+                    borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.2)'
+                  }}>
+                    <div className="flex flex-wrap gap-2">
+                      {c.credentialUrl ? (
+                        <a
+                          href={c.credentialUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`flex-1 min-w-max px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 
+                            glass-button flex items-center justify-center gap-2 group-hover:scale-105 ${isDark ? 'dark' : ''}`}
+                        >
+                          <Linkedin className="h-4 w-4" aria-hidden />
+                          <span>LinkedIn</span>
+                        </a>
+                      ) : null}
+                      {c.certificateUrl ? (
+                        <a
+                          href={c.certificateUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`flex-1 min-w-max px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 
+                            glass-button flex items-center justify-center gap-2 group-hover:scale-105 ${isDark ? 'dark' : ''}`}
+                        >
+                          <FileText className="h-4 w-4" aria-hidden />
+                          <span>Certificate</span>
+                        </a>
+                      ) : null}
+                    </div>
+
                     {c.credentialId ? (
-                      <span className="ml-auto text-xs text-gray-300 self-center inline-flex items-center gap-1.5">
-                        <IdCard className="h-4 w-4" aria-hidden />
-                        <span>ID: {c.credentialId}</span>
-                      </span>
+                      <div className={`text-xs text-tertiary ${isDark ? 'dark' : ''} flex items-center gap-1.5 pt-2 border-t`} style={{
+                        borderColor: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.1)'
+                      }}>
+                        <IdCard className="h-3.5 w-3.5" aria-hidden />
+                        <span className="truncate">ID: {c.credentialId}</span>
+                      </div>
                     ) : null}
                   </div>
                 </div>
