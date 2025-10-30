@@ -329,7 +329,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
         )}
         {gh?.language && (
           <div className={`flex items-center gap-1 text-secondary ${isDark ? 'dark' : ''}`}>
-            <span>💻</span>
+            
             <span className="font-semibold">{gh.language}</span>
           </div>
         )}

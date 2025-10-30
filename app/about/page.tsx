@@ -88,12 +88,12 @@ export default function About() {
 
     return (
         <>
-            <div className="about-container h-[calc(100vh-80px)] flex items-center justify-center text-white text-4xl relative">
+            <div className="about-container h-[calc(100vh-80px)] flex items-center justify-center text-white text-4xl relative overflow-x-hidden">
                 <OrbitSection icons={icons} yearsCount={yearsCount} />
                 <ArrowDown />
             </div>
             <span id="resume"></span>
-            <div ref={resumeRef} className='resume-container m-32 bg-white py-12 border border-gray-300 shadow-lg transition-all duration-1000 transform'
+            <div ref={resumeRef} className='resume-container mx-auto m-4 sm:m-8 md:m-32 bg-white py-8 sm:py-10 md:py-12 border border-gray-300 shadow-lg transition-all duration-1000 transform overflow-x-hidden'
                 style={getCardStyle(isResumeVisible, 0, 0)}>
                 <HeaderSection isVisible={isResumeVisible} details={detailsContent} />
                 
@@ -259,6 +259,10 @@ const ExperienceCard = memo(function ExperienceCard({ exp, index, isVisible }: E
                 transformOrigin: 'center top'
             }}
         >
+            <div 
+                className='absolute -top-2 -left-7 flex items-center justify-center w-6 h-6 bg-gray-600 rounded-full'
+            >
+            </div>
             <div 
                 className='absolute top-0 right-0 flex items-center gap-2 group'
                 onMouseEnter={() => setShowLogoTooltip(true)}
