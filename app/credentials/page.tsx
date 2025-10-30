@@ -208,7 +208,7 @@ export default function Credentials() {
                   ) : null}
 
                   {/* Actions */}
-                  <div className="mt-auto pt-6 border-t flex flex-col gap-3" style={{
+                  <div className="mt-auto pt-6 flex flex-col gap-3" style={{
                     borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.2)'
                   }}>
                     <div className="flex flex-wrap gap-2">
