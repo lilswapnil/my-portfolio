@@ -93,21 +93,20 @@ export default function Navbar() {
         />
       )}
 
-      {/* Mobile Menu - 3/4 Screen from Right */}
+      {/* Mobile Menu - Half Screen Width from Right */}
       {menuOpen && (
         <div 
-          className={`lg:hidden fixed right-0 top-0 bottom-0 z-40 w-3/4 flex flex-col justify-between p-6 glass-container ${isDark ? 'dark' : ''}`}
+          className={`lg:hidden fixed right-0 top-0 bottom-0 z-40 flex flex-col justify-between my-8 p-6 glass-container ${isDark ? 'dark' : ''}`}
           style={{
-            background: 'rgba(24, 24, 27, 0.95)',
-            backdropFilter: 'blur(40px)',
+            backdropFilter: 'blur(10px)',
             WebkitBackdropFilter: 'blur(40px)',
             border: '1px solid rgba(255, 255, 255, 0.1)',
             borderRight: 'none',
             animation: 'slideInRight 0.3s ease-out',
+            width: '50vw',
           }}
         >
-          <div className="flex items-center justify-between">
-            <h3 className="text-3xl text-white">Navigations</h3>
+          <div className="flex items-center justify-end">
             <button
               onClick={() => setMenuOpen(false)}
               className="text-2xl font-bold text-white/70 hover:text-white transition"
@@ -116,38 +115,38 @@ export default function Navbar() {
             </button>
           </div>
 
-          <nav className="flex flex-col justify-center gap-12 flex-1">
+          <nav className="flex flex-col justify-center gap-12 flex-1 text-right">
             <a 
               href="/about" 
               onClick={() => setMenuOpen(false)}
-              className={`accent-hover transition text-2xl ${isActive('/about') ? 'font-bold' : 'font-medium'} text-white`}
+              className={`accent-hover transition text-xl ${isActive('/about') ? 'font-bold' : 'font-small'} text-white`}
             >
               About
             </a>
             <a 
               href="/projects" 
               onClick={() => setMenuOpen(false)}
-              className={`accent-hover transition text-2xl ${isActive('/projects') ? 'font-bold' : 'font-medium'} text-white`}
+              className={`accent-hover transition text-xl ${isActive('/projects') ? 'font-bold' : 'font-small'} text-white`}
             >
               Projects
             </a>
             <a 
               href="/credentials" 
               onClick={() => setMenuOpen(false)}
-              className={`accent-hover transition text-2xl ${isActive('/credentials') ? 'font-bold' : 'font-medium'} text-white`}
+              className={`accent-hover transition text-xl ${isActive('/credentials') ? 'font-bold' : 'font-small'} text-white`}
             >
               Credentials
             </a>
             <a 
               href="/contact" 
               onClick={() => setMenuOpen(false)}
-              className={`accent-hover transition text-2xl ${isActive('/contact') ? 'font-bold' : 'font-medium'} text-white`}
+              className={`accent-hover transition text-xl ${isActive('/contact') ? 'font-bold' : 'font-small'} text-white`}
             >
               Contact
             </a>
           </nav>
 
-          <div className="text-center text-sm text-white/50">
+          <div className="text-right text-sm text-white/50 pb-4">
             © 2025 Swapnil
           </div>
         </div>
