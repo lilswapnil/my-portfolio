@@ -98,7 +98,7 @@ export default function Navbar() {
         <div 
           className={`lg:hidden fixed right-0 top-0 bottom-0 z-40 w-3/4 flex flex-col justify-between p-6 glass-container ${isDark ? 'dark' : ''}`}
           style={{
-           
+            background: 'rgba(24, 24, 27, 0.95)',
             backdropFilter: 'blur(40px)',
             WebkitBackdropFilter: 'blur(40px)',
             border: '1px solid rgba(255, 255, 255, 0.1)',
