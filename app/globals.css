@@ -186,6 +186,17 @@ button {
   to { transform: rotate(360deg); }
 }
 
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .spiral-1 { animation: spiral-1 12s infinite ease-in-out; }
 .spiral-2 { animation: spiral-2 14s infinite ease-in-out; }
 .spin-animation {
