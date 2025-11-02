@@ -29,7 +29,7 @@ export default function Main() {
         <div className={`absolute bottom-40 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-2 ${colors.secondary}`} />
       </div>
       <div className="max-w-7xl mx-auto px-4 h-screen flex flex-col">
-        <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 w-full flex-1">
+        <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 w-full flex-1 md:mt-12">
           {/* Header Section - Left (30% width) */}
           <div className="flex flex-col justify-center lg:mb-0">
             <h1 className={`text-5xl md:text-6xl font-bold mt-8 text-primary ${isDark ? 'dark' : ''}`}>
