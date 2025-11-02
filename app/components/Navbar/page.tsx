@@ -154,14 +154,7 @@ export default function Navbar() {
             animation: 'slideInRight 0.3s ease-out',
           }}
         >
-          <div className="flex items-center justify-end pt-4">
-            <button
-              onClick={() => setMenuOpen(false)}
-              className="text-2xl font-bold text-white/70 hover:text-white transition"
-            >
-              ×
-            </button>
-          </div>
+        
 
           <nav className="flex flex-col justify-center gap-12 flex-1 text-right my-8">
             <a 
