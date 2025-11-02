@@ -88,7 +88,7 @@ export default function About() {
 
     return (
         <>
-            <div className="about-container mt-8 h-[calc(100vh-80px)] flex items-center justify-center text-white text-4xl relative overflow-x-hidden">
+            <div className="about-container mt-20 sm:mt-8 h-[calc(100vh-80px)] flex items-center justify-center text-white text-4xl relative overflow-x-hidden">
                 <OrbitSection icons={icons} yearsCount={yearsCount} />
                 <ArrowDown />
             </div>
@@ -162,7 +162,7 @@ interface SkillCardProps {
 function OrbitSection({ icons, yearsCount }: OrbitSectionProps) {
     return (
         <>
-            <div className="flex flex-col items-center justify-center gap-8 w-full h-auto sm:flex-row mb-20 sm:gap-6 sm:h-screen">
+            <div className="flex flex-col items-center justify-center gap-8 w-full h-auto sm:flex-row mb-28 sm:mb-20 sm:gap-6 sm:h-screen">
                 <div className="flex flex-col items-center relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 flex-shrink-0">
                     <div className="orbit-container absolute inset-0 flex items-center justify-center">
                         <div className="absolute z-10">
