@@ -268,87 +268,84 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
   const stars = gh?.stargazers_count;
 
   return (
-    <div
-      ref={ref}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`group glass-container rounded-2xl p-6 transition-all duration-500 h-full flex flex-col
+    <a
+      href={learnMoreHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group glass-container rounded-2xl p-6 transition-all duration-500 h-full flex flex-col cursor-pointer block
         ${isHovered ? 'scale-105 shadow-2xl' : 'shadow-lg'} ${isDark ? 'dark' : ''}
       `}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Header */}
-      <div className="mb-4">
-        <h2 className={`text-2xl font-bold mb-2 text-primary group-hover:text-accent transition-colors duration-300 ${isDark ? 'dark' : ''}`}>
-          {project.title}
-        </h2>
-        {project.githubRepo && (
-          <div className={`flex items-center gap-2 text-xs text-secondary ${isDark ? 'dark' : ''}`}>
-            <span>📦</span>
-            <span className="truncate">{project.githubRepo}</span>
-          </div>
-        )}
-      </div>
-
-      {/* Description */}
-      {desc ? (
-        <p className={`text-secondary mb-4 line-clamp-3 text-sm leading-relaxed ${isDark ? 'dark' : ''}`}>
-          {desc}
-        </p>
-      ) : (
-        <div className="mb-4 animate-pulse space-y-2">
-          <div className={`h-3 rounded-full w-full ${isDark ? 'bg-gray-700/50' : 'bg-gray-300/50'}`} />
-          <div className={`h-3 rounded-full w-5/6 ${isDark ? 'bg-gray-700/50' : 'bg-gray-300/50'}`} />
+      <div ref={ref}>
+        {/* Header */}
+        <div className="mb-4">
+          <h2 className={`text-2xl font-bold mb-2 transition-colors duration-300 ${isDark ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}`}>
+            {project.title}
+          </h2>
+          {project.githubRepo && (
+            <div className={`flex items-center gap-2 text-xs ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+              <span>📦</span>
+              <span className="truncate">{project.githubRepo}</span>
+            </div>
+          )}
         </div>
-      )}
 
-      {/* Tags */}
-      {project.tags?.length ? (
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((t) => (
-            <span 
-              key={t} 
-              className={`text-xs px-3 py-1 rounded-full font-medium border transition-all duration-300 ${
-                isDark 
-                  ? 'bg-blue-900/30 text-white-300 border-blue-700/50 group-hover:bg-blue-800/50' 
-                  : 'bg-blue-100/40 text-white-700 border-blue-200/70 group-hover:bg-blue-100/60'
-              }`}
-            >
-              {t}
-            </span>
-          ))}
+        {/* Description */}
+        {desc ? (
+          <p className={`mb-4 line-clamp-3 text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+            {desc}
+          </p>
+        ) : (
+          <div className="mb-4 animate-pulse space-y-2">
+            <div className={`h-3 rounded-full w-full ${isDark ? 'bg-gray-700/50' : 'bg-gray-300/50'}`} />
+            <div className={`h-3 rounded-full w-5/6 ${isDark ? 'bg-gray-700/50' : 'bg-gray-300/50'}`} />
+          </div>
+        )}
+
+        {/* Tags */}
+        {project.tags?.length ? (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.tags.map((t) => (
+              <span 
+                key={t} 
+                className={`text-xs px-3 py-1 rounded-full font-medium border transition-all duration-300 ${
+                  isDark 
+                    ? 'bg-blue-900/30 text-blue-300 border-blue-700/50 group-hover:bg-blue-800/50' 
+                    : 'bg-blue-100/40 text-blue-700 border-blue-200/70 group-hover:bg-blue-100/60'
+                }`}
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        ) : null}
+
+        {/* Stats */}
+        <div className="flex items-center gap-4 mb-4 text-sm">
+          {stars && (
+            <div className={`flex items-center gap-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+              <span>⭐</span>
+              <span className="font-semibold">{stars.toLocaleString()}</span>
+            </div>
+          )}
+          {gh?.language && (
+            <div className={`flex items-center gap-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+              <span className="font-semibold">{gh.language}</span>
+            </div>
+          )}
         </div>
-      ) : null}
 
-      {/* Stats */}
-      <div className="flex items-center gap-4 mb-4 text-sm">
-        {stars && (
-          <div className={`flex items-center gap-1 text-secondary ${isDark ? 'dark' : ''}`}>
-            <span>⭐</span>
-            <span className="font-semibold">{stars.toLocaleString()}</span>
-          </div>
-        )}
-        {gh?.language && (
-          <div className={`flex items-center gap-1 text-secondary ${isDark ? 'dark' : ''}`}>
-            
-            <span className="font-semibold">{gh.language}</span>
-          </div>
-        )}
+        {/* Footer with Arrow Indicator */}
+        <div className="mt-auto pt-6 border-t flex items-center justify-end" style={{
+          borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+        }}>
+          <span className={`text-lg font-semibold group-hover:translate-x-2 transition-transform duration-300 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
+            →
+          </span>
+        </div>
       </div>
-
-      {/* Footer with Button */}
-      <div className="mt-auto pt-6 border-t" style={{
-        borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.2)'
-      }}>
-        <a
-          href={learnMoreHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`glass-button w-full text-center py-3 rounded-lg font-semibold 
-            group-hover:scale-105 transition-transform duration-300 ${isDark ? 'dark' : ''}`}
-        >
-          View Project →
-        </a>
-      </div>
-    </div>
+    </a>
   );
 });
