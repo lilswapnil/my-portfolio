@@ -88,7 +88,7 @@ export default function About() {
 
     return (
         <>
-            <div className="about-container h-[calc(100vh-80px)] flex items-center justify-center text-white text-4xl relative overflow-x-hidden">
+            <div className="about-container mt-8 h-[calc(100vh-80px)] flex items-center justify-center text-white text-4xl relative overflow-x-hidden">
                 <OrbitSection icons={icons} yearsCount={yearsCount} />
                 <ArrowDown />
             </div>
@@ -162,7 +162,7 @@ interface SkillCardProps {
 function OrbitSection({ icons, yearsCount }: OrbitSectionProps) {
     return (
         <>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-4 md:gap-8 w-full sm:w-auto">
+            <div className="flex flex-col items-center justify-center gap-8 w-full h-auto sm:flex-row mb-20 sm:gap-6 sm:h-screen">
                 <div className="flex flex-col items-center relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 flex-shrink-0">
                     <div className="orbit-container absolute inset-0 flex items-center justify-center">
                         <div className="absolute z-10">
@@ -174,14 +174,14 @@ function OrbitSection({ icons, yearsCount }: OrbitSectionProps) {
                     </div>
                 </div>
                 
-                <div className="text-center sm:text-left text-white-800 w-full sm:w-auto max-w-xs sm:max-w-sm md:max-w-2xl px-4 sm:px-0">
-                    <h1 className="mb-4 text-2xl sm:text-3xl md:text-4xl font-bold">About Me</h1>
-                    <p className="text-lg sm:text-l md:text-2xl max-w-xs sm:max-w-sm md:max-w-xl text-white-600">
+                <div className="text-center text-white-800 w-full max-w-xs mt-8 px-4 sm:text-left sm:w-auto sm:max-w-sm sm:mt-0 sm:px-0 md:max-w-2xl">
+                    <h1 className="mb-4 text-2xl font-bold sm:text-3xl md:text-4xl">About Me</h1>
+                    <p className="text-lg max-w-xs text-white-600 sm:max-w-sm sm:text-l md:max-w-xl md:text-2xl">
                         Hello! I'm a passionate developer with an enthusiasm for integrating GenAI in functional web applications.
                         <br/> 
-                        <span className="font-bold text-2xl sm:text-3xl md:text-4xl text-white-950">{yearsCount}+</span> years of experience in various technologies, I enjoy solving complex problems.
+                        <span className="font-bold text-2xl text-white-950 sm:text-3xl md:text-4xl">{yearsCount}+</span> years of experience in various technologies, I enjoy solving complex problems.
                     </p>
-                    <p className='text-right mt-4 text-white-100 text-xs sm:text-sm md:text-sm'>- Swapnil Satish Bhalerao</p>
+                    <p className='mt-4 text-xs text-right text-white-100 sm:text-sm md:text-sm'>- Swapnil Satish Bhalerao</p>
                 </div>
             </div>
         </>
@@ -212,7 +212,7 @@ function OrbitIcon({ item, index, totalIcons }: OrbitIconProps) {
 function ArrowDown() {
     return (
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce flex flex-col items-center">
-            <a href="#resume" className="text-white-600 hover:text-gray-900 transition duration-200 flex flex-col items-center gap-2">
+            <a href="#resume" className="text-white-600 hover:text-gray-900 transition duration-200 flex flex-col items-center gap-2 ">
                 <span className='text-sm font-semibold text-white-700'>Resume</span>
                 <FaChevronDown size={40} />
             </a>

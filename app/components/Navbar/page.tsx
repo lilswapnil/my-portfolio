@@ -47,11 +47,11 @@ export default function Navbar() {
           transform: 'translateX(-50%)',
           top: isLoading ? '50%' : '8px',
           marginTop: isLoading ? '-24px' : '0',
-          width: isLoading ? '160px' : 'calc(100vw - 32px)',
-          maxWidth: isLoading ? '220px' : '1792px',
+          width: isLoading ? '180px' : 'calc(100vw - 32px)',
+          maxWidth: isLoading ? '240px' : '1792px',
           height: isLoading ? '58px' : '64px',
           opacity: isLoading ? 1 : 1,
-          padding: isLoading ? '10px' : '0',
+          padding: isLoading ? '20px' : '0',
           border: isLoading ? `2px solid ${isDark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)'}` : 'none',
           boxShadow: isLoading 
             ? `0 0 20px ${isDark ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.3)'}, inset 0 0 20px ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'}`
