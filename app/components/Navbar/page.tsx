@@ -144,9 +144,9 @@ export default function Navbar() {
       {/* Mobile Menu - Half Screen Width from Right */}
       {menuOpen && !isLoading && (
         <div 
-          className={`lg:hidden fixed right-0 top-0 bottom-0 z-40 w-1/2 flex flex-col justify-between p-6 glass-container ${isDark ? 'dark' : ''}`}
+          className={`lg:hidden fixed right-0 top-0 bottom-0 z-40 w-3/5 flex flex-col justify-between p-6 glass-container ${isDark ? 'dark' : ''}`}
           style={{
-            background: 'rgba(24, 24, 27, 0.95)',
+            
             backdropFilter: 'blur(40px)',
             WebkitBackdropFilter: 'blur(40px)',
             border: '1px solid rgba(255, 255, 255, 0.1)',

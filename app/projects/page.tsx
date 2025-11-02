@@ -321,30 +321,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
             ))}
           </div>
         ) : null}
-
-        {/* Stats */}
-        <div className="flex items-center gap-4 mb-4 text-sm">
-          {stars && (
-            <div className={`flex items-center gap-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              <span>⭐</span>
-              <span className="font-semibold">{stars.toLocaleString()}</span>
-            </div>
-          )}
-          {gh?.language && (
-            <div className={`flex items-center gap-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              <span className="font-semibold">{gh.language}</span>
-            </div>
-          )}
-        </div>
-
-        {/* Footer with Arrow Indicator */}
-        <div className="mt-auto pt-6 border-t flex items-center justify-end" style={{
-          borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
-        }}>
-          <span className={`text-lg font-semibold group-hover:translate-x-2 transition-transform duration-300 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
-            →
-          </span>
-        </div>
+        
       </div>
     </a>
   );
