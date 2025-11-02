@@ -29,7 +29,7 @@ export default function HeroModel() {
     const isTablet = windowSize.width <= 1024;
     
     const cameraPosition: [number, number, number] = isMobile ? [0, 0, 20] : [0, 5, 15];
-    const roomScale = isMobile ? 0.6 : isTablet ? 0.9 : 1.2;
+    const roomScale = isMobile ? 1.2 : isTablet ? 0.9 : 1.2;
     
     return(
         <Canvas camera={{ position: cameraPosition, fov: 45 }}>
@@ -55,7 +55,7 @@ function FloatingGroup({ roomScale }: { roomScale: number }) {
 
     useFrame(({ clock }) => {
         if (groupRef.current) {
-            groupRef.current.position.y = -1.5 + Math.sin(clock.elapsedTime * 0.5) * 0.3;
+            groupRef.current.position.y = -1.5 + Math.sin(clock.elapsedTime * 0.5 + Math.PI / 2) * 0.3;
         }
     });
 
@@ -63,7 +63,6 @@ function FloatingGroup({ roomScale }: { roomScale: number }) {
         <group
             ref={groupRef}
             scale={roomScale}
-            position={[0, -5.5, 0]}
             rotation={[0, -Math.PI / 4, 0]}
         >
             <Room />
