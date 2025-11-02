@@ -22,13 +22,19 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    // Simulate page load completion - adjust timing as needed
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      setIsPageLoading(false);
-    }, 1500);
+    // Simulate initial load time
+    const initialLoadTimer = setTimeout(() => {
+      setIsLoading(false); // Start the navbar animation
 
-    return () => clearTimeout(timer);
+      // Wait for navbar animation to finish before showing page content
+      const pageLoadTimer = setTimeout(() => {
+        setIsPageLoading(false);
+      }, 700); // This should match the animation duration
+
+      return () => clearTimeout(pageLoadTimer);
+    }, 1000); // Initial delay before animation starts
+
+    return () => clearTimeout(initialLoadTimer);
   }, [setIsPageLoading]);
 
   if (!mounted) return null;
@@ -41,7 +47,7 @@ export default function Navbar() {
     <>
       {/* Loading/Growing Navbar */}
       <header 
-        className={`fixed z-50 rounded-4xl glass-container transition-all duration-700 ease-out ${isDark ? 'dark' : ''}`}
+        className={`fixed z-50 rounded-4xl glass-container transition-all duration-700 ease-in-out ${isDark ? 'dark' : ''}`}
         style={{
           left: '50%',
           transform: 'translateX(-50%)',
@@ -52,7 +58,7 @@ export default function Navbar() {
           height: isLoading ? '58px' : '64px',
           opacity: isLoading ? 1 : 1,
           padding: isLoading ? '20px' : '0',
-          border: isLoading ? `2px solid ${isDark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)'}` : 'none',
+          
           boxShadow: isLoading 
             ? `0 0 20px ${isDark ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.3)'}, inset 0 0 20px ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'}`
             : 'none',
