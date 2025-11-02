@@ -187,7 +187,7 @@ export default function Navbar() {
             </a>
           </nav>
 
-          <div className="text-right text-sm text-white/50 pb-4">
+          <div className="text-right text-sm text-white/50 pb-12">
             © 2025 Swapnil
           </div>
         </div>
