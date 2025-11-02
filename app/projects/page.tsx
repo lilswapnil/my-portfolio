@@ -192,7 +192,7 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
         <div className={`absolute bottom-40 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-2 ${colors.secondary}`} />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mt-12 mx-auto px-4">
         {/* Header Section */}
         <div className="mb-12">
           <h1 className={`text-5xl md:text-6xl font-bold mb-3 text-primary ${isDark ? 'dark' : ''}`}>

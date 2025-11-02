@@ -1,0 +1,46 @@
+@keyframes borderAnimation {
+  0% {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15), inset 0 0 8px rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.3), inset 0 0 12px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15), inset 0 0 8px rgba(255, 255, 255, 0.05);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes loadingToTop {
+  0% {
+    top: 50%;
+    margin-top: -24px;
+    width: 120px;
+    max-width: 120px;
+    height: 48px;
+  }
+  100% {
+    top: 8px;
+    margin-top: 0;
+    width: 100%;
+    max-width: 1280px;
+    height: 56px;
+  }
+}
+
+.navbar-loading-skeleton {
+  animation: borderAnimation 2s linear infinite;
+}

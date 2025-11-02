@@ -1,21 +1,34 @@
-import './globals.css';
-import Navbar from "./components/Navbar/page";
 import type { Metadata } from "next";
-import RootLayoutClient from './RootLayoutClient';
+import { ThemeProvider } from 'next-themes'
+import Navbar from "./components/Navbar/page";
+import { AskScottyProvider } from "./context/AskScottyContext";
+import { LoadingProvider } from "./context/LoadingContext";
+import PageContent from "./components/PageContent";
+import AskScottyWrapper from '@/app/components/AskScottyWrapper';
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "Portfolio website",
+  title: "Swapnil's Portfolio",
+  description: "Full Stack Developer Portfolio",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <RootLayoutClient>
-          <Navbar />
-          {children}
-        </RootLayoutClient>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <LoadingProvider>
+            <AskScottyProvider>
+              <Navbar />
+              <PageContent>{children}</PageContent>
+              <AskScottyWrapper />
+            </AskScottyProvider>
+          </LoadingProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
