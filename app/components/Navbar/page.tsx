@@ -72,7 +72,7 @@ export default function Navbar() {
                 priority
               />
             </a>
-<h3 className='text-l font-small select-none'>Ask Scotty</h3>
+            <h3 className='text-l font-small select-none'>Ask Scotty</h3>
           </div>
 
           {/* Desktop Navbar - Center */}
@@ -93,7 +93,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-2 flex-shrink-0 ml-auto h-full">
             <button 
               onClick={() => setMinimized(false)}
-              className={`glass-button flex items-center justify-center flex-shrink-0 transition-opacity duration-500 ${
+              className={`glass-button flex items-center justify-center hover:bg-gray-800 flex-shrink-0 transition-opacity duration-500 ${
                 isLoading ? 'opacity-0 pointer-events-none' : 'opacity-100 delay-300'
               } ${isDark ? 'dark' : ''}`}
               title="Ask Scotty"
@@ -103,7 +103,7 @@ export default function Navbar() {
                 alt="Ask Scotty"
                 width={20}
                 height={20}
-                style={{ filter: isDark ? "invert(0)" : "invert(1)"}}
+                style={{ filter: isDark ? "invert(1)" : "invert(0)"}}
               />
             </button>
           </div>
