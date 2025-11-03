@@ -30,11 +30,11 @@ export default function Main() {
         <div className={`absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-1 ${colors.primary}`} />
         <div className={`absolute bottom-40 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-2 ${colors.secondary}`} />
       </div>
-      <div className="max-w-7xl mx-auto px-4 h-screen flex flex-col">
-        <div className="grid grid-cols-1 mt-16 px-16 lg:grid-cols-[30%_70%] gap-8 w-full flex-1 md:mt-12">
+      <div className="max-w-7xl mx-auto px-4 mt-16 h-screen flex flex-col">
+        <div className="grid grid-cols-1 lg:px-16 lg:grid-cols-[30%_70%] gap-8 w-full flex-1 md:mt-12">
           {/* Header Section - Left (30% width) */}
           <div className="flex flex-col justify-center lg:mb-0">
-            <h1 className={`text-5xl md:text-6xl font-bold mt-8 text-gray-900 dark:text-white`}>
+            <h1 className={`text-5xl md:text-6xl font-bold mt-8 text-white-900 dark:text-white`}>
               Welcome to <br/> Scott's Workplace
             </h1>
             <p className={`text-lg text-gray-700 dark:text-gray-300`}>
