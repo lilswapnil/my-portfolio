@@ -5,6 +5,7 @@ import { AskScottyProvider } from "./context/AskScottyContext";
 import { LoadingProvider } from "./context/LoadingContext";
 import PageContent from "./components/PageContent";
 import AskScottyWrapper from '@/app/components/AskScottyWrapper';
+import Footer from "./components/Footer/page";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function RootLayout({
               <Navbar />
               <PageContent>{children}</PageContent>
               <AskScottyWrapper />
+              <Footer />
             </AskScottyProvider>
           </LoadingProvider>
         </ThemeProvider>

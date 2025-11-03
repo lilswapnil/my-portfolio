@@ -327,6 +327,28 @@ button {
   to { opacity: 0; }
 }
 
+@keyframes glassSlabIn {
+  from {
+    opacity: 0;
+    transform: translateZ(-80px) scaleY(0.7) scaleX(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0) scaleY(1) scaleX(1);
+  }
+}
+
+@keyframes glassSlabOut {
+  from {
+    opacity: 1;
+    transform: translateZ(0) scaleY(1) scaleX(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateZ(80px) scaleY(0.7) scaleX(0.8);
+  }
+}
+
 .spiral-1 { animation: spiral-1 12s infinite ease-in-out; }
 .spiral-2 { animation: spiral-2 14s infinite ease-in-out; }
 .spin-animation {
@@ -351,6 +373,15 @@ button {
 
 .page-transition-overlay.fade-out {
   animation: fadeOut 0.5s ease-in forwards;
+}
+
+.glass-slab {
+  will-change: opacity, transform;
+  animation: glassSlabIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.glass-slab.hide {
+  animation: glassSlabOut 0.3s ease-in forwards;
 }
 
 @media (max-width: 1023px) {

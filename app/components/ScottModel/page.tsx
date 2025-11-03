@@ -115,18 +115,18 @@ export default function ScottModel() {
                         />
                     </mesh>
 
+                    <GlassSlab visible={!animateIn} azimuth={currentAzimuth} />
+
                     {currentAzimuth >= -Math.PI / 3 && currentAzimuth <= Math.PI / 3 && (
                         <FloatingModel>
-                            <FormalScottModel scale={5.0} />
+                            <FormalScottModel scale={4.5} />
                         </FloatingModel>
                     )}
-
                     {currentAzimuth > Math.PI / 3 && currentAzimuth <= Math.PI && (
                         <FloatingModel>
-                            <CasualScottModel scale={5.0} />
+                            <CasualScottModel scale={4.5} />
                         </FloatingModel>
                     )}
-
                     {currentAzimuth < -Math.PI / 3 && currentAzimuth >= -Math.PI && (
                         <FloatingModel>
                             <GraduationScottModel scale={5.0} />
@@ -152,5 +152,46 @@ function FloatingModel({ children }: { children: React.ReactNode }) {
         <group position={[0, -1, 1]}>
             {children}
         </group>
+    );
+}
+
+function GlassSlab({ visible, azimuth }: { visible: boolean, azimuth: number }) {
+    const radius = 3.5;
+    let switchAzimuth: number | null = null;
+
+    if (azimuth > Math.PI / 3 && azimuth < Math.PI) {
+        switchAzimuth = Math.PI / 3;
+    } else if (azimuth < -Math.PI / 3 && azimuth > -Math.PI) {
+        switchAzimuth = -Math.PI / 3;
+    } else if (azimuth >= Math.PI) {
+        switchAzimuth = Math.PI;
+    } else if (azimuth <= -Math.PI) {
+        switchAzimuth = -Math.PI;
+    } else {
+        return null;
+    }
+
+    const x = radius * Math.sin(switchAzimuth);
+    const z = radius * Math.cos(switchAzimuth);
+    const rotationY = switchAzimuth;
+
+    return (
+        <mesh
+            position={[x, -1, z]}
+            rotation={[0, rotationY, 0]}
+            visible={visible}
+            // @ts-ignore
+            className={`glass-slab${visible ? '' : ' hide'}`}
+        >
+            {/* Set height to 5 to match model scale */}
+            <planeGeometry args={[2.5, 5]} />
+            <meshStandardMaterial
+                color="#ffffff"
+                transparent
+                opacity={0.25}
+                metalness={0.5}
+                roughness={0.1}
+            />
+        </mesh>
     );
 }
