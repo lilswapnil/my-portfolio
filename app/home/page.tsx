@@ -34,10 +34,10 @@ export default function Main() {
         <div className="grid grid-cols-1 lg:px-16 lg:grid-cols-[30%_70%] gap-8 w-full flex-1 md:mt-12">
           {/* Header Section - Left (30% width) */}
           <div className="flex flex-col justify-center lg:mb-0">
-            <h1 className={`text-5xl md:text-6xl font-bold mt-8 text-white-900 dark:text-white`}>
+            <h1 className={`text-5xl md:text-6xl font-bold mb-3 text-primary ${isDark ? 'dark' : ''}`}>
               Welcome to <br/> Scott's Workplace
             </h1>
-            <p className={`text-lg text-gray-700 dark:text-gray-300`}>
+            <p className={`text-lg text-secondary ${isDark ? 'dark' : ''}`}>
               Explore my latest work and contributions
             </p>
             <button 
