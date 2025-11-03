@@ -70,7 +70,7 @@ export default function ScottModel() {
                 return {
                     title: "3+ Years Experience",
                     description: "Professional experience in software engineering, web scraping, backend development, and DevOps.",
-                    details: "Full-Stack Developer | Multiple Companies"
+                    details: "Full-Stack Developer | 4 Work Experiences"
                 };
             default:
                 return {
