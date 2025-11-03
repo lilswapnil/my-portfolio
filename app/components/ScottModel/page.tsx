@@ -18,6 +18,10 @@ export default function ScottModel() {
 
     useEffect(() => {
         setMounted(true);
+        if (orbitControlsRef.current) {
+            orbitControlsRef.current.reset();
+            orbitControlsRef.current.target.set(0, -1, 0);
+        }
     }, []);
 
     if (!mounted) return null;
@@ -90,13 +94,13 @@ export default function ScottModel() {
                     enablePan={false}
                     enableZoom={false}
                     autoRotate={true}
-                    autoRotateSpeed={4}
+                    autoRotateSpeed={2}
                     maxDistance={20}
                     minDistance={3}
                     minPolarAngle={Math.PI / 2}
                     maxPolarAngle={Math.PI / 2}
-                    minAzimuthAngle={-Math.PI}
-                    maxAzimuthAngle={Math.PI}
+                    minAzimuthAngle={-Infinity}
+                    maxAzimuthAngle={Infinity}
                     onChange={handleOrbitChange}
                 />
                 <Suspense fallback={null}>
