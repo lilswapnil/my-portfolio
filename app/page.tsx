@@ -1,6 +1,6 @@
 import AskScotty from "./components/AskScotty/page";
 
-import Main from "./components/Main/page";
+import Main from "./home/page";
 
 export default function Home() {
   return (
