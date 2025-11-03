@@ -3,6 +3,8 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import HeroModel from '../HeroModel/page';
+import TileHighlightSection from '../TileHighlightSection/page';
+import Contact from '../../contact/page';
 
 const colors = {
   primary: 'bg-purple-500',
@@ -32,14 +34,17 @@ export default function Main() {
         <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 w-full flex-1 md:mt-12">
           {/* Header Section - Left (30% width) */}
           <div className="flex flex-col justify-center lg:mb-0">
-            <h1 className={`text-5xl md:text-6xl font-bold mt-8 text-primary ${isDark ? 'dark' : ''}`}>
+            <h1 className={`text-5xl md:text-6xl font-bold mt-8 text-gray-900 dark:text-white`}>
               Welcome to <br/> Scott's Workplace
             </h1>
-            <p className={`text-lg text-secondary ${isDark ? 'dark' : ''}`}>
+            <p className={`text-lg text-gray-700 dark:text-gray-300`}>
               Explore my latest work and contributions
             </p>
-            <button className="mt-6 px-8 w-34 py-3 font-semibold text-white bg-gray-600 rounded-lg hover:bg-gray-700 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl border-none cursor-pointer">
-              Hire Me
+            <button 
+              className="mt-6 px-8 w-fit py-3 glass-button font-semibold text-white border border-gray-200/20 rounded-lg hover:bg-gray-900 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
+              onClick={() => window.location.href = '/contact'}
+              >
+              Get in Touch
             </button>
           </div>
 
@@ -50,7 +55,9 @@ export default function Main() {
             </div>
           </figure>
         </div>
+        
       </div>
+      <TileHighlightSection />
     </div>
   );
 }
