@@ -10,11 +10,12 @@ import { Lights } from './Lights';
 
 export default function ScottModel() {
     const [mounted, setMounted] = useState(false);
-    const [currentAzimuth, setCurrentAzimuth] = useState(0);
-    const [activeModel, setActiveModel] = useState('formal');
+    // Start at graduation model: azimuth -Math.PI
+    const [currentAzimuth, setCurrentAzimuth] = useState(-Math.PI);
+    const [activeModel, setActiveModel] = useState('c');
     const [animateIn, setAnimateIn] = useState(true);
     const orbitControlsRef = useRef<any>(null);
-    const prevModelRef = useRef('formal');
+    const prevModelRef = useRef('graduation');
 
     useEffect(() => {
         setMounted(true);
@@ -94,7 +95,7 @@ export default function ScottModel() {
                     enablePan={false}
                     enableZoom={false}
                     autoRotate={true}
-                    autoRotateSpeed={2}
+                    autoRotateSpeed={4}
                     maxDistance={20}
                     minDistance={3}
                     minPolarAngle={Math.PI / 2}
@@ -114,18 +115,17 @@ export default function ScottModel() {
                             opacity={0}
                         />
                     </mesh>
-
-                    <GlassSlab visible={!animateIn} azimuth={currentAzimuth} />
+                   
 
                     {currentAzimuth >= -Math.PI / 3 && currentAzimuth <= Math.PI / 3 && (
                         <FloatingModel>
-                            <FormalScottModel scale={4.5} />
+                            <FormalScottModel scale={4.9} />
                         </FloatingModel>
                     )}
                     {currentAzimuth > Math.PI / 3 && currentAzimuth <= Math.PI && (
-                        <FloatingModel>
+                        <group position={[0, -0.75, 1]}>
                             <CasualScottModel scale={4.5} />
-                        </FloatingModel>
+                        </group>
                     )}
                     {currentAzimuth < -Math.PI / 3 && currentAzimuth >= -Math.PI && (
                         <FloatingModel>
