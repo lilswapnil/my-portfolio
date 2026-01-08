@@ -41,7 +41,7 @@ export default function Main() {
           {/* Header Section - Left (30% width) */}
           <div className="flex flex-col justify-center lg:mb-0">
             <h1 className={`text-5xl md:text-6xl font-bold mb-3 text-primary ${isDark ? 'dark' : ''}`}>
-              Welcome to <br/> Scott&apos;s Workplace
+              Welcome to <br/> Scott&apos;s Portfolio
             </h1>
             <p className={`text-lg text-secondary ${isDark ? 'dark' : ''}`}>
               Explore my latest work and contributions

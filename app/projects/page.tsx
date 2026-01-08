@@ -1,6 +1,7 @@
 "use client";
 
 import { memo, useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import { useTheme } from "next-themes";
 import type { Project } from "@/data/projects";
 import { projects } from "@/data/projects";
@@ -19,18 +20,8 @@ type GitHubInfo = {
 type Enriched = { project: Project; roles: string[]; gh: GitHubInfo | null };
 
 async function fetchGitHub(repo: string, signal?: AbortSignal): Promise<GitHubInfo | null> {
-  try {
-    const headers: Record<string, string> = {
-      Accept: "application/vnd.github+json",
-      "X-GitHub-Api-Version": "2022-11-28",
-    };
-    const res = await fetch(`https://api.github.com/repos/${repo}`, { headers, signal });
-    if (!res.ok) return null;
-    const data = (await res.json()) as GitHubInfo;
-    return data;
-  } catch {
-    return null;
-  }
+  // TODO: Implement GitHub fetch logic
+  return null;
 }
 
 function inferProjectRoles(p: Project): string[] {
@@ -275,28 +266,128 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
 const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Project; isDark: boolean }) {
   const { gh, ref } = useGitHubInfo(project.githubRepo);
   const [isHovered, setIsHovered] = useState(false);
-
+  const isMoviez = project.id === "moviz";
   const learnMoreHref = project.liveUrl || gh?.homepage || (gh?.html_url ?? (project.githubRepo ? `https://github.com/${project.githubRepo}` : "#"));
   const desc = gh?.description || project.description;
-  // const stars = gh?.stargazers_count;
+
+  // Map project.id to preview PNGs if available
+  const previewPngs: Record<string, string> = {
+    musix: '/preview/musix-preview.png',
+    moviz: '/preview/moviez-preview.png',
+    'trends-analytics': '/preview/gaming-trends.png',
+    'wildlife-monitoring': '/preview/forestwatch-preview.png',
+    'llm-from-scratch': '/preview/lung-cancer.png',
+    'kdrama-analytics': '/preview/kdrama-analytics.png',
+    // Add/adjust mappings for visible projects if needed
+    // Example: 'ai-assistant': '/preview/ai-assistant-preview.png',
+    // Example: 'book-scraper': '/preview/book-scraper-preview.png',
+    // Add more as you add PNGs to /public/preview
+  };
+  const previewImg = previewPngs[project.id];
+
   return (
     <a
       href={learnMoreHref}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group glass-container rounded-2xl p-6 transition-all duration-500 h-full flex flex-col cursor-pointer block
+      className={`group glass-container rounded-2xl p-6 transition-all duration-500 flex flex-col cursor-pointer block overflow-hidden project-card-bg-${project.id}
         ${isHovered ? 'scale-105 shadow-2xl' : 'shadow-lg'} ${isDark ? 'dark' : ''}
       `}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      ref={ref}
+      style={{ position: 'relative', zIndex: 0, aspectRatio: '1 / 1', width: '100%', minWidth: 0, minHeight: 0, maxWidth: '420px', maxHeight: '420px', margin: 'auto' }}
     >
-      <div ref={ref} className="flex flex-col flex-1">
-        {/* Header */}
+      {/* PNG as card background, consistent size */}
+      <style jsx>{`
+        .project-card-bg-${project.id} {
+          position: relative;
+        }
+        .project-card-bg-${project.id}::before {
+          content: '';
+          position: absolute;
+          z-index: 0;
+          background: #18181b;
+          opacity: 0.48;
+          border-radius: 1rem;
+          transition: opacity 0.3s;
+        }
+        .project-card-bg-${project.id}:hover::before {
+          opacity: 0.28;
+        }
+        .project-card-bg-${project.id}::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 1;
+          width: 220px;
+          height: 165px;
+          max-width: 85%;
+          max-height: 65%;
+          background: ${previewImg ? `url('${previewImg}') center center / contain no-repeat` : 'none'};
+          opacity: 0.88;
+          pointer-events: none;
+          transition: opacity 0.3s;
+        }
+        .project-card-bg-${project.id}:hover::after {
+          opacity: 1;
+        }
+      `}</style>
+      {/* Card content, above image */}
+      <div className="flex flex-col flex-1 relative z-10">
+        {/* Header and category at top */}
         <div className="mb-4">
           <div className="flex items-center justify-between">
-            <h2 className={`text-2xl font-bold mb-2 transition-colors duration-300 ${isDark ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}`}> 
-              {project.title}
-            </h2>
+            <div>
+              <h2 className={`text-2xl font-bold mb-1 transition-colors duration-300 ${isDark ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}`}> 
+                {project.title}
+              </h2>
+              {project.category && (
+                <div className={`text-xs my-2 font-semibold ${isDark ? 'text-blue-300' : 'text-blue-700'}`}> 
+                  {project.category}
+                </div>
+              )}
+            </div>
+            {(project.notebookUrl || project.githubRepo) && (
+              <div className="flex flex-col gap-2 ml-4 justify-start">
+                {project.githubRepo && (
+                  <button
+                    type="button"
+                    className={`px-3 py-1.5 rounded-full border border-white/60 text-white/80 bg-transparent flex items-center gap-2 font-semibold text-xs transition-all duration-200
+                      hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent
+                      ${isDark ? '' : ''}`}
+                    title="View on GitHub"
+                    onClick={e => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      window.open(`https://github.com/${project.githubRepo}`, '_blank', 'noopener,noreferrer');
+                    }}
+                  >
+                    <FaGithub size={18} style={{ display: 'inline', verticalAlign: 'middle' }} />
+                    <span className="font-bold tracking-wide">GitHub</span>
+                  </button>
+                )}
+                {project.notebookUrl && (
+                  <button
+                    type="button"
+                    className={`px-3 py-1.5 rounded-full border border-white/60 text-white/80 bg-transparent flex items-center gap-2 font-semibold text-xs transition-all duration-200
+                      hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent
+                      ${isDark ? '' : ''}`}
+                    title="View Notebook"
+                    onClick={e => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      window.open(project.notebookUrl, '_blank', 'noopener,noreferrer');
+                    }}
+                  >
+                    <SiJupyter size={18} style={{ display: 'inline', verticalAlign: 'middle' }} />
+                    <span className="font-bold tracking-wide">Notebook</span>
+                  </button>
+                )}
+              </div>
+            )}
           </div>
           {project.githubRepo && (
             <div className={`flex items-center gap-2 text-xs ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -304,28 +395,21 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
               <span className="truncate">{project.githubRepo}</span>
             </div>
           )}
-          {project.category && (
-            <div className={`m-2 text-xs font-semibold ${isDark ? 'text-blue-300' : 'text-blue-700'}`}> 
-              {project.category}
-            </div>
-          )}
         </div>
-
-        {/* Description */}
+        <div className="flex-1" />
+        {/* Description and tags at bottom */}
         {desc ? (
-          <p className={`mb-4 line-clamp-3 text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}> 
+          <p className={`mt-4 line-clamp-3 text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}> 
             {desc}
           </p>
         ) : (
-          <div className="mb-4 animate-pulse space-y-2">
+          <div className="mt-4 animate-pulse space-y-2">
             <div className={`h-3 rounded-full w-full ${isDark ? 'bg-gray-700/50' : 'bg-gray-300/50'}`} />
             <div className={`h-3 rounded-full w-5/6 ${isDark ? 'bg-gray-700/50' : 'bg-gray-300/50'}`} />
           </div>
         )}
-
-        {/* Tags */}
         {project.tags?.length ? (
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-2 mt-2">
             {project.tags.map((t) => (
               <span
                 key={t}
@@ -340,48 +424,8 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
             ))}
           </div>
         ) : null}
-        {/* Spacer to push button to bottom */}
-        <div className="flex-1" />
-        {/* Notebook & GitHub Buttons side by side */}
-        {(project.notebookUrl || project.githubRepo) && (
-          <div className="mt-4 flex gap-3 justify-end">
-            {project.notebookUrl && (
-              <button
-                type="button"
-                className={`px-3 py-1.5 rounded-full border border-white/60 text-white/80 bg-transparent flex items-center gap-2 font-semibold text-xs transition-all duration-200
-                  hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent
-                  ${isDark ? '' : ''}`}
-                title="View Notebook"
-                onClick={e => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  window.open(project.notebookUrl, '_blank', 'noopener,noreferrer');
-                }}
-              >
-                <SiJupyter size={18} style={{ display: 'inline', verticalAlign: 'middle' }} />
-                <span className="font-bold tracking-wide">Notebook</span>
-              </button>
-            )}
-            {project.githubRepo && (
-              <button
-                type="button"
-                className={`px-3 py-1.5 rounded-full border border-white/60 text-white/80 bg-transparent flex items-center gap-2 font-semibold text-xs transition-all duration-200
-                  hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent
-                  ${isDark ? '' : ''}`}
-                title="View on GitHub"
-                onClick={e => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  window.open(`https://github.com/${project.githubRepo}`, '_blank', 'noopener,noreferrer');
-                }}
-              >
-                <FaGithub size={18} style={{ display: 'inline', verticalAlign: 'middle' }} />
-                <span className="font-bold tracking-wide">GitHub</span>
-              </button>
-            )}
-          </div>
-        )}
       </div>
     </a>
   );
+// End of ProjectCard
 });
