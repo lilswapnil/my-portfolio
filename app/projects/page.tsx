@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import type { Project } from "@/data/projects";
 import { projects } from "@/data/projects";
 import { FaGithub } from "react-icons/fa";
+import { SiJupyter } from "react-icons/si";
 
 type GitHubInfo = {
   html_url: string;
@@ -278,7 +279,6 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
   const learnMoreHref = project.liveUrl || gh?.homepage || (gh?.html_url ?? (project.githubRepo ? `https://github.com/${project.githubRepo}` : "#"));
   const desc = gh?.description || project.description;
   // const stars = gh?.stargazers_count;
-
   return (
     <a
       href={learnMoreHref}
@@ -294,7 +294,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
         {/* Header */}
         <div className="mb-4">
           <div className="flex items-center justify-between">
-            <h2 className={`text-2xl font-bold mb-2 transition-colors duration-300 ${isDark ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}`}>
+            <h2 className={`text-2xl font-bold mb-2 transition-colors duration-300 ${isDark ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}`}> 
               {project.title}
             </h2>
           </div>
@@ -305,7 +305,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
             </div>
           )}
           {project.category && (
-            <div className={`m-2 text-xs font-semibold ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>
+            <div className={`m-2 text-xs font-semibold ${isDark ? 'text-blue-300' : 'text-blue-700'}`}> 
               {project.category}
             </div>
           )}
@@ -313,7 +313,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
 
         {/* Description */}
         {desc ? (
-          <p className={`mb-4 line-clamp-3 text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+          <p className={`mb-4 line-clamp-3 text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}> 
             {desc}
           </p>
         ) : (
@@ -342,24 +342,43 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
         ) : null}
         {/* Spacer to push button to bottom */}
         <div className="flex-1" />
-        {/* GitHub Button at bottom */}
-        {project.githubRepo && (
-          <div className="mt-4 flex justify-end">
-            <button
-              type="button"
-              className={`px-3 py-1.5 rounded-full border border-white/60 text-white/80 bg-transparent flex items-center gap-2 font-semibold text-xs transition-all duration-200
-                hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent
-                ${isDark ? '' : ''}`}
-              title="View on GitHub"
-              onClick={e => {
-                e.preventDefault();
-                e.stopPropagation();
-                window.open(`https://github.com/${project.githubRepo}`, '_blank', 'noopener,noreferrer');
-              }}
-            >
-              <FaGithub size={18} style={{ display: 'inline', verticalAlign: 'middle' }} />
-              <span className="font-bold tracking-wide">GitHub</span>
-            </button>
+        {/* Notebook & GitHub Buttons side by side */}
+        {(project.notebookUrl || project.githubRepo) && (
+          <div className="mt-4 flex gap-3 justify-end">
+            {project.notebookUrl && (
+              <button
+                type="button"
+                className={`px-3 py-1.5 rounded-full border border-white/60 text-white/80 bg-transparent flex items-center gap-2 font-semibold text-xs transition-all duration-200
+                  hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent
+                  ${isDark ? '' : ''}`}
+                title="View Notebook"
+                onClick={e => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.open(project.notebookUrl, '_blank', 'noopener,noreferrer');
+                }}
+              >
+                <SiJupyter size={18} style={{ display: 'inline', verticalAlign: 'middle' }} />
+                <span className="font-bold tracking-wide">Notebook</span>
+              </button>
+            )}
+            {project.githubRepo && (
+              <button
+                type="button"
+                className={`px-3 py-1.5 rounded-full border border-white/60 text-white/80 bg-transparent flex items-center gap-2 font-semibold text-xs transition-all duration-200
+                  hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent
+                  ${isDark ? '' : ''}`}
+                title="View on GitHub"
+                onClick={e => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.open(`https://github.com/${project.githubRepo}`, '_blank', 'noopener,noreferrer');
+                }}
+              >
+                <FaGithub size={18} style={{ display: 'inline', verticalAlign: 'middle' }} />
+                <span className="font-bold tracking-wide">GitHub</span>
+              </button>
+            )}
           </div>
         )}
       </div>

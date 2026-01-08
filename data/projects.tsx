@@ -12,6 +12,7 @@ export type Project = {
   role?: string;
   timeframe?: string;
   category?: string; // e.g. 'Full-Stack', 'Data Analysis', 'ML Project', etc.
+  notebookUrl?: string; // Direct notebook link for Python/ML/Data projects
 };
 
 export const projects: Project[] = [
@@ -33,8 +34,8 @@ export const projects: Project[] = [
     category: "Full-Stack / AI / Recommender",
   },
   {
-    id: "movizzz",
-    title: "Movizzz",
+    id: "moviz",
+    title: "Moviz",
     description: "AI generated Movie recommendation",
     tags: ["AI", "Movies", "Recommender"],
     githubRepo: "lilswapnil/moviezzz",
@@ -48,6 +49,7 @@ export const projects: Project[] = [
     role: "Full‑Stack",
     timeframe: "2024",
     category: "Full-Stack / AI / Recommender",
+    notebookUrl: "https://github.com/lilswapnil/moviezzz/blob/main/notebook/imdb-scraper.ipynb",
   },
   {
     id: "trends-analytics",
@@ -64,6 +66,7 @@ export const projects: Project[] = [
     role: "Data/ETL",
     timeframe: "2023",
     category: "Data Analysis / NLP / ETL",
+    notebookUrl: "https://github.com/lilswapnil/gaming-analytics/blob/main/Gaming.ipynb",
   },
   {
     id: "wildlife-monitoring",

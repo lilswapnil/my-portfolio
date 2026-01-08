@@ -97,17 +97,15 @@ export default function Navbar() {
           
           {/* Logo */}
           <div className="flex items-center gap-3 flex-shrink-0">
-            <Link href="/" passHref legacyBehavior>
-              <a onClick={(e) => handleNavClick(e, '/')}> 
-                <Image
-                  src="/logo.png"
-                  alt="Logo"
-                  width={40}
-                  height={40}
-                  className="rounded-full shadow-md"
-                  priority
-                />
-              </a>
+            <Link href="/" onClick={(e) => handleNavClick(e, '/')}> 
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={40}
+                height={40}
+                className="rounded-full shadow-md"
+                priority
+              />
             </Link>
             <h3 className='text-l font-small select-none'>Ask Scotty</h3>
           </div>
@@ -119,18 +117,10 @@ export default function Navbar() {
             }`}
           >
             <nav className="flex flex-col lg:flex-row justify-center gap-8">
-              <Link href="/about" passHref legacyBehavior>
-                <a onClick={(e) => handleNavClick(e, '/about')} className={`accent-hover transition ${isActive('/about') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`}>About</a>
-              </Link>
-              <Link href="/projects" passHref legacyBehavior>
-                <a onClick={(e) => handleNavClick(e, '/projects')} className={`accent-hover transition ${isActive('/projects') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`}>Projects</a>
-              </Link>
-              <Link href="/credentials" passHref legacyBehavior>
-                <a onClick={(e) => handleNavClick(e, '/credentials')} className={`accent-hover transition ${isActive('/credentials') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`}>Credentials</a>
-              </Link>
-              <Link href="/contact" passHref legacyBehavior>
-                <a onClick={(e) => handleNavClick(e, '/contact')} className={`accent-hover transition ${isActive('/contact') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`}>Contact</a>
-              </Link>
+              <Link href="/about" className={`accent-hover transition ${isActive('/about') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`} onClick={(e) => handleNavClick(e, '/about')}>About</Link>
+              <Link href="/projects" className={`accent-hover transition ${isActive('/projects') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`} onClick={(e) => handleNavClick(e, '/projects')}>Projects</Link>
+              <Link href="/credentials" className={`accent-hover transition ${isActive('/credentials') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`} onClick={(e) => handleNavClick(e, '/credentials')}>Credentials</Link>
+              <Link href="/contact" className={`accent-hover transition ${isActive('/contact') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`} onClick={(e) => handleNavClick(e, '/contact')}>Contact</Link>
             </nav>
           </div>
 
