@@ -1,7 +1,6 @@
 "use client";
 
 import { memo, useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
 import { useTheme } from "next-themes";
 import type { Project } from "@/data/projects";
 import { projects } from "@/data/projects";
@@ -19,7 +18,8 @@ type GitHubInfo = {
 
 type Enriched = { project: Project; roles: string[]; gh: GitHubInfo | null };
 
-async function fetchGitHub(repo: string, signal?: AbortSignal): Promise<GitHubInfo | null> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function fetchGitHub(_repo: string, _signal?: AbortSignal): Promise<GitHubInfo | null> {
   // TODO: Implement GitHub fetch logic
   return null;
 }
@@ -266,7 +266,6 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
 const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Project; isDark: boolean }) {
   const { gh, ref } = useGitHubInfo(project.githubRepo);
   const [isHovered, setIsHovered] = useState(false);
-  const isMoviez = project.id === "moviz";
   const learnMoreHref = project.liveUrl || gh?.homepage || (gh?.html_url ?? (project.githubRepo ? `https://github.com/${project.githubRepo}` : "#"));
   const desc = gh?.description || project.description;
 
@@ -295,7 +294,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
       `}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      ref={ref}
+      ref={ref as React.Ref<HTMLAnchorElement>}
       style={{ position: 'relative', zIndex: 0, aspectRatio: '1 / 1', width: '100%', minWidth: 0, minHeight: 0, maxWidth: '420px', maxHeight: '420px', margin: 'auto' }}
     >
       {/* PNG as card background, consistent size */}
