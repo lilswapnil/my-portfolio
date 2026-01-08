@@ -1,29 +1,43 @@
+
 "use client";
 
+import React, { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { Suspense, useRef, useEffect, useState } from "react";
 import { FormalScottModel } from './Formal-scott';
 import { Model as GraduationScottModel } from './Graduation-scott';
 import { Model as CasualScottModel } from './Casual-scott';
 import { Lights } from './Lights';
 
+
+function FloatingModel({ children }: { children: React.ReactNode }) {
+    return (
+        <group position={[0, -1, 1]}>
+            {children}
+        </group>
+    );
+}
+
+
 export default function ScottModel() {
     const [mounted, setMounted] = useState(false);
     // Start at graduation model: azimuth -Math.PI
     const [currentAzimuth, setCurrentAzimuth] = useState(-Math.PI);
-    const [activeModel, setActiveModel] = useState('c');
+    const [activeModel, setActiveModel] = useState('graduation');
     const [animateIn, setAnimateIn] = useState(true);
-    const orbitControlsRef = useRef<any>(null);
+    // Use ref for OrbitControls instance (unknown type to avoid 'any')
+    const orbitControlsRef = useRef<unknown>(null);
     const prevModelRef = useRef('graduation');
 
     useEffect(() => {
         let isMounted = true;
-        setMounted(true);
-        if (orbitControlsRef.current) {
-            orbitControlsRef.current.reset();
-            orbitControlsRef.current.target.set(0, -1, 0);
-        }
+        requestAnimationFrame(() => {
+            if (isMounted) setMounted(true);
+            if (orbitControlsRef.current) {
+                (orbitControlsRef.current as { reset?: () => void; target?: { set: (x: number, y: number, z: number) => void } }).reset?.();
+                (orbitControlsRef.current as { reset?: () => void; target?: { set: (x: number, y: number, z: number) => void } }).target?.set(0, -1, 0);
+            }
+        });
         return () => {
             isMounted = false;
         };
@@ -33,25 +47,27 @@ export default function ScottModel() {
 
     const handleOrbitChange = () => {
         if (orbitControlsRef.current) {
-            const azimuth = orbitControlsRef.current.getAzimuthalAngle();
-            setCurrentAzimuth(azimuth);
+            const azimuth = (orbitControlsRef.current as { getAzimuthalAngle?: () => number }).getAzimuthalAngle?.();
+            if (typeof azimuth === 'number') {
+                setCurrentAzimuth(azimuth);
 
-            let model = 'formal';
-            if (azimuth > Math.PI / 3 && azimuth <= Math.PI) {
-                model = 'casual';
-            } else if (azimuth < -Math.PI / 3 && azimuth >= -Math.PI) {
-                model = 'graduation';
-            }
+                let model = 'formal';
+                if (azimuth > Math.PI / 3 && azimuth <= Math.PI) {
+                    model = 'casual';
+                } else if (azimuth < -Math.PI / 3 && azimuth >= -Math.PI) {
+                    model = 'graduation';
+                }
 
-            if (model !== prevModelRef.current) {
-                setAnimateIn(false);
-                setTimeout(() => {
+                if (model !== prevModelRef.current) {
+                    setAnimateIn(false);
+                    setTimeout(() => {
+                        setActiveModel(model);
+                        setAnimateIn(true);
+                    }, 300);
+                    prevModelRef.current = model;
+                } else {
                     setActiveModel(model);
-                    setAnimateIn(true);
-                }, 300);
-                prevModelRef.current = model;
-            } else {
-                setActiveModel(model);
+                }
             }
         }
     };
@@ -60,7 +76,7 @@ export default function ScottModel() {
         switch (activeModel) {
             case 'graduation':
                 return {
-                    title: "Master&apos;s Education",
+                    title: "Master's Education",
                     description: "Advanced studies in Computer Science with focus on Software Engineering and Distributed Systems.",
                     details: "Graduate Degree | 2 Years"
                 };
@@ -95,7 +111,9 @@ export default function ScottModel() {
             >
                 <Lights />
                 <OrbitControls
-                    ref={orbitControlsRef}
+                    ref={(instance) => {
+                        orbitControlsRef.current = instance;
+                    }}
                     enablePan={false}
                     enableZoom={false}
                     autoRotate={true}
@@ -120,7 +138,6 @@ export default function ScottModel() {
                         />
                     </mesh>
                    
-
                     {currentAzimuth >= -Math.PI / 3 && currentAzimuth <= Math.PI / 3 && (
                         <FloatingModel>
                             <FormalScottModel scale={4.9} />
@@ -151,51 +168,3 @@ export default function ScottModel() {
     );
 }
 
-function FloatingModel({ children }: { children: React.ReactNode }) {
-    return (
-        <group position={[0, -1, 1]}>
-            {children}
-        </group>
-    );
-}
-
-function GlassSlab({ visible, azimuth }: { visible: boolean, azimuth: number }) {
-    const radius = 3.5;
-    let switchAzimuth: number | null = null;
-
-    if (azimuth > Math.PI / 3 && azimuth < Math.PI) {
-        switchAzimuth = Math.PI / 3;
-    } else if (azimuth < -Math.PI / 3 && azimuth > -Math.PI) {
-        switchAzimuth = -Math.PI / 3;
-    } else if (azimuth >= Math.PI) {
-        switchAzimuth = Math.PI;
-    } else if (azimuth <= -Math.PI) {
-        switchAzimuth = -Math.PI;
-    } else {
-        return null;
-    }
-
-    const x = radius * Math.sin(switchAzimuth);
-    const z = radius * Math.cos(switchAzimuth);
-    const rotationY = switchAzimuth;
-
-    return (
-        <mesh
-            position={[x, -1, z]}
-            rotation={[0, rotationY, 0]}
-            visible={visible}
-            // @ts-ignore
-            className={`glass-slab${visible ? '' : ' hide'}`}
-        >
-            {/* Set height to 5 to match model scale */}
-            <planeGeometry args={[2.5, 5]} />
-            <meshStandardMaterial
-                color="#ffffff"
-                transparent
-                opacity={0.25}
-                metalness={0.5}
-                roughness={0.1}
-            />
-        </mesh>
-    );
-}

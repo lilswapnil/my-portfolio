@@ -1,6 +1,7 @@
 "use client";
 
 import { useTheme } from 'next-themes'
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -19,11 +20,11 @@ export default function Navbar() {
 
   useEffect(() => {
     let isMounted = true;
-    setMounted(true);
-    // We use requestAnimationFrame to ensure the component has mounted and rendered
-    // before we check sessionStorage. This prevents a race condition where the
-    // animation is skipped on the very first load.
     requestAnimationFrame(() => {
+      if (isMounted) setMounted(true);
+      // We use requestAnimationFrame to ensure the component has mounted and rendered
+      // before we check sessionStorage. This prevents a race condition where the
+      // animation is skipped on the very first load.
       const hasLoaded = sessionStorage.getItem('initialLoadDone');
       if (hasLoaded && isMounted) {
         setIsInitialLoad(false);
@@ -96,15 +97,18 @@ export default function Navbar() {
           
           {/* Logo */}
           <div className="flex items-center gap-3 flex-shrink-0">
-            <a href="/" onClick={(e) => handleNavClick(e, '/')}>
-              <Image
-                src="/logo.png"
-                alt="Logo"
-                width={40}
-                height={40}
-                priority
-              />
-            </a>
+            <Link href="/" passHref legacyBehavior>
+              <a onClick={(e) => handleNavClick(e, '/')}> 
+                <Image
+                  src="/logo.png"
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                  className="rounded-full shadow-md"
+                  priority
+                />
+              </a>
+            </Link>
             <h3 className='text-l font-small select-none'>Ask Scotty</h3>
           </div>
 
@@ -115,10 +119,18 @@ export default function Navbar() {
             }`}
           >
             <nav className="flex flex-col lg:flex-row justify-center gap-8">
-              <a href="/about" onClick={(e) => handleNavClick(e, '/about')} className={`accent-hover transition ${isActive('/about') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`}>About</a>
-              <a href="/projects" onClick={(e) => handleNavClick(e, '/projects')} className={`accent-hover transition ${isActive('/projects') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`}>Projects</a>
-              <a href="/credentials" onClick={(e) => handleNavClick(e, '/credentials')} className={`accent-hover transition ${isActive('/credentials') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`}>Credentials</a>
-              <a href="/contact" onClick={(e) => handleNavClick(e, '/contact')} className={`accent-hover transition ${isActive('/contact') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`}>Contact</a>
+              <Link href="/about" passHref legacyBehavior>
+                <a onClick={(e) => handleNavClick(e, '/about')} className={`accent-hover transition ${isActive('/about') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`}>About</a>
+              </Link>
+              <Link href="/projects" passHref legacyBehavior>
+                <a onClick={(e) => handleNavClick(e, '/projects')} className={`accent-hover transition ${isActive('/projects') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`}>Projects</a>
+              </Link>
+              <Link href="/credentials" passHref legacyBehavior>
+                <a onClick={(e) => handleNavClick(e, '/credentials')} className={`accent-hover transition ${isActive('/credentials') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`}>Credentials</a>
+              </Link>
+              <Link href="/contact" passHref legacyBehavior>
+                <a onClick={(e) => handleNavClick(e, '/contact')} className={`accent-hover transition ${isActive('/contact') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`}>Contact</a>
+              </Link>
             </nav>
           </div>
 

@@ -28,18 +28,19 @@ export default function About() {
     }, [yearsCount]);
 
     // Memoize intersection observer setup
+
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => entry.isIntersecting && setIsResumeVisible(true),
             { threshold: 0.1 }
         );
 
-        if (resumeRef.current) {
-            observer.observe(resumeRef.current);
+        const ref = resumeRef.current;
+        if (ref) {
+            observer.observe(ref);
         }
-        
+
         return () => {
-            const ref = resumeRef.current;
             if (ref) {
                 observer.unobserve(ref);
             }

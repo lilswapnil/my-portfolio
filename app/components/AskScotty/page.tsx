@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useTheme } from 'next-themes'
 import { useAskScotty } from '@/app/context/AskScottyContext';
 import { ASKSCOTTY_SYSTEM_PROMPT } from '@/lib/askscotty-system-prompt';
@@ -51,15 +51,8 @@ export default function AskScotty({ question }: { question: string }) {
     scrollToBottom();
   }, [messages]);
 
-  useEffect(() => {
-    if (question) {
-      setMinimized(false);
-      setMobileOpen(true);
-      handleSendMessage(question);
-    }
-  }, [question, setMinimized]);
 
-  const handleSendMessage = async (messageText: string) => {
+  const handleSendMessage = useCallback(async (messageText: string) => {
     if (!messageText.trim()) return;
 
     const userMessage: Message = { role: 'user', content: messageText };
@@ -78,7 +71,6 @@ export default function AskScotty({ question }: { question: string }) {
           systemPrompt: ASKSCOTTY_SYSTEM_PROMPT,
         }),
       });
-
       const data = await response.json();
 
       if (data.error) {
@@ -101,7 +93,15 @@ export default function AskScotty({ question }: { question: string }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [addMessage, setInputValue, setLoading, messages]);
+
+  useEffect(() => {
+    if (question) {
+      setMinimized(false);
+      setMobileOpen(true);
+      handleSendMessage(question);
+    }
+  }, [question, setMinimized, handleSendMessage]);
 
   const handleMobileButtonClick = () => {
     if (mobileOpen) {

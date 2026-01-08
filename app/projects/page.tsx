@@ -4,7 +4,6 @@ import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import type { Project } from "@/data/projects";
 import { projects } from "@/data/projects";
-import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 
 type GitHubInfo = {
@@ -74,26 +73,30 @@ function writeSessionCache(repo: string, data: GitHubInfo) {
 
 function useGitHubInfo(repo?: string, rootMargin = "200px") {
   const [gh, setGh] = useState<GitHubInfo | null>(null);
-  const [loading, setLoading] = useState<boolean>(!!repo);
+  // const [loading, setLoading] = useState<boolean>(!!repo);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!repo) {
-      setLoading(false);
+      // requestAnimationFrame(() => setLoading(false));
       return;
     }
 
     const mem = ghMemCache.get(repo);
     if (mem) {
-      setGh(mem);
-      setLoading(false);
+      requestAnimationFrame(() => {
+        setGh(mem);
+        // setLoading(false);
+      });
       return;
     }
     const sess = readSessionCache(repo);
     if (sess) {
       ghMemCache.set(repo, sess);
-      setGh(sess);
-      setLoading(false);
+      requestAnimationFrame(() => {
+        setGh(sess);
+        // setLoading(false);
+      });
       return;
     }
 
@@ -103,7 +106,7 @@ function useGitHubInfo(repo?: string, rootMargin = "200px") {
 
     const fetchWhenVisible = async () => {
       if (aborted || !repo) return;
-      setLoading(true);
+      // setLoading(true);
       controller = new AbortController();
       const data = await fetchGitHub(repo, controller.signal);
       if (aborted) return;
@@ -112,7 +115,7 @@ function useGitHubInfo(repo?: string, rootMargin = "200px") {
         writeSessionCache(repo, data);
       }
       setGh(data);
-      setLoading(false);
+      // setLoading(false);
     };
 
     const el = ref.current;
@@ -141,7 +144,7 @@ function useGitHubInfo(repo?: string, rootMargin = "200px") {
     };
   }, [repo, rootMargin]);
 
-  return { gh, loading, ref };
+  return { gh, ref };
 }
 
 export default function Projects() {
@@ -172,16 +175,18 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
 
   useEffect(() => {
     let isMounted = true;
-    setMounted(true);
-    // Generate random blue and purple hues
-    const blueShades = ['bg-blue-500', 'bg-blue-600', 'bg-cyan-500', 'bg-indigo-500'];
-    const purpleShades = ['bg-purple-500', 'bg-purple-600', 'bg-violet-500', 'bg-pink-500'];
-    if (isMounted) {
-      setColors({
-        primary: blueShades[Math.floor(Math.random() * blueShades.length)],
-        secondary: purpleShades[Math.floor(Math.random() * purpleShades.length)]
-      });
-    }
+    requestAnimationFrame(() => {
+      if (isMounted) setMounted(true);
+      // Generate random blue and purple hues
+      const blueShades = ['bg-blue-500', 'bg-blue-600', 'bg-cyan-500', 'bg-indigo-500'];
+      const purpleShades = ['bg-purple-500', 'bg-purple-600', 'bg-violet-500', 'bg-pink-500'];
+      if (isMounted) {
+        setColors({
+          primary: blueShades[Math.floor(Math.random() * blueShades.length)],
+          secondary: purpleShades[Math.floor(Math.random() * purpleShades.length)]
+        });
+      }
+    });
     return () => {
       isMounted = false;
     };
@@ -267,12 +272,12 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
 }
 
 const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Project; isDark: boolean }) {
-  const { gh, loading, ref } = useGitHubInfo(project.githubRepo);
+  const { gh, ref } = useGitHubInfo(project.githubRepo);
   const [isHovered, setIsHovered] = useState(false);
 
   const learnMoreHref = project.liveUrl || gh?.homepage || (gh?.html_url ?? (project.githubRepo ? `https://github.com/${project.githubRepo}` : "#"));
   const desc = gh?.description || project.description;
-  const stars = gh?.stargazers_count;
+  // const stars = gh?.stargazers_count;
 
   return (
     <a

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 interface LoadingContextType {
@@ -22,8 +22,9 @@ export const LoadingProvider = ({ children }: { children: React.ReactNode }) => 
 
   useEffect(() => {
     let isMounted = true;
-    // When the route changes, end the transition animation
-    if (isMounted) setIsTransitioning(false);
+    requestAnimationFrame(() => {
+      if (isMounted) setIsTransitioning(false);
+    });
     return () => {
       isMounted = false;
     };

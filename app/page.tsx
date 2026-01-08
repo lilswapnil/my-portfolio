@@ -1,4 +1,3 @@
-import AskScotty from "./components/AskScotty/page";
 
 import Main from "./home/page";
 

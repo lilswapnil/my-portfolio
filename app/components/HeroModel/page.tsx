@@ -13,8 +13,10 @@ export default function HeroModel() {
     
     useEffect(() => {
         let isMounted = true;
-        setMounted(true);
-        setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+        requestAnimationFrame(() => {
+            if (isMounted) setMounted(true);
+            setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+        });
 
         const handleResize = () => {
             if (isMounted) setWindowSize({ width: window.innerWidth, height: window.innerHeight });

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useTheme } from "next-themes";
 import type { Certificate } from "@/data/certificates";
 import { certificates } from "@/data/certificates";
-import { Building2, GraduationCap, Linkedin, ExternalLink, FileText, IdCard } from "lucide-react";
+import { Linkedin, FileText, IdCard } from "lucide-react";
 
 function formatMonth(date?: string) {
   if (!date) return null;
@@ -51,14 +51,7 @@ function inferRoles(c: Certificate): string[] {
   return Array.from(roles);
 }
 
-// Add an issuer icon helper
-function IssuerIcon({ issuer, className = "h-5 w-5" }: { issuer: string; className?: string }) {
-  const key = issuer.toLowerCase();
-  if (key.includes("university")) return <GraduationCap className={className} aria-hidden />;
-  if (key.includes("linkedin")) return <Linkedin className={className} aria-hidden />;
-  // Default
-  return <Building2 className={className} aria-hidden />;
-}
+
 
 export default function Credentials() {
   const [mounted, setMounted] = useState(false);
@@ -80,16 +73,18 @@ export default function Credentials() {
 
   useEffect(() => {
     let isMounted = true;
-    setMounted(true);
-    // Generate random green and blue hues
-    const greenShades = ['bg-green-500', 'bg-green-600', 'bg-emerald-500', 'bg-teal-500'];
-    const blueShades = ['bg-blue-500', 'bg-blue-600', 'bg-cyan-500', 'bg-indigo-500'];
-    if (isMounted) {
-      setColors({
-        primary: greenShades[Math.floor(Math.random() * greenShades.length)],
-        secondary: blueShades[Math.floor(Math.random() * blueShades.length)]
-      });
-    }
+    requestAnimationFrame(() => {
+      if (isMounted) setMounted(true);
+      // Generate random green and blue hues
+      const greenShades = ['bg-green-500', 'bg-green-600', 'bg-emerald-500', 'bg-teal-500'];
+      const blueShades = ['bg-blue-500', 'bg-blue-600', 'bg-cyan-500', 'bg-indigo-500'];
+      if (isMounted) {
+        setColors({
+          primary: greenShades[Math.floor(Math.random() * greenShades.length)],
+          secondary: blueShades[Math.floor(Math.random() * blueShades.length)]
+        });
+      }
+    });
     return () => {
       isMounted = false;
     };

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaEnvelope, FaPhone, FaGlobe } from 'react-icons/fa';
+import { FaPhone, FaGlobe } from 'react-icons/fa';
 import { useIconsConfig } from '../../hooks/useIconsConfig';
 import { useTheme } from "next-themes";
 
@@ -46,8 +46,12 @@ export default function Contact() {
             } else {
                 throw new Error(data.message || 'Failed to send message.');
             }
-        } catch (error: any) {
-            setResponseMessage(error.message || 'An unexpected error occurred.');
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                setResponseMessage(error.message || 'An unexpected error occurred.');
+            } else {
+                setResponseMessage('An unexpected error occurred.');
+            }
         } finally {
             setIsSubmitting(false);
         }

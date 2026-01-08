@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, ReactNode, useEffect } from 'react';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -22,10 +22,34 @@ interface AskScottyContextType {
 const AskScottyContext = createContext<AskScottyContextType | undefined>(undefined);
 
 export function AskScottyProvider({ children }: { children: ReactNode }) {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = sessionStorage.getItem('askscotty-messages');
+      return stored ? JSON.parse(stored) : [];
+    }
+    return [];
+  });
   const [loading, setLoading] = useState(false);
   const [minimized, setMinimized] = useState(true);
   const [closed, setClosed] = useState(false);
+
+  // Persist messages to sessionStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('askscotty-messages', JSON.stringify(messages));
+    }
+  }, [messages]);
+
+  // Clear messages on tab close
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handleUnload = () => {
+        sessionStorage.removeItem('askscotty-messages');
+      };
+      window.addEventListener('beforeunload', handleUnload);
+      return () => window.removeEventListener('beforeunload', handleUnload);
+    }
+  }, []);
 
   const addMessage = useCallback((message: Message) => {
     setMessages((prev) => [...prev, message]);

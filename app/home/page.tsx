@@ -17,7 +17,9 @@ export default function Main() {
 
   useEffect(() => {
     let isMounted = true;
-    setMounted(true);
+    requestAnimationFrame(() => {
+      if (isMounted) setMounted(true);
+    });
     return () => {
       isMounted = false;
     };
