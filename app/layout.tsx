@@ -9,8 +9,50 @@ import Footer from "./components/Footer/page";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Swapnil's Portfolio",
+  title: "Scott's Portfolio",
   description: "Full Stack Developer Portfolio",
+  keywords: [
+    "Swapnil",
+    "Scott",
+    "Portfolio",
+    "Full Stack Developer",
+    "Web Developer",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Projects",
+    "Software Engineer"
+  ],
+  authors: [{ name: "Swapnil Bhalerao", url: "https://lilswapnil.me" }],
+  creator: "Swapnil Bhalerao",
+  openGraph: {
+    title: "Swapnil's Portfolio",
+    description: "Explore the portfolio of Swapnil, a Full Stack Developer specializing in React, Next.js, and modern web technologies.",
+    url: "https://lilswapnil.me",
+    siteName: "Swapnil's Portfolio",
+    images: [
+      {
+        url: "https://lilswapnil.me/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Swapnil's Portfolio Open Graph Image"
+      }
+    ],
+    locale: "en_US",
+    type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Scott's Portfolio",
+    description: "Explore the portfolio of Scott, a Full Stack Developer specializing in React, Next.js, and modern web technologies.",
+    creator: "@swapnil_dev",
+    images: ["https://lilswapnil.me/og-image.png"]
+  },
+  metadataBase: new URL("https://lilswapnil.me"),
+  alternates: {
+    canonical: "/"
+  }
 };
 
 export default function RootLayout({
