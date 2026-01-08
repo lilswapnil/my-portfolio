@@ -70,7 +70,7 @@ export const projects: Project[] = [
   },
   {
     id: "wildlife-monitoring",
-    title: "Smart Wildlife Monitoring",
+    title: "Forest Watch",
     description: "Real-time wildlife tracking system",
     tags: ["IoT", "Computer Vision"],
     githubRepo: "lilswapnil/wildlife-monitoring",
@@ -86,7 +86,7 @@ export const projects: Project[] = [
   },
   {
     id: "university-erp",
-    title: "University Recruitment ERP System",
+    title: "University Recruitment ERP",
     description: "Recruitment workflow and data management",
     tags: ["ERP", "Full-Stack"],
     githubRepo: "lilswapnil/university-erp",

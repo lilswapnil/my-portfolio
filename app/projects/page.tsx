@@ -318,7 +318,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
         .project-card-bg-${project.id}::after {
           content: '';
           position: absolute;
-          top: 50%;
+          top: 55%;
           left: 50%;
           transform: translate(-50%, -50%);
           z-index: 1;
@@ -351,7 +351,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
               )}
             </div>
             {(project.notebookUrl || project.githubRepo) && (
-              <div className="flex flex-col gap-2 ml-4 justify-start">
+              <div className="flex flex-col gap-2 items-start justify-start">
                 {project.githubRepo && (
                   <button
                     type="button"
