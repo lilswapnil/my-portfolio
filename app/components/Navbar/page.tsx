@@ -18,17 +18,21 @@ export default function Navbar() {
   const { isInitialLoad, setIsInitialLoad, setIsPageLoading, setIsTransitioning } = useLoading();
 
   useEffect(() => {
+    let isMounted = true;
     setMounted(true);
     // We use requestAnimationFrame to ensure the component has mounted and rendered
     // before we check sessionStorage. This prevents a race condition where the
     // animation is skipped on the very first load.
     requestAnimationFrame(() => {
       const hasLoaded = sessionStorage.getItem('initialLoadDone');
-      if (hasLoaded) {
+      if (hasLoaded && isMounted) {
         setIsInitialLoad(false);
         setIsPageLoading(false);
       }
     });
+    return () => {
+      isMounted = false;
+    };
   }, [setIsInitialLoad, setIsPageLoading]);
 
   useEffect(() => {

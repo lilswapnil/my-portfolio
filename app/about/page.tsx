@@ -39,8 +39,9 @@ export default function About() {
         }
         
         return () => {
-            if (resumeRef.current) {
-                observer.unobserve(resumeRef.current);
+            const ref = resumeRef.current;
+            if (ref) {
+                observer.unobserve(ref);
             }
         };
     }, []);
@@ -177,7 +178,7 @@ function OrbitSection({ icons, yearsCount }: OrbitSectionProps) {
                 <div className="text-center text-white-800 w-full max-w-xs mt-8 px-4 sm:text-left sm:w-auto sm:max-w-sm sm:mt-0 sm:px-0 md:max-w-2xl">
                     <h1 className="mb-4 text-2xl font-bold sm:text-3xl md:text-4xl">About Me</h1>
                     <p className="text-lg max-w-xs text-white-600 sm:max-w-sm sm:text-l md:max-w-xl md:text-2xl">
-                        Hello! I'm a passionate developer with an enthusiasm for integrating GenAI in functional web applications.
+                        Hello! I&apos;m a passionate developer with an enthusiasm for integrating GenAI in functional web applications.
                         <br/> 
                         <span className="font-bold text-2xl text-white-950 sm:text-3xl md:text-4xl">{yearsCount}+</span> years of experience in various technologies, I enjoy solving complex problems.
                     </p>

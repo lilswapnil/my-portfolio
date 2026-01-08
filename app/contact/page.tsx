@@ -64,12 +64,12 @@ export default function Contact() {
       <div className="max-w-7xl mt-12 mx-auto px-4">
         {/* Header Section */}
         <div className="mb-12">
-          <h1 className={`text-5xl md:text-6xl font-bold mb-3 text-primary ${isDark ? 'dark' : ''}`}>
-            Get in Touch
-          </h1>
-          <p className={`text-lg text-secondary ${isDark ? 'dark' : ''}`}>
-            I'd love to hear from you! Whether you have a question, want to collaborate, feel free to reach out using the form below or via. my social media channels.
-          </p>
+                    <h1 className={`text-5xl md:text-6xl font-bold mb-3 text-primary ${isDark ? 'dark' : ''}`}>
+                        Get in Touch
+                    </h1>
+                    <p className={`text-lg text-secondary ${isDark ? 'dark' : ''}`}>
+                        I&apos;d love to hear from you! Whether you have a question, want to collaborate, feel free to reach out using the form below or via. my social media channels.
+                    </p>
         </div>
 
             <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">

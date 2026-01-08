@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import type { Project } from "@/data/projects";
 import { projects } from "@/data/projects";
 import Image from "next/image";
+import { FaGithub } from "react-icons/fa";
 
 type GitHubInfo = {
   html_url: string;
@@ -170,14 +171,20 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
   }, [items, selectedRole]);
 
   useEffect(() => {
+    let isMounted = true;
     setMounted(true);
     // Generate random blue and purple hues
     const blueShades = ['bg-blue-500', 'bg-blue-600', 'bg-cyan-500', 'bg-indigo-500'];
     const purpleShades = ['bg-purple-500', 'bg-purple-600', 'bg-violet-500', 'bg-pink-500'];
-    setColors({
-      primary: blueShades[Math.floor(Math.random() * blueShades.length)],
-      secondary: purpleShades[Math.floor(Math.random() * purpleShades.length)]
-    });
+    if (isMounted) {
+      setColors({
+        primary: blueShades[Math.floor(Math.random() * blueShades.length)],
+        secondary: purpleShades[Math.floor(Math.random() * purpleShades.length)]
+      });
+    }
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   if (!mounted) return null;
@@ -278,16 +285,23 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div ref={ref}>
+      <div ref={ref} className="flex flex-col flex-1">
         {/* Header */}
         <div className="mb-4">
-          <h2 className={`text-2xl font-bold mb-2 transition-colors duration-300 ${isDark ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}`}>
-            {project.title}
-          </h2>
+          <div className="flex items-center justify-between">
+            <h2 className={`text-2xl font-bold mb-2 transition-colors duration-300 ${isDark ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}`}>
+              {project.title}
+            </h2>
+          </div>
           {project.githubRepo && (
             <div className={`flex items-center gap-2 text-xs ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               <span>📦</span>
               <span className="truncate">{project.githubRepo}</span>
+            </div>
+          )}
+          {project.category && (
+            <div className={`m-2 text-xs font-semibold ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>
+              {project.category}
             </div>
           )}
         </div>
@@ -308,11 +322,11 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
         {project.tags?.length ? (
           <div className="flex flex-wrap gap-2 mb-4">
             {project.tags.map((t) => (
-              <span 
-                key={t} 
+              <span
+                key={t}
                 className={`text-xs px-3 py-1 rounded-full font-medium border transition-all duration-300 ${
-                  isDark 
-                    ? 'bg-blue-900/30 text-blue-300 border-blue-700/50 group-hover:bg-blue-800/50' 
+                  isDark
+                    ? 'bg-blue-900/30 text-blue-300 border-blue-700/50 group-hover:bg-blue-800/50'
                     : 'bg-blue-100/40 text-blue-700 border-blue-200/70 group-hover:bg-blue-100/60'
                 }`}
               >
@@ -321,7 +335,28 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
             ))}
           </div>
         ) : null}
-        
+        {/* Spacer to push button to bottom */}
+        <div className="flex-1" />
+        {/* GitHub Button at bottom */}
+        {project.githubRepo && (
+          <div className="mt-4 flex justify-end">
+            <button
+              type="button"
+              className={`px-3 py-1.5 rounded-full border border-white/60 text-white/80 bg-transparent flex items-center gap-2 font-semibold text-xs transition-all duration-200
+                hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent
+                ${isDark ? '' : ''}`}
+              title="View on GitHub"
+              onClick={e => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.open(`https://github.com/${project.githubRepo}`, '_blank', 'noopener,noreferrer');
+              }}
+            >
+              <FaGithub size={18} style={{ display: 'inline', verticalAlign: 'middle' }} />
+              <span className="font-bold tracking-wide">GitHub</span>
+            </button>
+          </div>
+        )}
       </div>
     </a>
   );

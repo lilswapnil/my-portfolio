@@ -1,4 +1,5 @@
-import { FaReact, FaNode, FaPython, FaDatabase, FaGitAlt, FaDocker, FaJava, FaAws, FaLinux } from 'react-icons/fa';
+
+import { FaReact, FaNode, FaPython, FaGitAlt, FaDocker, FaJava, FaAws, FaLinux } from 'react-icons/fa';
 import { SiTypescript, SiJavascript, SiPostgresql, SiMongodb, SiTailwindcss, SiNextdotjs, SiGraphql, SiRedis, SiKubernetes, SiRabbitmq, SiElasticsearch, SiApache, SiNginx, SiGithub, SiGitlab, SiJira, SiNotion, SiPostman, SiSlack, SiHtml5, SiCss3, SiBootstrap, SiMysql, SiFirebase, SiFlask, SiDjango, SiExpress, SiSpringboot } from 'react-icons/si';
 
 const skillSet = {

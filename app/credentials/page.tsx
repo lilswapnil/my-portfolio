@@ -79,14 +79,20 @@ export default function Credentials() {
   }, [selectedRole]);
 
   useEffect(() => {
+    let isMounted = true;
     setMounted(true);
     // Generate random green and blue hues
     const greenShades = ['bg-green-500', 'bg-green-600', 'bg-emerald-500', 'bg-teal-500'];
     const blueShades = ['bg-blue-500', 'bg-blue-600', 'bg-cyan-500', 'bg-indigo-500'];
-    setColors({
-      primary: greenShades[Math.floor(Math.random() * greenShades.length)],
-      secondary: blueShades[Math.floor(Math.random() * blueShades.length)]
-    });
+    if (isMounted) {
+      setColors({
+        primary: greenShades[Math.floor(Math.random() * greenShades.length)],
+        secondary: blueShades[Math.floor(Math.random() * blueShades.length)]
+      });
+    }
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   if (!mounted) return null;
@@ -106,7 +112,7 @@ export default function Credentials() {
         {/* Header Section */}
         <div className="mb-12">
           <h1 className={`text-5xl md:text-6xl font-bold mb-3 text-primary ${isDark ? 'dark' : ''}`}>
-            Licenses & Certificates
+            Licenses &amp; Certificates
           </h1>
           <p className={`text-lg text-secondary ${isDark ? 'dark' : ''}`}>
             Professional credentials and achievements

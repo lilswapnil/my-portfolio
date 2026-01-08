@@ -12,15 +12,19 @@ export default function HeroModel() {
     const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
     
     useEffect(() => {
+        let isMounted = true;
         setMounted(true);
         setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-        
+
         const handleResize = () => {
-            setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+            if (isMounted) setWindowSize({ width: window.innerWidth, height: window.innerHeight });
         };
-        
+
         window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        return () => {
+            isMounted = false;
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
     
     if (!mounted) return null;

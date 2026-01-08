@@ -178,7 +178,7 @@ export default function AskScotty({ question }: { question: string }) {
               <div className="flex items-center justify-center h-full text-center">
                 <div>
                   <p className="text-white/70 text-sm">
-                    Hi! I'm Scotty. Ask me anything about Swapnil's work and experience!
+                    Hi! I&apos;m Scotty. Ask me anything about Swapnil&apos;s work and experience!
                   </p>
                 </div>
               </div>
@@ -284,7 +284,7 @@ export default function AskScotty({ question }: { question: string }) {
                   <div className="flex items-center justify-center h-full text-center">
                     <div>
                       <p className="text-white/70 text-sm">
-                        Hi! I'm Scotty. Ask me anything about Swapnil's work and experience!
+                        Hi! I&apos;m Scotty. Ask me anything about Swapnil&apos;s work and experience!
                       </p>
                     </div>
                   </div>

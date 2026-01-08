@@ -18,11 +18,15 @@ export default function ScottModel() {
     const prevModelRef = useRef('graduation');
 
     useEffect(() => {
+        let isMounted = true;
         setMounted(true);
         if (orbitControlsRef.current) {
             orbitControlsRef.current.reset();
             orbitControlsRef.current.target.set(0, -1, 0);
         }
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
     if (!mounted) return null;
@@ -56,7 +60,7 @@ export default function ScottModel() {
         switch (activeModel) {
             case 'graduation':
                 return {
-                    title: "Master's Education",
+                    title: "Master&apos;s Education",
                     description: "Advanced studies in Computer Science with focus on Software Engineering and Distributed Systems.",
                     details: "Graduate Degree | 2 Years"
                 };

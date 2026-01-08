@@ -11,6 +11,7 @@ export type Project = {
   highlights?: string[];
   role?: string;
   timeframe?: string;
+  category?: string; // e.g. 'Full-Stack', 'Data Analysis', 'ML Project', etc.
 };
 
 export const projects: Project[] = [
@@ -20,7 +21,7 @@ export const projects: Project[] = [
     description: "AI generated music recommendation",
     tags: ["AI", "Music", "Recommender"],
     githubRepo: "lilswapnil/musix",
-    // liveUrl: "https://musix.example.com"
+    liveUrl: "https://musix-now.vercel.app/",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "OpenAI API"],
     highlights: [
       "Personalized recommendations using hybrid content + collaborative filtering.",
@@ -29,6 +30,7 @@ export const projects: Project[] = [
     ],
     role: "Full‑Stack",
     timeframe: "2024",
+    category: "Full-Stack / AI / Recommender",
   },
   {
     id: "movizzz",
@@ -36,7 +38,7 @@ export const projects: Project[] = [
     description: "AI generated Movie recommendation",
     tags: ["AI", "Movies", "Recommender"],
     githubRepo: "lilswapnil/moviezzz",
-    // liveUrl: "https://movizzz.example.com"
+    liveUrl: "https://moviezzz-one.vercel.app/login",
     tech: ["Next.js", "TypeScript", "Python", "FastAPI", "TMDB API"],
     highlights: [
       "Blends embeddings with popularity priors to improve cold‑start picks.",
@@ -45,6 +47,7 @@ export const projects: Project[] = [
     ],
     role: "Full‑Stack",
     timeframe: "2024",
+    category: "Full-Stack / AI / Recommender",
   },
   {
     id: "trends-analytics",
@@ -60,6 +63,7 @@ export const projects: Project[] = [
     ],
     role: "Data/ETL",
     timeframe: "2023",
+    category: "Data Analysis / NLP / ETL",
   },
   {
     id: "wildlife-monitoring",
@@ -75,6 +79,7 @@ export const projects: Project[] = [
     ],
     role: "IoT/Embedded",
     timeframe: "2023",
+    category: "IoT / Computer Vision / Edge AI",
   },
   {
     id: "university-erp",
@@ -90,6 +95,7 @@ export const projects: Project[] = [
     ],
     role: "Full‑Stack",
     timeframe: "2022",
+    category: "Full-Stack / ERP",
   },
   {
     id: "llm-from-scratch",
@@ -105,6 +111,7 @@ export const projects: Project[] = [
     ],
     role: "AI/ML",
     timeframe: "2024",
+    category: "ML Project / Deep Learning / Education",
   },
   {
     id: "lms-using-agenticai",
@@ -120,6 +127,7 @@ export const projects: Project[] = [
     ],
     role: "Full‑Stack",
     timeframe: "2024",
+    category: "Full-Stack / AI / LMS",
   },
   {
     id: "ai-assistant",
@@ -135,6 +143,7 @@ export const projects: Project[] = [
     ],
     role: "Assistant/Agentic",
     timeframe: "2024",
+    category: "AI / Assistant / LLM",
   },
   {
     id: "book-scraper",
@@ -150,5 +159,6 @@ export const projects: Project[] = [
     ],
     role: "Data/ETL",
     timeframe: "2022",
+    category: "Data/ETL / Automation / Scraping",
   },
 ];

@@ -21,8 +21,12 @@ export const LoadingProvider = ({ children }: { children: React.ReactNode }) => 
   const pathname = usePathname();
 
   useEffect(() => {
+    let isMounted = true;
     // When the route changes, end the transition animation
-    setIsTransitioning(false);
+    if (isMounted) setIsTransitioning(false);
+    return () => {
+      isMounted = false;
+    };
   }, [pathname]);
 
   return (
