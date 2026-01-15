@@ -61,6 +61,7 @@
   html {
     /* Default to dark color scheme for form controls, etc. */
     color-scheme: dark;
+    scroll-behavior: auto;
   }
 }
 

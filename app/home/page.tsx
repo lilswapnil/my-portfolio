@@ -11,7 +11,7 @@ const colors = {
   secondary: 'bg-purple-500'
 };
 
-export default function Main() {
+export default function Home() {
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
 

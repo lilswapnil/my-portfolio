@@ -273,10 +273,10 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
   const previewPngs: Record<string, string> = {
     musix: '/preview/musix-preview.png',
     moviz: '/preview/moviez-preview.png',
-    'trends-analytics': '/preview/gaming-trends.png',
+    'trends-analytics': '/preview/gaming-trends-preview.png',
     'wildlife-monitoring': '/preview/forestwatch-preview.png',
-    'llm-from-scratch': '/preview/lung-cancer.png',
-    'kdrama-analytics': '/preview/kdrama-analytics.png',
+    'lung-cancer-detection': '/preview/lung-cancer-preview.png',
+    'kdrama-analytics': '/preview/kdrama-analytics-preview.png',
     // Add/adjust mappings for visible projects if needed
     // Example: 'ai-assistant': '/preview/ai-assistant-preview.png',
     // Example: 'book-scraper': '/preview/book-scraper-preview.png',
