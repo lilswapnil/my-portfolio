@@ -1,53 +1,76 @@
-'use client';
-import './about.css';
-import { useEffect, useState, useRef, useMemo, ReactNode, memo } from 'react';
-import { Canvas } from "@react-three/fiber";
-import { ScrollControls, useScroll } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import * as THREE from "three";
-import { FormalScottModel } from "../components/ScottModel/Formal-scott.jsx";
-import { Lights } from './Lights.jsx';
-    // Camera animation driven by scroll
-    function ScrollCameraRig() {
-        const scroll = useScroll();
+"use client";
 
-        // Start / end camera values
-        const startPos = new THREE.Vector3(0, 0.2, 0.9);
-        const endPos = new THREE.Vector3(0, 1.2, 0.75);
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import HeroModel from '../components/HeroModel/page';
+import TileHighlightSection from '../components/TileHighlightSection/page';
+import ScottModel from '../components/ScottModel/page';
 
-        // Optional: subtle tilt for cinematic feel
-        const startRotX = 0.0;
-        const endRotX = -0.12;
-
-        // Animate camera on scroll
-        useFrame((state: any) => {
-            const t = scroll.offset;
-            state.camera.position.lerpVectors(startPos, endPos, t);
-            state.camera.rotation.x = THREE.MathUtils.lerp(startRotX, endRotX, t);
-            state.camera.lookAt(0, 0.35, 0);
-            state.camera.updateProjectionMatrix();
-        });
-        return null;
-    }
+const colors = {
+    primary: 'bg-purple-500',
+    secondary: 'bg-purple-500'
+};
 
 export default function Home() {
+    const [mounted, setMounted] = useState(false);
+    const { theme } = useTheme();
+
+    useEffect(() => {
+        let isMounted = true;
+        requestAnimationFrame(() => {
+            if (isMounted) setMounted(true);
+        });
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
+    if (!mounted) return null;
+
+    const isDark = theme === 'dark';
+
     return (
-        <> 
-            <div style={{ color: "white", height: "100vh", position: "relative" }}>
-                <Canvas
-                    camera={{ position: [0, 0.2, 0.9], fov: 50 }}
-                    style={{ background: "transparent" }}
-                    gl={{ preserveDrawingBuffer: true, alpha: true }}
-                >
-                    <Lights />
-                    <ambientLight intensity={0.7} />
-                    <directionalLight position={[5, 5, 5]} intensity={1} />
-                    <ScrollControls pages={3} damping={0.2}>
-                        <ScrollCameraRig />
-                        <FormalScottModel rotation={[0, -Math.PI / 2, 0]} position={[0, 0.1, 0]} />
-                    </ScrollControls>
-                </Canvas>
+        <div className={`min-h-screen ${isDark ? 'dark' : ''}`}>
+            {/* Background gradient blur effect with molecular animation */}
+            <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+                <div className={`absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-1 ${colors.primary}`} />
+                <div className={`absolute bottom-40 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-2 ${colors.secondary}`} />
             </div>
-        </>
+            <div className="max-w-7xl mx-auto px-4 mt-16 h-screen flex flex-col">
+                <div className="grid grid-cols-1 lg:px-16 lg:grid-cols-[30%_70%] gap-8 w-full flex-1 md:mt-12">
+                    {/* Header Section - Left (30% width) */}
+                    <div className="flex flex-col justify-center lg:mb-0">
+                        <h1 className={`text-5xl md:text-6xl font-bold mb-3 text-primary ${isDark ? 'dark' : ''}`}>
+                            Welcome to <br/> Scott&apos;s Portfolio
+                        </h1>
+                        <p className={`text-lg text-secondary ${isDark ? 'dark' : ''}`}>
+                            Explore my latest work and contributions
+                        </p>
+                        <button 
+                            className="mt-6 px-8 w-fit py-3 glass-button font-semibold text-white border border-gray-200/20 rounded-lg hover:bg-gray-900 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
+                            onClick={() => window.location.href = '/contact'}
+                            >
+                            Get in Touch
+                        </button>
+                    </div>
+
+                    {/* Hero Model - Right (70% width) */}
+                    <figure className="w-full h-full">
+                        <div className='w-full h-full'>
+                            <HeroModel />
+                        </div>
+                    </figure>
+                </div>
+        
+            </div>
+            <TileHighlightSection />
+
+            {/* Hero Model - Right (70% width) */}
+            <figure className="w-full h-full">
+                        <div className='w-full h-full'>
+                            < ScottModel/>
+                        </div>
+                    </figure>
+        </div>
     );
 }
