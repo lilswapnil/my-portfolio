@@ -34,13 +34,23 @@ import Showcase from "./Showcase";
 export default function Home() {
     return (
         <>
-            <div style={{ color: "white", height: "100vh", position: "relative" }}>
-                <h1 style={{ color: 'white', textAlign: 'center', margin: '84px 0 0 0', fontSize: '4.5rem', fontWeight: 700 }}>
-                    Welcome to the SCOTT's portfolio
-                </h1>
-                <p style={{ textAlign: 'center', color: 'white', margin: '6px 0 0 0', fontSize: '1.5rem' }}>
-                    Solve complex problems. Ship reliable systems.
-                </p>
+                        <div style={{ color: "white", height: "100vh", position: "relative" }}>
+                                <style>{`
+                                    @media (max-width: 900px) {
+                                        .home-title { font-size: 2.2rem !important; text-align: left !important; margin-left: 0.5rem !important; margin-right: 0 !important; }
+                                        .home-subtitle { font-size: 1rem !important; text-align: left !important; margin-left: 0.5rem !important; margin-right: 0 !important; }
+                                    }
+                                    @media (min-width: 901px) {
+                                        .home-title { font-size: 4.5rem !important; text-align: center !important; }
+                                        .home-subtitle { font-size: 1.5rem !important; text-align: center !important; }
+                                    }
+                                `}</style>
+                                <h1 className="home-title" style={{ color: 'white', textAlign: 'center', margin: '84px 0 0 0', fontSize: '4.5rem', fontWeight: 700 }}>
+                                        Welcome to the SCOTT's portfolio
+                                </h1>
+                                <p className="home-subtitle" style={{ textAlign: 'center', color: 'white', margin: '6px 0 0 0', fontSize: '1.5rem' }}>
+                                        Solve complex problems. Ship reliable systems.
+                                </p>
                 <Canvas
                     camera={{ position: [0, 0.2, 1.0], fov: 50 }}
                     style={{ background: "transparent" }}

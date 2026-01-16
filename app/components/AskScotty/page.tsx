@@ -260,7 +260,7 @@ export default function AskScotty({ question }: { question: string }) {
               className="flex items-center gap-2 flex-1 cursor-pointer hover:opacity-80 transition"
             >
               <Image
-                src="logo/askscotty.png"
+                src="/logo/askscotty.png"
                 alt="Ask Scotty Logo"
                 width={24}
                 height={24}

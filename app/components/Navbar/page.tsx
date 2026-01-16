@@ -134,7 +134,7 @@ export default function Navbar() {
               title="Ask Scotty"
             >
               <Image
-                src="logo/askscotty.png"
+                src="/logo/askscotty.png"
                 alt="Ask Scotty"
                 width={20}
                 height={20}
