@@ -39,10 +39,10 @@ export default function Showcase() {
     return (
         <>
          <h1
-            className="text-4xl font-bold mb-0 w-full flex items-center"
+            className="text-4xl mb-0 w-full flex items-center"
             style={{ color: 'white', zIndex: 1, textAlign: 'left', marginLeft: 124 }}
         >
-            Showcase of My Work
+            My Work at a Glance
         </h1>
         <div ref={wrapperRef} className="showcase-wrapper h-100vh w-full flex items-end justify-center relative overflow-visible" style={{zIndex:1, minHeight: 700, marginTop: 0, marginBottom: 68}}>
             {/* Main laptop image with screenshot inside */}

@@ -1,3 +1,4 @@
+// ...removed 'use client' to allow metadata export...
 import type { Metadata } from "next";
 import { ThemeProvider } from 'next-themes'
 import Navbar from "./components/Navbar/page";

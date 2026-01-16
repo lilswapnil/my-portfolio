@@ -58,7 +58,7 @@ function OrbitSection({
           {/* Center Image */}
           <div className="absolute z-10">
             <Image
-              src="logo/image.jpeg"
+              src="/logo/image.jpeg"
               alt="Profile"
               width={160}
               height={160}
@@ -164,7 +164,7 @@ export default function ContactPage() {
         />
       </div>
 
-      <div className="max-w-7xl mt-12 mx-auto px-4">
+      <div className="max-w-7xl my-10 mx-auto px-4">
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-5xl md:text-6xl font-bold mb-3 text-primary">
@@ -265,8 +265,8 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-    </div>
       <Footer />
+    </div>
     </>
   );
 }
