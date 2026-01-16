@@ -7,7 +7,7 @@ export default function PageContent({ children }: { children: ReactNode }) {
   const { isPageLoading } = useLoading();
 
   return (
-    <div className={`transition-opacity duration-500 ${isPageLoading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+    <div className={`transition-opacity duration-500 flex justify-center ${isPageLoading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
       {children}
     </div>
   );

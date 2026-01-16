@@ -277,6 +277,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
     'wildlife-monitoring': '/preview/forestwatch-preview.png',
     'lung-cancer-detection': '/preview/lung-cancer-preview.png',
     'kdrama-analytics': '/preview/kdrama-analytics-preview.png',
+    'gaming-trends': '/preview/gaming-trends-preview.png',
     // Add/adjust mappings for visible projects if needed
     // Example: 'ai-assistant': '/preview/ai-assistant-preview.png',
     // Example: 'book-scraper': '/preview/book-scraper-preview.png',

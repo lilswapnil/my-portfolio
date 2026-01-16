@@ -20,11 +20,16 @@ import Showcase from "./Showcase";
         const startRotX = 0.0;
         const endRotX = -0.12;
 
-        // Animate camera on scroll
+        // Animate camera on scroll with smooth lerp
         useFrame((state: any) => {
             const t = scroll.offset;
-            state.camera.position.lerpVectors(startPos, endPos, t);
-            state.camera.rotation.x = THREE.MathUtils.lerp(startRotX, endRotX, t);
+            // Smoothly interpolate camera position
+            state.camera.position.lerp(
+                startPos.clone().lerp(endPos, t),
+                0.12 // smoothing factor
+            );
+            // Smoothly interpolate camera rotation
+            state.camera.rotation.x += (THREE.MathUtils.lerp(startRotX, endRotX, t) - state.camera.rotation.x) * 0.12;
             state.camera.lookAt(0, 0.35, 0);
             state.camera.updateProjectionMatrix();
         });
@@ -59,7 +64,7 @@ export default function Home() {
                     <Lights />
                     <ambientLight intensity={0.7} />
                     <directionalLight position={[5, 5, 5]} intensity={1} />
-                    <ScrollControls pages={3} damping={0.2}>
+                    <ScrollControls pages={3} damping={0.6}>
                         <ScrollCameraRig />
                         <FormalScottModel rotation={[0, -Math.PI / 2, 0]} position={[0, 0.25, 0]} />
                     </ScrollControls>

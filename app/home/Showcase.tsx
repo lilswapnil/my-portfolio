@@ -45,7 +45,7 @@ export default function Showcase() {
                     const filename = screenshots[currentIndex].split("/").pop() || "";
                     const base = filename.replace(/\.[^.]+$/, "");
                     // Try to match project by id or by title (case-insensitive, ignoring dashes/underscores/spaces)
-                    const normalize = (str) => str.toLowerCase().replace(/[-_\s]/g, "");
+                    const normalize = (str: string) => str.toLowerCase().replace(/[-_\s]/g, "");
                     const project = projects.find(
                         p => normalize(p.id) === normalize(base) || (p.title && normalize(p.title) === normalize(base))
                     );
