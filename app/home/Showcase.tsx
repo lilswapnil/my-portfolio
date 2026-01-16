@@ -37,7 +37,14 @@ export default function Showcase() {
     }, []);
 
     return (
-        <div ref={wrapperRef} className="showcase-wrapper h-full w-full flex items-end justify-center relative overflow-visible" style={{zIndex:1, minHeight: 700, marginTop: 0, marginBottom: 68}}>
+        <>
+         <h1
+            className="text-4xl font-bold mb-0 w-full flex items-center"
+            style={{ color: 'white', zIndex: 1, textAlign: 'left', marginLeft: 124 }}
+        >
+            Showcase of My Work
+        </h1>
+        <div ref={wrapperRef} className="showcase-wrapper h-100vh w-full flex items-end justify-center relative overflow-visible" style={{zIndex:1, minHeight: 700, marginTop: 0, marginBottom: 68}}>
             {/* Main laptop image with screenshot inside */}
             <div style={{position: 'relative', width: 1300, height: 600}} className="relative z-10 flex items-center justify-center">
                 {/* Project name at top right of laptop */}
@@ -101,6 +108,8 @@ export default function Showcase() {
                     width={1300}
                     height={600}
                     className="showcase-image object-contain"
+                    style={{ marginBottom: 12 }}
+                
                 />
                 {/* Screenshot inside the laptop screen */}
                 <div
@@ -108,7 +117,7 @@ export default function Showcase() {
                         position: 'absolute',
                         left: '50%',
                         top: '50%',
-                        width: 900,
+                        width: 920,
                         height: 600,
                         transform: 'translate(-50%, -54%)',
                         borderRadius: 18,
@@ -205,9 +214,9 @@ export default function Showcase() {
                             className="absolute rounded-xl shadow-2xl transition-transform duration-500"
                             style={{
                                 top:6,
-                                left: 0,
+                                left: 20,
                                 bottom: 0,
-                                transform: `translateX(${translateX}px) scale(${0.9 + 0.1 * localProgress})`,
+                                transform: `translateX(${translateX}px) scale(${0.8 + 0.1 * localProgress})`,
                                 opacity,
                                 zIndex: i + 1,
                                 transition: 'transform 0.6s cubic-bezier(.4,2,.3,1), opacity 0.6s',
@@ -218,5 +227,6 @@ export default function Showcase() {
                 })}
             </div>
         </div>
+        </>
     );
 }
