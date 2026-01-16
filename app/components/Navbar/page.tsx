@@ -99,7 +99,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3 flex-shrink-0">
             <Link href="/" onClick={(e) => handleNavClick(e, '/')}> 
               <Image
-                src="/logo.png"
+                src="/logo/logo.png"
                 alt="Logo"
                 width={40}
                 height={40}
@@ -134,7 +134,7 @@ export default function Navbar() {
               title="Ask Scotty"
             >
               <Image
-                src="/askscotty.png"
+                src="logo/askscotty.png"
                 alt="Ask Scotty"
                 width={20}
                 height={20}

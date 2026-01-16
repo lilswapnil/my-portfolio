@@ -58,7 +58,7 @@ function OrbitSection({
           {/* Center Image */}
           <div className="absolute z-10">
             <Image
-              src="/image.jpeg"
+              src="logo/image.jpeg"
               alt="Profile"
               width={160}
               height={160}
