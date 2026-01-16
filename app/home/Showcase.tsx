@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { projects } from "../../data/projects";
 
 const screenshots = [
     "/screenshot/gaming-trends.png",
-    "/screenshot/k-drama.png",
-    "/screenshot/moviez.png",
-    "/screenshot/lung-cancer.png",
+    "/screenshot/kdrama-analytics.png",
+    "/screenshot/moviz.png",
+    "/screenshot/lung-cancer-detection.png",
     "/screenshot/musix.png"
 ];
 
@@ -36,9 +37,64 @@ export default function Showcase() {
     }, []);
 
     return (
-        <div ref={wrapperRef} className="showcase-wrapper h-full w-full flex items-end justify-center relative overflow-visible" style={{zIndex:1, minHeight: 700}}>
+        <div ref={wrapperRef} className="showcase-wrapper h-full w-full flex items-end justify-center relative overflow-visible" style={{zIndex:1, minHeight: 700, marginTop: 0, marginBottom: 68}}>
             {/* Main laptop image with screenshot inside */}
             <div style={{position: 'relative', width: 1300, height: 600}} className="relative z-10 flex items-center justify-center">
+                {/* Project name at top right of laptop */}
+                {(() => {
+                    const filename = screenshots[currentIndex].split("/").pop() || "";
+                    const base = filename.replace(/\.[^.]+$/, "");
+                    // Try to match project by id or by title (case-insensitive, ignoring dashes/underscores/spaces)
+                    const normalize = (str) => str.toLowerCase().replace(/[-_\s]/g, "");
+                    const project = projects.find(
+                        p => normalize(p.id) === normalize(base) || (p.title && normalize(p.title) === normalize(base))
+                    );
+                    // Remove extension and replace dashes/underscores with spaces, capitalize words
+                    const name = filename.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+                    let link = project?.liveUrl || (project?.githubRepo ? `https://github.com/${project.githubRepo}` : undefined);
+                    return (
+                        <a
+                            href={link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="showcase-project-link"
+                            style={{
+                                position: 'absolute',
+                                top: 38,
+                                right: 110,
+                                zIndex: 5,
+                                background: 'rgba(24,24,27,0.92)',
+                                color: 'white',
+                                padding: '8px 24px',
+                                borderRadius: 16,
+                                fontWeight: 600,
+                                fontSize: 22,
+                                letterSpacing: 0.5,
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
+                                pointerEvents: link ? 'auto' : 'none',
+                                userSelect: 'none',
+                                maxWidth: 340,
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                                overflow: 'hidden',
+                                textDecoration: 'none',
+                                opacity: link ? 1 : 0.7,
+                                cursor: link ? 'pointer' : 'default',
+                                border: '1px solid #FFFFFF',
+                                transition: 'color 0.2s, border-color 0.2s',
+                            }}
+                        >
+                            {name}
+                        </a>
+                    );
+                })()}
+                            {/* Custom style for project link hover */}
+                            <style>{`
+                                .showcase-project-link:hover {
+                                    color: rgba(59, 130, 246, 0.6);; !important;
+                                    border-color: #a5b4fc !important;
+                                }
+                            `}</style>
                 <Image
                     src="/laptop.svg"
                     alt="Showcase of Projects"

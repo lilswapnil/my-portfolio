@@ -52,7 +52,7 @@ export const projects: Project[] = [
     notebookUrl: "https://github.com/lilswapnil/moviezzz/blob/main/notebook/imdb-scraper.ipynb",
   },
   {
-    id: "trends-analytics",
+    id: "gaming-trends",
     title: "Trends Analytics & Sentiment Mining",
     description: "Gaming Applications sentiment analysis",
     tags: ["NLP", "Sentiment", "Analytics"],
@@ -178,5 +178,22 @@ export const projects: Project[] = [
     role: "Data/ETL",
     timeframe: "2022",
     category: "Data/ETL / Automation / Scraping",
+  },
+  {
+    id: "kdrama-analytics",
+    title: "KDrama Analytics",
+    description: "Analytics and insights for K-Drama data.",
+    tags: ["Analytics", "K-Drama", "Visualization"],
+    githubRepo: "lilswapnil/kdrama-analytics",
+    tech: ["Python", "Pandas", "Matplotlib", "Seaborn"],
+    highlights: [
+      "Data collection and cleaning for K-Drama datasets.",
+      "Visualizations for trends, ratings, and genres.",
+      "Interactive dashboards for exploring K-Drama statistics.",
+    ],
+    role: "Data Analyst",
+    timeframe: "2025",
+    category: "Data Analysis / Visualization / Entertainment",
+    notebookUrl: "https://github.com/lilswapnil/kdrama-analytics/blob/main/analyze.ipynb"
   },
 ];
