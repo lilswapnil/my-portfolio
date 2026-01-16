@@ -31,17 +31,19 @@ export default function Home() {
 
     return (
         <div className={`min-h-screen ${isDark ? 'dark' : ''}`}>
-            {/* Background gradient blur effect with molecular animation */}
-            <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
-                <div className={`absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-1 ${colors.primary}`} />
-                <div className={`absolute bottom-40 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-2 ${colors.secondary}`} />
-            </div>
+            {/* Background gradient blur effect with molecular animation - only render after mounted */}
+            {mounted && (
+                <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+                    <div className={`absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-1 ${colors.primary}`} />
+                    <div className={`absolute bottom-40 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-2 ${colors.secondary}`} />
+                </div>
+            )}
             <div className="max-w-7xl mx-auto px-4 mt-16 h-screen flex flex-col">
                 <div className="grid grid-cols-1 lg:px-16 lg:grid-cols-[30%_70%] gap-8 w-full flex-1 md:mt-12">
                     {/* Header Section - Left (30% width) */}
                     <div className="flex flex-col justify-center lg:mb-0">
                         <h1 className={`text-5xl md:text-6xl font-bold mb-3 text-primary ${isDark ? 'dark' : ''}`}>
-                            Welcome to <br/> Scott&apos;s Portfolio
+                            Welcome to <br/> My WorkPlace
                         </h1>
                         <p className={`text-lg text-secondary ${isDark ? 'dark' : ''}`}>
                             Explore my latest work and contributions

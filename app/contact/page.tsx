@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { useIconsConfig } from '../../hooks/useIconsConfig';
+import Footer from "../components/Footer/page";
 
 type IconsConfig = ReturnType<typeof useIconsConfig>;
 type IconItem = IconsConfig[number];
@@ -151,6 +152,7 @@ export default function ContactPage() {
   };
 
   return (
+    <>
     <div className="min-h-screen py-16">
       {/* Background gradient blur effect */}
       <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
@@ -264,5 +266,7 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
+      <Footer />
+    </>
   );
 }

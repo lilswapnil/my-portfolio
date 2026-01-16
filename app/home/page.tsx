@@ -1,12 +1,13 @@
 'use client';
-import './about.css';
-import { useEffect, useState, useRef, useMemo, ReactNode, memo } from 'react';
+
 import { Canvas } from "@react-three/fiber";
 import { ScrollControls, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { FormalScottModel } from "../components/ScottModel/Formal-scott.jsx";
 import { Lights } from './Lights.jsx';
+import Texts from "./Texts";
+import Showcase from "./Showcase";
     // Camera animation driven by scroll
     function ScrollCameraRig() {
         const scroll = useScroll();
@@ -32,8 +33,14 @@ import { Lights } from './Lights.jsx';
 
 export default function Home() {
     return (
-        <> 
+        <>
             <div style={{ color: "white", height: "100vh", position: "relative" }}>
+                <h1 style={{ color: 'white', textAlign: 'center', margin: '84px 0 0 0', fontSize: '4.5rem', fontWeight: 700 }}>
+                    Welcome to the SCOTT's portfolio
+                </h1>
+                <p style={{ textAlign: 'center', color: 'white', margin: '6px 0 0 0', fontSize: '1.5rem' }}>
+                    Solve complex problems. Ship reliable systems.
+                </p>
                 <Canvas
                     camera={{ position: [0, 0.2, 1.0], fov: 50 }}
                     style={{ background: "transparent" }}
@@ -44,9 +51,11 @@ export default function Home() {
                     <directionalLight position={[5, 5, 5]} intensity={1} />
                     <ScrollControls pages={3} damping={0.2}>
                         <ScrollCameraRig />
-                        <FormalScottModel rotation={[0, -Math.PI / 2, 0]} position={[0, 0.1, 0]} />
+                        <FormalScottModel rotation={[0, -Math.PI / 2, 0]} position={[0, 0.25, 0]} />
                     </ScrollControls>
                 </Canvas>
+                <Texts />
+                {/* <Showcase /> */}
             </div>
         </>
     );
