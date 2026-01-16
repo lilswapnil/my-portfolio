@@ -1,7 +1,7 @@
 import Image from "next/image";
 export default function Showcase() {
     return (
-        <div className="showcase-wrapper h-8 mt-28 w-full flex items-center justify-center">
+        <div className="showcase-wrapper h-full w-full flex items-center justify-center">
             <Image
                 src="/laptop.svg"
                 alt="Showcase of Projects"

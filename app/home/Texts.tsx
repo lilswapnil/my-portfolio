@@ -13,8 +13,8 @@ export default function Texts() {
           <div className="grid-item">CSS</div>
           <div className="grid-item">React</div>
           <div className="grid-item">Next.js</div>
-          
           <div className="grid-item">Angular</div>
+           <div className="grid-item special"><b>Software Engineer</b></div>
           <div className="grid-item">TailwindCSS</div>
           <div className="grid-item">Node.js</div>
           <div className="grid-item">Express</div>
@@ -41,10 +41,7 @@ export default function Texts() {
           <div className="grid-item">TensorFlow</div>
           <div className="grid-item">Keras</div>
           <div className="grid-item">PyTorch</div>
-          <div className="grid-item">scikit-learn</div>
-
-          <div className="grid-item special"><b>Software Engineer</b></div>
-          
+          <div className="grid-item">scikit-learn</div>          
           <div className="grid-item">OpenCV</div>
           <div className="grid-item">spaCy</div>
           <div className="grid-item">AWS EC2</div>

@@ -46,7 +46,7 @@ export default function Home() {
                                     }
                                 `}</style>
                                 <h1 className="home-title" style={{ color: 'white', textAlign: 'center', margin: '84px 0 0 0', fontSize: '4.5rem', fontWeight: 700 }}>
-                                        Welcome to the SCOTT's portfolio
+                                        Welcome to the Scott's portfolio
                                 </h1>
                                 <p className="home-subtitle" style={{ textAlign: 'center', color: 'white', margin: '6px 0 0 0', fontSize: '1.5rem' }}>
                                         Solve complex problems. Ship reliable systems.
@@ -65,7 +65,7 @@ export default function Home() {
                     </ScrollControls>
                 </Canvas>
                 <Texts />
-                {/* <Showcase /> */}
+                 <Showcase /> 
             </div>
         </>
     );
