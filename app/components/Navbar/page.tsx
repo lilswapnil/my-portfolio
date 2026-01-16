@@ -152,8 +152,7 @@ export default function Navbar() {
             style={{
               background: 'rgba(24, 24, 27, 0.6)',
               backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              WebkitBackdropFilter: 'blur(20px)'
             }}
           >
             <span className={`w-6 h-0.5 transition-all ${isDark ? 'bg-white' : 'bg-gray-800'} ${menuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
