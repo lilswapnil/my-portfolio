@@ -126,7 +126,7 @@ export default function AskScotty({ question }: { question: string }) {
             <span className="text-2xl font-bold text-white">×</span>
           ) : (
             <Image
-              src="/askscotty.png"
+              src="/logo/askscotty.png"
               alt="Ask Scotty"
               width={24}
               height={24}
