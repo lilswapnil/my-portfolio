@@ -6,6 +6,7 @@ import { AskScottyProvider } from "./context/AskScottyContext";
 import { LoadingProvider } from "./context/LoadingContext";
 import PageContent from "./components/PageContent";
 import AskScottyWrapper from '@/app/components/AskScottyWrapper';
+import LenisProvider from "./components/LenisProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -72,10 +73,10 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <LoadingProvider>
             <AskScottyProvider>
+              {/* <LenisProvider /> Only use LenisProvider on pages without custom scroll logic */}
               <Navbar />
               <PageContent>{children}</PageContent>
               <AskScottyWrapper />
-              
             </AskScottyProvider>
           </LoadingProvider>
         </ThemeProvider>

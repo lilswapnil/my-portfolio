@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import HeroModel from '../components/HeroModel/page';
 import TileHighlightSection from '../components/TileHighlightSection/page';
 import ScottModel from '../components/ScottModel/page';
+import LenisProvider from '../components/LenisProvider';
 
 const colors = {
     primary: 'bg-purple-500',
@@ -30,6 +31,8 @@ export default function Home() {
     const isDark = theme === 'dark';
 
     return (
+        <>
+        <LenisProvider />
         <div className={`min-h-screen ${isDark ? 'dark' : ''}`}>
             {/* Background gradient blur effect with molecular animation - only render after mounted */}
             <figure className="w-full h-100vh">
@@ -76,5 +79,6 @@ export default function Home() {
         
             </div>
         </div>
+        </>
     );
 }
