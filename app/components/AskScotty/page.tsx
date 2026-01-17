@@ -123,14 +123,14 @@ export default function AskScotty({ question }: { question: string }) {
           title={mobileOpen ? "Close Chat" : "Open Chat"}
         >
           {mobileOpen ? (
-            <span className="text-2xl font-bold text-white">×</span>
+            <span className="text-2xl font-small text-primary dark:text-white">×</span>
           ) : (
             <Image
               src="/logo/askscotty.png"
               alt="Ask Scotty"
               width={24}
               height={24}
-              style={{ filter: "invert(1)" }}
+              style={{ filter: isDark ? "invert(1)" : "none" }}
             />
           )}
         </button>
@@ -153,20 +153,20 @@ export default function AskScotty({ question }: { question: string }) {
       {mobileOpen && (
         <div
           ref={chatRef}
-          className="flex md:hidden lg:hidden fixed inset-0 z-50 flex-col glass-container dark m-4 rounded-2xl overflow-hidden"
+          className={`flex md:hidden lg:hidden fixed inset-0 z-50 flex-col glass-container ${isDark ? 'dark' : ''} m-4 rounded-2xl overflow-hidden`}
           style={{
-            background: 'rgba(24, 24, 27, 0.85)',
+            background: isDark ? 'rgba(24, 24, 27, 0.85)' : 'rgba(255,255,255,0.95)',
             backdropFilter: 'blur(40px)',
             WebkitBackdropFilter: 'blur(40px)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
+            border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0,0,0,0.08)',
           }}
         >
           {/* Header */}
           <div className="h-16 w-full flex items-center justify-between gap-2 p-4 border-b border-white/20 flex-shrink-0">
-            <h3 className="text-white text-lg font-bold">Ask Scotty</h3>
+            <h3 className="text-lg font-bold text-primary dark:text-white">Ask Scotty</h3>
             <button
               onClick={() => setMobileOpen(false)}
-              className="text-white/70 hover:text-white text-2xl font-bold transition flex-shrink-0"
+              className="text-2xl font-bold transition flex-shrink-0 text-secondary dark:text-white/70 hover:text-primary dark:hover:text-white"
             >
               ×
             </button>
@@ -177,7 +177,7 @@ export default function AskScotty({ question }: { question: string }) {
             {messages.length === 0 && (
               <div className="flex items-center justify-center h-full text-center">
                 <div>
-                  <p className="text-white/70 text-sm">
+                  <p className="text-secondary dark:text-white/70 text-sm">
                     Hi! I&apos;m Scotty. Ask me anything about Swapnil&apos;s work and experience!
                   </p>
                 </div>
@@ -192,8 +192,8 @@ export default function AskScotty({ question }: { question: string }) {
                 <div
                   className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
                     msg.role === 'user'
-                      ? 'bg-blue-500/70 text-white rounded-br-none'
-                      : 'bg-white/15 backdrop-blur-md text-white/95 rounded-bl-none border border-white/30'
+                      ? 'bg-blue-500/70 text-white dark:text-white rounded-br-none'
+                      : 'bg-white/80 text-primary dark:bg-white/15 dark:text-white/95 backdrop-blur-md rounded-bl-none border border-black/10 dark:border-white/30'
                   }`}
                 >
                   {msg.content}
@@ -203,11 +203,11 @@ export default function AskScotty({ question }: { question: string }) {
 
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-white/15 backdrop-blur-md px-3 py-2 rounded-lg border border-white/30">
+                <div className="bg-white/80 dark:bg-white/15 backdrop-blur-md px-3 py-2 rounded-lg border border-black/10 dark:border-white/30">
                   <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-white/70 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-white/70 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-white/70 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-primary dark:bg-white/70 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-primary dark:bg-white/70 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-primary dark:bg-white/70 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
                 </div>
               </div>
@@ -226,12 +226,12 @@ export default function AskScotty({ question }: { question: string }) {
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
                 placeholder="Ask about Swapnil..."
                 disabled={loading}
-                className="glass-input dark flex-1 text-sm placeholder-white/50 disabled:opacity-50"
+                className="glass-input flex-1 text-sm placeholder-secondary dark:placeholder-white/50 text-primary dark:text-white disabled:opacity-50"
               />
               <button
                 onClick={() => handleSendMessage(inputValue)}
                 disabled={loading || !inputValue.trim()}
-                className="glass-button dark px-4 py-2 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                className="glass-button px-4 py-2 text-sm font-medium text-primary dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Send
               </button>
@@ -244,11 +244,11 @@ export default function AskScotty({ question }: { question: string }) {
       {!closed && (
         <div
           ref={chatRef}
-          className={`hidden md:flex fixed bottom-4 right-4 z-40 flex-col glass-container dark transition-all duration-300 ease-out ${
+          className={`hidden md:flex fixed bottom-4 right-4 z-40 flex-col glass-container ${isDark ? 'dark' : ''} transition-all duration-300 ease-out ${
             minimized ? 'w-80 chat-minimized' : 'h-96 w-80 chat-expanded'
           } chat-window-enter`}
           style={{
-            background: 'rgba(24, 24, 27, 0.7)',
+            background: isDark ? 'rgba(24, 24, 27, 0.7)' : 'rgba(255,255,255,0.95)',
             backdropFilter: 'blur(40px)',
             WebkitBackdropFilter: 'blur(40px)',
           }}
@@ -264,13 +264,13 @@ export default function AskScotty({ question }: { question: string }) {
                 alt="Ask Scotty Logo"
                 width={24}
                 height={24}
-                style={{ filter: "invert(1)" }}
+                style={{ filter: isDark ? "invert(1)" : "none" }}
               />
-              <h3 className="text-white text-sm font-bold">Ask Scotty</h3>
+              <h3 className="text-sm font-bold text-primary dark:text-white">Ask Scotty</h3>
             </button>
             <button
               onClick={() => setClosed(true)}
-              className="text-white/70 hover:text-white text-xl font-bold transition flex-shrink-0"
+              className="text-xl font-bold transition flex-shrink-0 text-secondary dark:text-white/70 hover:text-primary dark:hover:text-white"
             >
               ×
             </button>
@@ -283,7 +283,7 @@ export default function AskScotty({ question }: { question: string }) {
                 {messages.length === 0 && (
                   <div className="flex items-center justify-center h-full text-center">
                     <div>
-                      <p className="text-white/70 text-sm">
+                      <p className="text-secondary dark:text-white/70 text-sm">
                         Hi! I&apos;m Scotty. Ask me anything about Swapnil&apos;s work and experience!
                       </p>
                     </div>
@@ -298,8 +298,8 @@ export default function AskScotty({ question }: { question: string }) {
                     <div
                       className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
                         msg.role === 'user'
-                          ? 'bg-blue-500/70 text-white rounded-br-none'
-                          : 'bg-white/15 backdrop-blur-md text-white/95 rounded-bl-none border border-white/30'
+                          ? 'bg-blue-500/70 text-white dark:text-white rounded-br-none'
+                          : 'bg-white/80 text-primary dark:bg-white/15 dark:text-white/95 backdrop-blur-md rounded-bl-none border border-black/10 dark:border-white/30'
                       }`}
                     >
                       {msg.content}
@@ -309,11 +309,11 @@ export default function AskScotty({ question }: { question: string }) {
 
                 {loading && (
                   <div className="flex justify-start">
-                    <div className="bg-white/15 backdrop-blur-md px-3 py-2 rounded-lg border border-white/30">
+                    <div className="bg-white/80 dark:bg-white/15 backdrop-blur-md px-3 py-2 rounded-lg border border-black/10 dark:border-white/30">
                       <div className="flex gap-1">
-                        <div className="w-2 h-2 bg-white/70 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-white/70 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-white/70 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div className="w-2 h-2 bg-primary dark:bg-white/70 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-primary dark:bg-white/70 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 bg-primary dark:bg-white/70 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                       </div>
                     </div>
                   </div>
@@ -332,12 +332,12 @@ export default function AskScotty({ question }: { question: string }) {
                     onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
                     placeholder="Ask about Swapnil..."
                     disabled={loading}
-                    className="glass-input dark flex-1 text-sm placeholder-white/50 disabled:opacity-50"
+                    className="glass-input flex-1 text-sm placeholder-secondary dark:placeholder-white/50 text-primary dark:text-white disabled:opacity-50"
                   />
                   <button
                     onClick={() => handleSendMessage(inputValue)}
                     disabled={loading || !inputValue.trim()}
-                    className="glass-button dark px-3 py-2 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="glass-button px-3 py-2 text-sm font-medium text-primary dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Send
                   </button>

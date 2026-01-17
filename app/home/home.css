@@ -1,3 +1,7 @@
+/* Enable native smooth scrolling for the home page */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
 /* ===== GLOBAL SCROLLBAR HIDE (KEEP SCROLL FUNCTIONAL) ===== */
 
 html, body {

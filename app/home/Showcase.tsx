@@ -38,7 +38,12 @@ export default function Showcase() {
 
     return (
         <div className="min-h-screen py-16 bg-transparent">
-            <h1 className="text-6xl text-white z-1 text-left ml-32 mb-8 font-bold mb-0">Galleria</h1>
+            <h1
+                className="text-6xl z-1 text-left ml-32 mb-8 mb-0"
+                style={{ color: 'var(--foreground)' }}
+            >
+                Galleria
+            </h1>
             <div ref={wrapperRef} className="h-full w-full flex items-end justify-center relative overflow-visible z-1 min-h-[700px] mt-0 mb-16">
                 <div className="w-full flex flex-col items-center justify-center relative z-10">
                     {(() => {

@@ -1,6 +1,6 @@
 'use client';
 import './contact.css';
-
+import LenisProvider from '../components/LenisProvider';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
@@ -153,6 +153,7 @@ export default function ContactPage() {
 
   return (
     <>
+    <LenisProvider />
     <div className="min-h-screen py-16">
       {/* Background gradient blur effect */}
       <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
@@ -184,10 +185,11 @@ export default function ContactPage() {
           {/* Contact Form */}
           <div className="w-full p-8 space-y-6 glass-container rounded-2xl">
             <form onSubmit={handleSubmit} className="space-y-6">
+
               <div>
                 <label
                   htmlFor="name"
-                  className="text-sm font-medium text-gray-200"
+                  className="text-sm font-medium text-secondary dark:text-secondary"
                 >
                   Name
                 </label>
@@ -196,7 +198,7 @@ export default function ContactPage() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="glass-input mt-1 block w-full px-4 py-3 rounded-lg border-0 text-white placeholder-gray-400 focus:ring-2 focus:ring-inset focus:ring-white"
+                  className="glass-input mt-1 block w-full px-4 py-3 rounded-lg border-0 text-primary dark:text-primary placeholder-gray-400 focus:ring-2 focus:ring-inset focus:ring-white"
                   placeholder="Your Name"
                   required
                 />
@@ -205,7 +207,7 @@ export default function ContactPage() {
               <div>
                 <label
                   htmlFor="email"
-                  className="text-sm font-medium text-gray-200"
+                  className="text-sm font-medium text-secondary dark:text-secondary"
                 >
                   Email
                 </label>
@@ -214,7 +216,7 @@ export default function ContactPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="glass-input mt-1 block w-full px-4 py-3 rounded-lg border-0 text-white placeholder-gray-400 focus:ring-2 focus:ring-inset focus:ring-white"
+                  className="glass-input mt-1 block w-full px-4 py-3 rounded-lg border-0 text-primary dark:text-primary placeholder-gray-400 focus:ring-2 focus:ring-inset focus:ring-white"
                   placeholder="your.email@example.com"
                   required
                 />
@@ -223,7 +225,7 @@ export default function ContactPage() {
               <div>
                 <label
                   htmlFor="message"
-                  className="text-sm font-medium text-gray-200"
+                  className="text-sm font-medium text-secondary dark:text-secondary"
                 >
                   Message
                 </label>
@@ -232,7 +234,7 @@ export default function ContactPage() {
                   rows={4}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="glass-input mt-1 block w-full px-4 py-3 rounded-lg border-0 text-white placeholder-gray-400 focus:ring-2 focus:ring-inset focus:ring-white"
+                  className="glass-input mt-1 block w-full px-4 py-3 rounded-lg border-0 text-primary dark:text-primary placeholder-gray-400 focus:ring-2 focus:ring-inset focus:ring-white"
                   placeholder="Your message..."
                   required
                 />
@@ -241,7 +243,7 @@ export default function ContactPage() {
               <div>
                 <button
                   type="submit"
-                  className="w-full py-3 px-4 font-semibold text-white bg-white/20 border border-white/30 rounded-lg hover:bg-white/30 active:scale-95 transition-all duration-200 shadow-lg disabled:bg-gray-500/20 disabled:cursor-not-allowed"
+                  className="w-full py-3 px-4 font-semibold text-primary dark:text-white bg-white/20 border border-white/30 rounded-lg hover:bg-white/30 active:scale-95 transition-all duration-200 shadow-lg disabled:bg-gray-500/20 disabled:cursor-not-allowed"
                   disabled={isSubmitting || isSubmitted}
                 >
                   {isSubmitting

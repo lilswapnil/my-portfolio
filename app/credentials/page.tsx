@@ -1,5 +1,5 @@
 "use client";
-
+import LenisProvider from '../components/LenisProvider';
 import { useEffect, useMemo, useState } from "react";
 import { useTheme } from "next-themes";
 import type { Certificate } from "@/data/certificates";
@@ -97,6 +97,7 @@ export default function Credentials() {
 
   return (
     <div className={`min-h-screen py-16 ${isDark ? 'dark' : ''}`}>
+      <LenisProvider />
       {/* Background gradient blur effect with molecular animation */}
       <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
         <div className={`absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-30 spiral-1 ${colors.primary}`} />

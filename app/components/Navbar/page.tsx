@@ -6,13 +6,14 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useAskScotty } from '@/app/context/AskScottyContext';
+import DarkModeToggle from '../DarkModeToggle/DarkModeToggle';
 import { useLoading } from '@/app/context/LoadingContext';
 import './navbar.css';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { theme } = useTheme()
+  const { theme, setTheme } = useTheme()
   const pathname = usePathname();
   const router = useRouter();
   const { setMinimized } = useAskScotty();
@@ -107,7 +108,7 @@ export default function Navbar() {
                 priority
               />
             </Link>
-            <h3 className='text-l font-small select-none'>Ask Scotty</h3>
+            <h3 className={`text-l font-medium select-none accent-hover transition ${isActive('') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : 'text-black'}`}>Ask Scotty</h3>
           </div>
 
           {/* Desktop Navbar - Center */}
@@ -117,18 +118,20 @@ export default function Navbar() {
             }`}
           >
             <nav className="flex flex-col lg:flex-row justify-center gap-8">
-              <Link href="/about" className={`accent-hover transition ${isActive('/about') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`} onClick={(e) => handleNavClick(e, '/about')}>About</Link>
-              <Link href="/projects" className={`accent-hover transition ${isActive('/projects') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`} onClick={(e) => handleNavClick(e, '/projects')}>Projects</Link>
-              <Link href="/credentials" className={`accent-hover transition ${isActive('/credentials') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`} onClick={(e) => handleNavClick(e, '/credentials')}>Credentials</Link>
-              <Link href="/contact" className={`accent-hover transition ${isActive('/contact') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : ''}`} onClick={(e) => handleNavClick(e, '/contact')}>Contact</Link>
+              <Link href="/about" className={`accent-hover transition ${isActive('/about') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : 'text-black'}`} onClick={(e) => handleNavClick(e, '/about')}>About</Link>
+              <Link href="/projects" className={`accent-hover transition ${isActive('/projects') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : 'text-black'}`} onClick={(e) => handleNavClick(e, '/projects')}>Projects</Link>
+              <Link href="/credentials" className={`accent-hover transition ${isActive('/credentials') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : 'text-black'}`} onClick={(e) => handleNavClick(e, '/credentials')}>Credentials</Link>
+              <Link href="/contact" className={`accent-hover transition ${isActive('/contact') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : 'text-black'}`} onClick={(e) => handleNavClick(e, '/contact')}>Contact</Link>
             </nav>
           </div>
 
-          {/* Desktop Ask Scotty Button - Right */}
+          {/* Desktop Ask Scotty Button & Dark Mode Toggle - Right */}
           <div className="hidden lg:flex items-center gap-2 flex-shrink-0 ml-auto h-full">
+            {/* Dark mode toggle - now left of Ask Scotty */}
+            <DarkModeToggle size={16} />
             <button 
               onClick={() => setMinimized(false)}
-              className={`glass-button flex items-center justify-center hover:bg-gray-800 flex-shrink-0 transition-opacity duration-500 ${
+              className={`glass-button flex items-center justify-center flex-shrink-0 transition-opacity duration-500 ${
                 isInitialLoad ? 'opacity-0 pointer-events-none' : 'opacity-100 delay-300'
               } ${isDark ? 'dark' : ''}`}
               title="Ask Scotty"
@@ -180,7 +183,6 @@ export default function Navbar() {
         <div 
           className={`lg:hidden fixed right-0 top-0 bottom-0 z-40 w-3/5 flex flex-col justify-between p-6 glass-container ${isDark ? 'dark' : ''}`}
           style={{
-            
             backdropFilter: 'blur(40px)',
             WebkitBackdropFilter: 'blur(40px)',
             border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -188,8 +190,6 @@ export default function Navbar() {
             animation: 'slideInRight 0.3s ease-out',
           }}
         >
-        
-
           <nav className="flex flex-col justify-center gap-12 flex-1 text-right my-8">
             <a 
               href="/about" 
@@ -219,8 +219,11 @@ export default function Navbar() {
             >
               Contact
             </a>
+            {/* Dark mode toggle for mobile */}
+            <div className="mt-8 flex justify-end">
+              <DarkModeToggle size={16} />
+            </div>
           </nav>
-
           <div className="text-right text-sm text-white/50 pb-12">
             © 2025 Swapnil
           </div>

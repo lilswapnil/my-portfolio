@@ -15,7 +15,7 @@ export default function Texts() {
           <div className="grid-item">React</div>
           <div className="grid-item">Next.js</div>
           <div className="grid-item">Angular</div>
-           <div className="grid-item special"><b>Software Engineer</b></div>
+          <div className="grid-item special"><b>Software Engineer</b></div>
           <div className="grid-item">TailwindCSS</div>
           <div className="grid-item">Node.js</div>
           <div className="grid-item">Express</div>
