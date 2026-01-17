@@ -7,9 +7,8 @@ export default function LenisProvider() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.6, // slow and smooth
-      smooth: true,
       gestureOrientation: "vertical",
-      smoothTouch: true,
+      smoothWheel: true,
       touchMultiplier: 1.5,
       wheelMultiplier: 1.2,
       infinite: false,
