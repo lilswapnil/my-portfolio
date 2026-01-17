@@ -153,7 +153,7 @@ export default function AskScotty({ question }: { question: string }) {
       {mobileOpen && (
         <div
           ref={chatRef}
-          className={`flex md:hidden lg:hidden fixed inset-0 z-50 flex-col glass-container ${isDark ? 'dark' : ''} m-4 rounded-2xl overflow-hidden`}
+          className={`flex md:hidden lg:hidden fixed inset-0 z-50 flex-col glass-container askscotty-chat-window ${isDark ? 'dark' : ''} m-4 rounded-2xl overflow-hidden`}
         >
           {/* Header */}
           <div className="h-16 w-full flex items-center justify-between gap-2 p-4 border-b border-white/20 flex-shrink-0">
@@ -240,7 +240,7 @@ export default function AskScotty({ question }: { question: string }) {
       {!closed && (
         <div
           ref={chatRef}
-          className={`hidden md:flex fixed bottom-4 right-4 z-40 flex-col glass-container ${isDark ? 'dark' : ''} transition-all duration-300 ease-out ${
+          className={`hidden md:flex fixed bottom-4 right-4 z-40 flex-col glass-container askscotty-chat-window ${isDark ? 'dark' : ''} transition-all duration-300 ease-out ${
             minimized ? 'w-80 chat-minimized' : 'h-96 w-80 chat-expanded'
           } chat-window-enter`}
         >

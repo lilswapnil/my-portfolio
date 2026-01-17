@@ -129,7 +129,8 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-2 flex-shrink-0 ml-auto h-full">
             {/* Dark mode toggle - now left of Ask Scotty */}
             <DarkModeToggle size={16} />
-            <button 
+            <button
+              type="button"
               onClick={() => setMinimized(false)}
               className={`glass-button flex items-center justify-center flex-shrink-0 transition-opacity duration-500 ${
                 isInitialLoad ? 'opacity-0 pointer-events-none' : 'opacity-100 delay-300'

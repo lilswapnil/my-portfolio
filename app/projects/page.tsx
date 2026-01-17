@@ -356,9 +356,11 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
                 {project.githubRepo && (
                   <button
                     type="button"
-                    className={`px-3 py-1.5 rounded-full border border-white/60 text-white/80 bg-transparent flex items-center gap-2 font-semibold text-xs transition-all duration-200
-                      hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent
-                      ${isDark ? '' : ''}`}
+                    className={`px-3 py-1.5 rounded-full border flex items-center gap-2 font-semibold text-xs transition-all duration-200
+                      ${isDark
+                        ? 'border-white/60 text-white/80 bg-transparent hover:bg-white/10 hover:text-white'
+                        : 'border-black bg-black text-white hover:bg-gray-900 hover:text-white'}
+                      focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent`}
                     title="View on GitHub"
                     onClick={e => {
                       e.preventDefault();
@@ -373,9 +375,11 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
                 {project.notebookUrl && (
                   <button
                     type="button"
-                    className={`px-3 py-1.5 rounded-full border border-white/60 text-white/80 bg-transparent flex items-center gap-2 font-semibold text-xs transition-all duration-200
-                      hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent
-                      ${isDark ? '' : ''}`}
+                    className={`px-3 py-1.5 rounded-full border flex items-center gap-2 font-semibold text-xs transition-all duration-200
+                      ${isDark
+                        ? 'border-white/60 text-white/80 bg-transparent hover:bg-white/10 hover:text-white'
+                        : 'border-black bg-black text-white hover:bg-gray-900 hover:text-white'}
+                      focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent`}
                     title="View Notebook"
                     onClick={e => {
                       e.preventDefault();
