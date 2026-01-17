@@ -154,22 +154,18 @@ export default function AskScotty({ question }: { question: string }) {
         <div
           ref={chatRef}
           className={`flex md:hidden lg:hidden fixed inset-0 z-50 flex-col glass-container ${isDark ? 'dark' : ''} m-4 rounded-2xl overflow-hidden`}
-          style={{
-            background: isDark ? 'rgba(24, 24, 27, 0.85)' : 'rgba(255,255,255,0.95)',
-            backdropFilter: 'blur(40px)',
-            WebkitBackdropFilter: 'blur(40px)',
-            border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0,0,0,0.08)',
-          }}
         >
           {/* Header */}
           <div className="h-16 w-full flex items-center justify-between gap-2 p-4 border-b border-white/20 flex-shrink-0">
             <h3 className="text-lg font-bold text-primary dark:text-white">Ask Scotty</h3>
-            <button
-              onClick={() => setMobileOpen(false)}
-              className="text-2xl font-bold transition flex-shrink-0 text-secondary dark:text-white/70 hover:text-primary dark:hover:text-white"
-            >
-              ×
-            </button>
+            {!minimized && (
+              <button
+                onClick={() => { setMobileOpen(false); setMinimized(true); }}
+                className="text-2xl font-bold transition flex-shrink-0 text-secondary dark:text-white/70 hover:text-primary dark:hover:text-white"
+              >
+                ×
+              </button>
+            )}
           </div>
 
           {/* Messages Container */}
@@ -247,12 +243,8 @@ export default function AskScotty({ question }: { question: string }) {
           className={`hidden md:flex fixed bottom-4 right-4 z-40 flex-col glass-container ${isDark ? 'dark' : ''} transition-all duration-300 ease-out ${
             minimized ? 'w-80 chat-minimized' : 'h-96 w-80 chat-expanded'
           } chat-window-enter`}
-          style={{
-            background: isDark ? 'rgba(24, 24, 27, 0.7)' : 'rgba(255,255,255,0.95)',
-            backdropFilter: 'blur(40px)',
-            WebkitBackdropFilter: 'blur(40px)',
-          }}
         >
+        
           {/* Header */}
           <div className="h-12 w-full flex items-center justify-between gap-2 p-2 border-b border-white/20 flex-shrink-0">
             <button
@@ -268,12 +260,14 @@ export default function AskScotty({ question }: { question: string }) {
               />
               <h3 className="text-sm font-bold text-primary dark:text-white">Ask Scotty</h3>
             </button>
-            <button
-              onClick={() => setClosed(true)}
-              className="text-xl font-bold transition flex-shrink-0 text-secondary dark:text-white/70 hover:text-primary dark:hover:text-white"
-            >
-              ×
-            </button>
+            {!minimized && (
+              <button
+                onClick={() => setMinimized(true)}
+                className="text-xl font-bold transition flex-shrink-0 text-secondary dark:text-white/70 hover:text-primary dark:hover:text-white"
+              >
+                ×
+              </button>
+            )}
           </div>
 
           {/* Messages Container */}
