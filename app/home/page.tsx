@@ -39,6 +39,7 @@ import Showcase from "./Showcase";
 export default function Home() {
     return (
         <>
+        <div className="min-h-screen py-16">
                         <div style={{ color: "white", height: "100vh", position: "relative" }}>
                                 <style>{`
                                     @media (max-width: 900px) {
@@ -50,7 +51,7 @@ export default function Home() {
                                         .home-subtitle { font-size: 1.5rem !important; text-align: center !important; }
                                     }
                                 `}</style>
-                                <h1 className="home-title" style={{ color: 'white', textAlign: 'center', margin: '84px 0 0 0', fontSize: '4.5rem', fontWeight: 700 }}>
+                                <h1 className="home-title" style={{ color: 'white', textAlign: 'center', margin: '34px 0 0 0', fontSize: '4.5rem', fontWeight: 700 }}>
                                         Welcome to the Scott's portfolio
                                 </h1>
                                 <p className="home-subtitle" style={{ textAlign: 'center', color: 'white', margin: '6px 0 0 0', fontSize: '1.5rem' }}>
@@ -71,6 +72,7 @@ export default function Home() {
                 </Canvas>
                 <Texts />
                  <Showcase /> 
+            </div>
             </div>
         </>
     );

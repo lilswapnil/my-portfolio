@@ -1,4 +1,5 @@
 import './Texts.css'
+
 export default function Texts() {
   return (
     <div className="stuck-grid-wrapper">
