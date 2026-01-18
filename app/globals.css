@@ -1,3 +1,42 @@
+/* AskScotty Minimize/Maximize Animations */
+.askscotty-maximize {
+  animation: askscottyMaximize 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.askscotty-minimize {
+  animation: askscottyMinimize 0.3s ease-in;
+}
+
+@keyframes askscottyMaximize {
+  0% {
+    opacity: 0.5;
+    transform: scaleY(0.7) scaleX(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1);
+  }
+}
+
+@keyframes askscottyMinimize {
+  0% {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scaleY(0.7) scaleX(0.8);
+  }
+}
+/* Light mode override for background color */
+.light {
+  --background: #e5e7eb;
+  --foreground: #171717;
+}
+
+body.light {
+  background: #e5e7eb !important;
+  color: #171717 !important;
+}
 /* Ask Scotty Chat Window - Improved Visibility in Light Mode */
 
 .askscotty-chat-window {
@@ -22,9 +61,9 @@
     --white-smoke: #F5F5F5;
     --black-smoke: #1A1A1A;
 
-    /* Light Mode Defaults */
-    --background: #e5e7eb; /* zinc-200 */
-    --foreground: #171717; /* text-primary-light */
+    /* Dark Mode Defaults */
+    --background: #0A0A0A; /* dark bg */
+    --foreground: #FFFFFF; /* dark text */
 
     /* Glass Theme Variables */
     --glass-bg-light: rgba(255, 255, 255, 0.4);

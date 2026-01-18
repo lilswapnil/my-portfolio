@@ -21,6 +21,15 @@ export default function AskScotty({ question }: { question: string }) {
   const chatRef = useRef<HTMLDivElement>(null);
 
   const isDark = theme === 'dark';
+  const colors = {
+    chatWindow: isDark ? 'glass-container askscotty-chat-window dark' : 'bg-white border border-gray-200 shadow askscotty-chat-window',
+    headerText: isDark ? 'text-primary dark:text-white' : 'text-primary',
+    secondaryText: isDark ? 'text-secondary dark:text-white/70' : 'text-secondary',
+    userMsg: isDark ? 'bg-blue-500/70 text-white dark:text-white rounded-br-none' : 'bg-blue-200 text-primary rounded-br-none',
+    assistantMsg: isDark ? 'bg-white/80 text-primary dark:bg-white/15 dark:text-white/95 backdrop-blur-md rounded-bl-none border border-black/10 dark:border-white/30' : 'bg-zinc-100 text-primary rounded-bl-none border border-gray-200',
+    input: isDark ? 'glass-input flex-1 text-sm placeholder-secondary dark:placeholder-white/50 text-primary dark:text-white disabled:opacity-50' : 'bg-zinc-100 border border-gray-300 text-primary flex-1 text-sm placeholder-gray-400 disabled:opacity-50 rounded-lg px-4 py-2',
+    button: isDark ? 'glass-button px-4 py-2 text-sm font-medium text-primary dark:text-white disabled:opacity-50 disabled:cursor-not-allowed' : 'bg-zinc-200 px-4 py-2 text-sm font-medium text-primary rounded-lg border border-gray-300 hover:bg-zinc-300 disabled:opacity-50 disabled:cursor-not-allowed',
+  };
   
   // Initialize on mount
   useEffect(() => {
@@ -113,6 +122,9 @@ export default function AskScotty({ question }: { question: string }) {
 
   if (!mounted) return null;
 
+  // Animation classes for minimize/maximize
+  const animationClass = minimized ? 'askscotty-minimize' : 'askscotty-maximize';
+
   return (
     <>
       {/* Mobile Button (sm screens only) */}
@@ -153,15 +165,15 @@ export default function AskScotty({ question }: { question: string }) {
       {mobileOpen && (
         <div
           ref={chatRef}
-          className={`flex md:hidden lg:hidden fixed inset-0 z-50 flex-col glass-container askscotty-chat-window ${isDark ? 'dark' : ''} m-4 rounded-2xl overflow-hidden`}
+          className={`flex md:hidden lg:hidden fixed inset-0 z-50 flex-col ${colors.chatWindow} m-4 rounded-2xl overflow-hidden`}
         >
           {/* Header */}
           <div className="h-16 w-full flex items-center justify-between gap-2 p-4 border-b border-white/20 flex-shrink-0">
-            <h3 className="text-lg font-bold text-primary dark:text-white">Ask Scotty</h3>
+            <h3 className={`text-lg font-bold ${colors.headerText}`}>Ask Scotty</h3>
             {!minimized && (
               <button
                 onClick={() => { setMobileOpen(false); setMinimized(true); }}
-                className="text-2xl font-bold transition flex-shrink-0 text-secondary dark:text-white/70 hover:text-primary dark:hover:text-white"
+                className={`text-2xl font-bold transition flex-shrink-0 ${colors.secondaryText} hover:text-primary`}
               >
                 ×
               </button>
@@ -173,7 +185,7 @@ export default function AskScotty({ question }: { question: string }) {
             {messages.length === 0 && (
               <div className="flex items-center justify-center h-full text-center">
                 <div>
-                  <p className="text-secondary dark:text-white/70 text-sm">
+                  <p className={`${colors.secondaryText} text-sm`}>
                     Hi! I&apos;m Scotty. Ask me anything about Swapnil&apos;s work and experience!
                   </p>
                 </div>
@@ -186,11 +198,7 @@ export default function AskScotty({ question }: { question: string }) {
                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
-                    msg.role === 'user'
-                      ? 'bg-blue-500/70 text-white dark:text-white rounded-br-none'
-                      : 'bg-white/80 text-primary dark:bg-white/15 dark:text-white/95 backdrop-blur-md rounded-bl-none border border-black/10 dark:border-white/30'
-                  }`}
+                  className={`max-w-xs px-3 py-2 rounded-lg text-sm ${msg.role === 'user' ? colors.userMsg : colors.assistantMsg}`}
                 >
                   {msg.content}
                 </div>
@@ -222,12 +230,12 @@ export default function AskScotty({ question }: { question: string }) {
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
                 placeholder="Ask about Swapnil..."
                 disabled={loading}
-                className="glass-input flex-1 text-sm placeholder-secondary dark:placeholder-white/50 text-primary dark:text-white disabled:opacity-50"
+                className={colors.input}
               />
               <button
                 onClick={() => handleSendMessage(inputValue)}
                 disabled={loading || !inputValue.trim()}
-                className="glass-button px-4 py-2 text-sm font-medium text-primary dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                className={colors.button}
               >
                 Send
               </button>
@@ -240,9 +248,9 @@ export default function AskScotty({ question }: { question: string }) {
       {!closed && (
         <div
           ref={chatRef}
-          className={`hidden md:flex fixed bottom-4 right-4 z-40 flex-col glass-container askscotty-chat-window ${isDark ? 'dark' : ''} transition-all duration-300 ease-out ${
+          className={`hidden md:flex fixed bottom-4 right-4 z-40 flex-col ${colors.chatWindow} rounded-2xl transition-all duration-300 ease-out ${
             minimized ? 'w-80 chat-minimized' : 'h-96 w-80 chat-expanded'
-          } chat-window-enter`}
+          } chat-window-enter ' + animationClass}`}
         >
         
           {/* Header */}
@@ -258,12 +266,12 @@ export default function AskScotty({ question }: { question: string }) {
                 height={24}
                 style={{ filter: isDark ? "invert(1)" : "none" }}
               />
-              <h3 className="text-sm font-bold text-primary dark:text-white">Ask Scotty</h3>
+              <h3 className={`text-md  ${colors.headerText}`}>Ask Scotty</h3>
             </button>
             {!minimized && (
               <button
                 onClick={() => setMinimized(true)}
-                className="text-xl font-bold transition flex-shrink-0 text-secondary dark:text-white/70 hover:text-primary dark:hover:text-white"
+                className={`text-xl font-bold transition flex-shrink-0 ${colors.secondaryText} hover:text-primary`}
               >
                 ×
               </button>
@@ -277,7 +285,7 @@ export default function AskScotty({ question }: { question: string }) {
                 {messages.length === 0 && (
                   <div className="flex items-center justify-center h-full text-center">
                     <div>
-                      <p className="text-secondary dark:text-white/70 text-sm">
+                      <p className={`${colors.secondaryText} text-sm`}>
                         Hi! I&apos;m Scotty. Ask me anything about Swapnil&apos;s work and experience!
                       </p>
                     </div>
@@ -290,11 +298,7 @@ export default function AskScotty({ question }: { question: string }) {
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
-                        msg.role === 'user'
-                          ? 'bg-blue-500/70 text-white dark:text-white rounded-br-none'
-                          : 'bg-white/80 text-primary dark:bg-white/15 dark:text-white/95 backdrop-blur-md rounded-bl-none border border-black/10 dark:border-white/30'
-                      }`}
+                      className={`max-w-xs px-3 py-2 rounded-lg text-sm ${msg.role === 'user' ? colors.userMsg : colors.assistantMsg}`}
                     >
                       {msg.content}
                     </div>
@@ -326,12 +330,12 @@ export default function AskScotty({ question }: { question: string }) {
                     onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
                     placeholder="Ask about Swapnil..."
                     disabled={loading}
-                    className="glass-input flex-1 text-sm placeholder-secondary dark:placeholder-white/50 text-primary dark:text-white disabled:opacity-50"
+                    className={colors.input}
                   />
                   <button
                     onClick={() => handleSendMessage(inputValue)}
                     disabled={loading || !inputValue.trim()}
-                    className="glass-button px-3 py-2 text-sm font-medium text-primary dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                    className={colors.button}
                   >
                     Send
                   </button>

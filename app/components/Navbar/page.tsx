@@ -35,7 +35,7 @@ export default function Navbar() {
     return () => {
       isMounted = false;
     };
-  }, [setIsInitialLoad, setIsPageLoading]);
+    }, [setIsInitialLoad, setIsPageLoading, setTheme]);
 
   useEffect(() => {
     if (!isInitialLoad) return;
@@ -54,7 +54,7 @@ export default function Navbar() {
     }, 1000); // Initial delay before animation starts
 
     return () => clearTimeout(initialLoadTimer);
-  }, [isInitialLoad, setIsInitialLoad, setIsPageLoading]);
+    }, [isInitialLoad, setIsInitialLoad, setIsPageLoading, setTheme]);
 
   if (!mounted) return null;
 
@@ -87,10 +87,9 @@ export default function Navbar() {
           height: isInitialLoad ? '58px' : '64px',
           opacity: 1,
           padding: isInitialLoad ? '20px' : '0',
-          
           boxShadow: isInitialLoad 
-            ? `0 0 20px ${isDark ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.3)'}, inset 0 0 20px ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'}`
-            : 'none',
+            ? `0 -8px 24px 0 ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.18)'}, -8px 0 24px 0 rgba(0,0,0,0.10), 8px 0 24px 0 rgba(0,0,0,0.10), inset 0 0 20px ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}`
+            : `0 -8px 24px 0 rgba(0,0,0,0.10), -8px 0 24px 0 rgba(0,0,0,0.10), 8px 0 24px 0 rgba(0,0,0,0.10), 0 0 0 2px rgba(0,0,0,0.04)`,
           animation: isInitialLoad ? 'glowPulse 2s ease-in-out infinite' : 'none',
         }}
       >
