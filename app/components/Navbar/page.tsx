@@ -126,24 +126,23 @@ export default function Navbar() {
 
           {/* Desktop Ask Scotty Button & Dark Mode Toggle - Right */}
           <div className="hidden lg:flex items-center gap-2 flex-shrink-0 ml-auto h-full">
-            {/* Dark mode toggle - now left of Ask Scotty */}
-            <DarkModeToggle size={16} />
-            <button
-              type="button"
-              onClick={() => setMinimized(false)}
-              className={`glass-button flex items-center justify-center flex-shrink-0 transition-opacity duration-500 ${
-                isInitialLoad ? 'opacity-0 pointer-events-none' : 'opacity-100 delay-300'
-              } ${isDark ? 'dark' : ''}`}
-              title="Ask Scotty"
-            >
-              <Image
-                src="/logo/askscotty.png"
-                alt="Ask Scotty"
-                width={20}
-                height={20}
-                style={{ filter: isDark ? "invert(1)" : "invert(0)"}}
-              />
-            </button>
+            {/* Show Ask Scotty button only when expanded */}
+            {!isInitialLoad && (
+              <button
+                type="button"
+                onClick={() => setMinimized(false)}
+                className={`glass-button flex items-center justify-center flex-shrink-0 transition-opacity duration-500 opacity-100 delay-300 ${isDark ? 'dark' : ''}`}
+                title="Ask Scotty"
+              >
+                <Image
+                  src="/logo/askscotty.png"
+                  alt="Ask Scotty"
+                  width={20}
+                  height={20}
+                  style={{ filter: isDark ? "invert(1)" : "invert(0)"}}
+                />
+              </button>
+            )}
           </div>
 
           {/* Mobile Hamburger Menu */}
