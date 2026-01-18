@@ -126,8 +126,9 @@ export default function Navbar() {
 
           {/* Desktop Ask Scotty Button & Dark Mode Toggle - Right */}
           <div className="hidden lg:flex items-center gap-2 flex-shrink-0 ml-auto h-full">
-            {/* Show Ask Scotty button only when expanded */}
-            {!isInitialLoad && (
+            {/* Show all buttons only when fully loaded/expanded */}
+            {!isInitialLoad && <>
+              <DarkModeToggle size={16} />
               <button
                 type="button"
                 onClick={() => setMinimized(false)}
@@ -142,7 +143,7 @@ export default function Navbar() {
                   style={{ filter: isDark ? "invert(1)" : "invert(0)"}}
                 />
               </button>
-            )}
+            </>}
           </div>
 
           {/* Mobile Hamburger Menu */}
