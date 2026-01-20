@@ -107,7 +107,7 @@ export default function Navbar() {
                 priority
               />
             </Link>
-            <h3 className={`text-l font-medium select-none accent-hover transition ${isActive('') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : 'text-black'}`}>Ask Scotty</h3>
+            <h3 className={`text-l font-medium select-none accent-hover transition ${isActive('') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : 'text-black'}`}>AskScotty</h3>
           </div>
 
           {/* Desktop Navbar - Center */}

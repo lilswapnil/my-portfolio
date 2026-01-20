@@ -80,8 +80,8 @@ body.light {
     --bg-secondary-light: #F5F5F5;
     --bg-tertiary-light: #EBEBEB;
     --border-light: #E5E5E5;
-    --accent-light: #3B82F6;
-    --accent-hover-light: #2563EB;
+    --accent-light: rgba(255, 255, 255, 0.4);
+    --accent-hover-light: rgba(255, 255, 255, 0.4);
     --input-bg-light: rgba(255, 255, 255, 0.6);
     --input-border-light: rgba(255, 255, 255, 0.7);
     --button-bg-light: rgba(59, 130, 246, 0.4);
@@ -95,8 +95,8 @@ body.light {
     --bg-secondary-dark: #1A1A1A;
     --bg-tertiary-dark: #272727;
     --border-dark: #374151;
-    --accent-dark: #60A5FA;
-    --accent-hover-dark: #93C5FD;
+    --accent-dark: rgba(255, 255, 255, 0.4);
+    --accent-hover-dark: rgba(255, 255, 255, 0.4);
     --input-bg-dark: rgba(55, 65, 81, 0.6);
     --input-border-dark: rgba(107, 114, 128, 0.7);
     --button-bg-dark: rgba(240, 243, 245, 0.3);

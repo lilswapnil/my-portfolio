@@ -266,7 +266,7 @@ export default function AskScotty({ question }: { question: string }) {
                 height={24}
                 style={{ filter: isDark ? "invert(1)" : "none" }}
               />
-              <h3 className={`text-md  ${colors.headerText}`}>Ask Scotty</h3>
+              <h3 className={`text-md  ${colors.headerText}`}>AskScotty</h3>
             </button>
             {!minimized && (
               <button

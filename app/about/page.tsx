@@ -7,10 +7,21 @@ import TileHighlightSection from '../components/TileHighlightSection/page';
 import ScottModel from '../components/ScottModel/page';
 import LenisProvider from '../components/LenisProvider';
 
-const colors = {
-    primary: 'bg-purple-500',
-    secondary: 'bg-violet-950'
-};
+// Dynamic colors based on theme
+function getColors(isDark: boolean) {
+    if (isDark) {
+        return {
+            primary: 'bg-purple-500',
+            secondary: 'bg-violet-950'
+        };
+    } else {
+        return {
+            primary: 'bg-yellow-500',
+            secondary: 'bg-blue-950'
+        };
+    }
+}
+
 
 export default function Home() {
     const [mounted, setMounted] = useState(false);
@@ -29,6 +40,7 @@ export default function Home() {
     if (!mounted) return null;
 
     const isDark = theme === 'dark';
+    const colors = getColors(isDark);
 
     return (
         <>
@@ -47,9 +59,9 @@ export default function Home() {
                             </p>
                             <button
                                 className="mt-6 px-8 w-fit py-3 glass-button font-semibold rounded-lg active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
-                                onClick={() => window.location.href = '/contact'}
+                                onClick={() => window.location.href = '/projects'}
                             >
-                                Get in Touch
+                                Explore
                             </button>
                         </div>
 

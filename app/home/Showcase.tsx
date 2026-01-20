@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from 'next-themes';
 import { projects } from "../../data/projects";
 import "./Showcase.css";
 
@@ -11,10 +12,17 @@ const screenshots = [
     "/screenshot/lung-cancer-detection.png",
 ];
 
+
 export default function Showcase() {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [scrollY, setScrollY] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const { resolvedTheme } = useTheme();
+    const [isDark, setIsDark] = useState(false);
+
+    useEffect(() => {
+        setIsDark(resolvedTheme === 'dark');
+    }, [resolvedTheme]);
 
     const handlePrev = () => {
         setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
@@ -87,14 +95,14 @@ export default function Showcase() {
                     <button
                         aria-label="Previous screenshot"
                         onClick={handlePrev}
-                        className="showcase-btn showcase-btn-prev"
+                        className={`showcase-btn showcase-btn-prev glass-button font-semibold rounded-lg active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer px-6 py-3${!isDark ? ' bg-purple-500 text-white' : ''}`}
                     >
                         &#8592;
                     </button>
                     <button
                         aria-label="Next screenshot"
                         onClick={handleNext}
-                        className="showcase-btn showcase-btn-next"
+                        className={`showcase-btn showcase-btn-next glass-button font-semibold rounded-lg active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer px-6 py-3${!isDark ? ' bg-purple-500 text-white' : ''}`}
                     >
                         &#8594;
                     </button>

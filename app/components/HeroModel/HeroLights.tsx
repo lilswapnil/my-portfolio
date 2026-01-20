@@ -5,10 +5,13 @@ const HeroLights = () => (
     {/* lamp's light */}
     <spotLight
       position={[2, 5, 6]}
-      angle={0.15}
-      penumbra={0.2}
-      intensity={100}
-      color="white"
+      angle={0.18}
+      penumbra={0.5}
+      intensity={60}
+      color="#ffe9b0"
+      distance={12}
+      decay={2}
+      castShadow
     />
     {/* bluish overhead lamp */}
     <spotLight
