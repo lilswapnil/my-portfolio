@@ -1,11 +1,11 @@
 'use client';
-import './contact.css';
+import './contact.module.css';
 import LenisProvider from '../components/LenisProvider';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { useIconsConfig } from '../../hooks/useIconsConfig';
-import Footer from "../components/Footer/page";
+import Footer from "./Footer/page";
 
 type IconsConfig = ReturnType<typeof useIconsConfig>;
 type IconItem = IconsConfig[number];

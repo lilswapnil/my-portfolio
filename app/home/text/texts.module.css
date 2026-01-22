@@ -21,18 +21,8 @@
   /* keeps it clean and prevents horizontal scrollbars */
   inline-size: 100%;
   overflow-x: clip;
-}
-
-/* IMPORTANT: you need scroll length to see scrub animation */
-/* Make scroll slower by increasing scrollable area */
-:global(body) {
-  min-block-size: 1000vh;
-  font-family: system-ui, sans-serif;
   margin: 0;
-}
-
-:global(*) {
-  box-sizing: border-box;
+  min-height: max-content;
 }
 
 .stuckGridWrapper {
@@ -206,14 +196,4 @@
   .gridItem:nth-of-type(48) { grid-area: 4/4 }
   .gridItem:nth-of-type(49) { grid-area: 3/1 }
   .gridItem:nth-of-type(50) { grid-area: 3/2 }
-}
-
-/* tiny helper text */
-.hint {
-  position: fixed;
-  left: 1rem;
-  bottom: 1rem;
-  font-size: 0.9rem;
-  opacity: 0.6;
-  pointer-events: none;
 }

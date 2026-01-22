@@ -2,8 +2,8 @@
 
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import HeroModel from '../components/HeroModel/page';
-import TileHighlightSection from '../components/TileHighlightSection/page';
+import HeroModel from './HeroModel/page';
+import TileHighlightSection from './TileHighlightSection/page';
 import ScottModel from '../components/ScottModel/page';
 import LenisProvider from '../components/LenisProvider';
 

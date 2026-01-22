@@ -8,7 +8,8 @@ import * as THREE from 'three';
 import { FormalScottModel } from '../components/ScottModel/Formal-scott.jsx';
 import { Lights } from './Lights.jsx';
 import Texts from './text/page';
-import Showcase from './Showcase';
+import Showcase from './showcase/page';
+import ImpactSection from './impactsection/page';
 
 // Camera animation driven by scroll
 function ScrollCameraRig() {
@@ -45,31 +46,18 @@ export default function Home() {
     const isDark = theme === 'dark';
     return (
         <div
-            className="min-h-screen py-16 smooth-scroll"
-            style={{ background: 'var(--background)', width: '100vw', overflowX: 'hidden' }}
+            className="min-h-screen pt-16 smooth-scroll w-screen overflow-x-hidden bg-[var(--background)]"
         >
             <div
-                style={{ color: 'var(--foreground)', height: '100vh', position: 'relative', width: '100vw', overflowX: 'hidden' }}
+                className="text-[var(--foreground)] h-screen relative w-screen overflow-x-hidden"
             >
-                <style>{`
-                    @media (max-width: 900px) {
-                        .home-title { font-size: 2.2rem !important; text-align: left !important; margin-left: 0.5rem !important; margin-right: 0 !important; }
-                        .home-subtitle { font-size: 1rem !important; text-align: left !important; margin-left: 0.5rem !important; margin-right: 0 !important; }
-                    }
-                    @media (min-width: 901px) {
-                        .home-title { font-size: 4.5rem !important; text-align: center !important; }
-                        .home-subtitle { font-size: 1.5rem !important; text-align: center !important; }
-                    }
-                `}</style>
                 <h1
-                    className="home-title"
-                    style={{ color: 'var(--foreground)', textAlign: 'center', margin: '4px 0 0 0', fontSize: '4.5rem', fontWeight: 700 }}
+                    className="font-bold mt-1 mb-0 text-center text-[2.2rem] md:text-[4.5rem] md:text-center md:ml-0 md:mr-0 ml-2 mr-0 text-[var(--foreground)]"
                 >
                     Welcome to the Scott's portfolio
                 </h1>
                 <p
-                    className="home-subtitle"
-                    style={{ color: 'var(--foreground)', textAlign: 'center', margin: '6px 0 0 0', fontSize: '1.5rem' }}
+                    className="mt-1 mb-0 text-center text-[1rem] md:text-[1.5rem] md:text-center md:ml-0 md:mr-0 ml-2 mr-0 text-[var(--foreground)]"
                 >
                     Solve complex problems. Ship reliable systems.
                 </p>
@@ -91,6 +79,7 @@ export default function Home() {
                 </Canvas>
                 <Texts />
                 <Showcase />
+                <ImpactSection />
             </div>
         </div>
     );
