@@ -4,7 +4,7 @@
 }
 /* ===== GLOBAL SCROLLBAR HIDE (KEEP SCROLL FUNCTIONAL) ===== */
 
-html, body {
+html {
   margin: 0;
   padding: 0;
   overflow-y: scroll;

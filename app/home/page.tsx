@@ -11,6 +11,7 @@ import Texts from './text/page';
 import Showcase from './showcase/page';
 import ImpactSection from './impactsection/page';
 
+
 // Camera animation driven by scroll
 function ScrollCameraRig() {
     const scroll = useScroll();

@@ -1,5 +1,5 @@
 'use client';
-import './contact.module.css';
+import './contact.css';
 import LenisProvider from '../components/LenisProvider';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
@@ -158,8 +158,8 @@ export default function ContactPage() {
 
   return (
     <>
-    <LenisProvider />
     <div className="min-h-screen py-16">
+      <LenisProvider />
       {/* Background gradient blur effect */}
       <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
         <div
@@ -170,11 +170,11 @@ export default function ContactPage() {
         />
       </div>
 
-      <div className="max-w-7xl my-10 mx-auto px-4">
+      <div className="max-w-7xl mt-12 mx-auto">
         {/* Header */}
         <div className="mb-12">
           <h1 className={`text-5xl md:text-6xl font-bold mb-3 ${colors.textPrimary}`}>
-            Get in Touch
+          Get in Touch
           </h1>
           <p className={`text-lg ${colors.textSecondary}`}>
             I&apos;d love to hear from you! Whether you have a question, want to collaborate, feel free to reach out using the form below or via my social media channels.
@@ -236,7 +236,7 @@ export default function ContactPage() {
                 </label>
                 <textarea
                   id="message"
-                  rows={4}
+                  rows={6}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className={`${colors.glassInput} mt-1 block w-full px-4 py-3 rounded-lg border-0 text-primary placeholder-gray-400 focus:ring-2 focus:ring-inset focus:ring-white`}
@@ -272,8 +272,8 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
+     
     </>
   );
 }

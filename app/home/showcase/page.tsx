@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from 'next-themes';
 import { projects } from "../../../data/projects";
-import "./Showcase.css";
+import "./showcase.css";
 
 const screenshots = [
     "/screenshot/musix.png",

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { impactData } from '../../../data/impact';
+import { serviceSectionData } from '../../../data/service-section';
 
 type AnimatedCounterProps = {
     value: number;
@@ -49,11 +50,10 @@ export default function ImpactSection() {
                   </div>
                 ))}
             </div>
-            {/* Optional: Service Section Headline Block (kept commented, but rewritten to match service tone) */}
             <div className="max-w-5xl w-full mt-16 flex flex-col gap-6 bg-[var(--background)] text-[var(--foreground)]">
-                <h2 className="text-2xl md:text-3xl font-bold text-[var(--foreground)] mb-2">End-to-end Services.</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-[var(--foreground)] mb-2">{serviceSectionData.title}</h2>
                 <p className="text-lg font-medium text-zinc-500 text-base leading-relaxed">
-                    I design, build, and operate production systems from ingestion to insight, with reliability and measurable outcomes.
+                    {serviceSectionData.description}
                 </p>
             </div>
         </section>

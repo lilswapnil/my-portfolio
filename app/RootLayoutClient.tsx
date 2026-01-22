@@ -6,12 +6,6 @@ import React, { useEffect } from "react";
 import { ReactNode } from 'react';
 
 export default function RootLayoutClient({ children }: { children: ReactNode }) {
-  return (
-    <AskScottyProvider>
-      {children}
-      <ChatLayoutWrapper />
-    </AskScottyProvider>
-  );
   useEffect(() => {
     let isScrolling = false;
     let targetScroll = window.scrollY;
@@ -43,5 +37,10 @@ export default function RootLayoutClient({ children }: { children: ReactNode }) 
       window.removeEventListener("wheel", onWheel);
     };
   }, []);
-  return <>{children}</>;
+  return (
+    <AskScottyProvider>
+      {children}
+      <ChatLayoutWrapper />
+    </AskScottyProvider>
+  );
 }
