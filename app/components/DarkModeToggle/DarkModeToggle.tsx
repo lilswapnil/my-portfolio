@@ -66,12 +66,17 @@ export default function DarkModeToggle({ size = 16 }: { size?: number }) {
     >
       {isDark ? (
         <svg width={size} height={size} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.07l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.93l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-          />
+          <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="2" fill="none" />
+          <g stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <line x1="12" y1="2" x2="12" y2="4" />
+            <line x1="12" y1="20" x2="12" y2="22" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="2" y1="12" x2="4" y2="12" />
+            <line x1="20" y1="12" x2="22" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </g>
         </svg>
       ) : (
         <svg width={size} height={size} fill="none" viewBox="0 0 24 24" stroke="black">

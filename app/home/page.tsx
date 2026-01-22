@@ -7,7 +7,7 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { FormalScottModel } from '../components/ScottModel/Formal-scott.jsx';
 import { Lights } from './Lights.jsx';
-import Texts from './Texts';
+import Texts from './text/page';
 import Showcase from './Showcase';
 
 // Camera animation driven by scroll
@@ -46,10 +46,10 @@ export default function Home() {
     return (
         <div
             className="min-h-screen py-16 smooth-scroll"
-            style={{ background: 'var(--background)' }}
+            style={{ background: 'var(--background)', width: '100vw', overflowX: 'hidden' }}
         >
             <div
-                style={{ color: 'var(--foreground)', height: '100vh', position: 'relative' }}
+                style={{ color: 'var(--foreground)', height: '100vh', position: 'relative', width: '100vw', overflowX: 'hidden' }}
             >
                 <style>{`
                     @media (max-width: 900px) {
@@ -75,7 +75,7 @@ export default function Home() {
                 </p>
                 <Canvas
                     camera={{ position: [0, 0.2, 1.0], fov: 50 }}
-                    style={{ background: 'transparent' }}
+                    style={{ background: 'transparent', overflowX: 'hidden' }}
                     gl={{ preserveDrawingBuffer: true, alpha: true }}
                 >
                     <Lights />
