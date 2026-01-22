@@ -95,20 +95,18 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between p-2 px-2 h-full">
           
-          {/* Logo */}
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <Link href="/" onClick={(e) => handleNavClick(e, '/')}> 
-              <Image
-                src="/logo/logo.png"
-                alt="Logo"
-                width={40}
-                height={40}
-                className="rounded-full shadow-md"
-                priority
-              />
-            </Link>
+          {/* Logo & AskScotty Text as Link */}
+          <Link href="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center gap-3 flex-shrink-0 group" style={{ textDecoration: 'none' }}>
+            <Image
+              src="/logo/logo.png"
+              alt="Logo"
+              width={40}
+              height={40}
+              className="rounded-full shadow-md"
+              priority
+            />
             <h3 className={`text-l font-medium select-none accent-hover transition ${isActive('') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : 'text-black'}`}>AskScotty</h3>
-          </div>
+          </Link>
 
           {/* Desktop Navbar - Center */}
           <div 

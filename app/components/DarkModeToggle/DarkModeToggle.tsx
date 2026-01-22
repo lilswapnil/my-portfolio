@@ -6,14 +6,63 @@ import React from "react";
 export default function DarkModeToggle({ size = 16 }: { size?: number }) {
   const { theme, setTheme } = useTheme();
   const isDark = theme === "dark";
+  const [animating, setAnimating] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+  // Animation handler
+  const handleToggle = () => {
+    if (!buttonRef.current) {
+      setTheme(isDark ? "light" : "dark");
+      return;
+    }
+    setAnimating(true);
+    // Get button position
+    const rect = buttonRef.current.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    // Create circle overlay
+    const circle = document.createElement("div");
+    circle.style.position = "fixed";
+    circle.style.left = `${x}px`;
+    circle.style.top = `${y}px`;
+    circle.style.transform = "translate(-50%, -50%)";
+    circle.style.borderRadius = "50%";
+    circle.style.pointerEvents = "none";
+    circle.style.zIndex = "9999";
+    circle.style.background = isDark ? "#fff" : "#0A0A0A";
+    circle.style.width = "0px";
+    circle.style.height = "0px";
+    circle.style.transition = "width 0.7s cubic-bezier(0.4,0,0.2,1), height 0.7s cubic-bezier(0.4,0,0.2,1), opacity 0.3s";
+    document.body.appendChild(circle);
+
+    // Force reflow then animate
+    requestAnimationFrame(() => {
+      circle.style.width = "3000px";
+      circle.style.height = "3000px";
+      circle.style.opacity = "1";
+    });
+
+    // After animation, switch theme and remove circle
+    setTimeout(() => {
+      setTheme(isDark ? "light" : "dark");
+      circle.style.opacity = "0";
+      setTimeout(() => {
+        document.body.removeChild(circle);
+        setAnimating(false);
+      }, 300);
+    }, 700);
+  };
 
   return (
     <button
+      ref={buttonRef}
       aria-label="Toggle dark mode"
       className={`glass-button rounded-full flex items-center justify-center transition-colors duration-200 ${isDark ? "dark" : ""}`}
       style={{ width: 40, height: 40, minWidth: 40, minHeight: 40, padding: 0 }}
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      onClick={animating ? undefined : handleToggle}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      disabled={animating}
     >
       {isDark ? (
         <svg width={size} height={size} fill="none" viewBox="0 0 24 24" stroke="currentColor">

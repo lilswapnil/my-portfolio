@@ -16,7 +16,7 @@ function getColors(isDark: boolean) {
         };
     } else {
         return {
-            primary: 'bg-yellow-500',
+            primary: 'bg-yellow-200',
             secondary: 'bg-blue-950'
         };
     }

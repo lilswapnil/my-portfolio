@@ -61,6 +61,7 @@ export function ProductLifecycleLabels({
   }, []);
 
   return (
+    <>
     <div style={labels.wrap}>
       <div style={labels.kicker}>PRODUCT LIFECYCLE</div>
       {stages.map((name, i) => {
@@ -79,5 +80,9 @@ export function ProductLifecycleLabels({
         );
       })}
     </div>
+    <div className="room-wrapper">
+
+    </div>
+    </>
   );
 }

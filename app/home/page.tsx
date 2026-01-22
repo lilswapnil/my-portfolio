@@ -63,7 +63,7 @@ export default function Home() {
                 `}</style>
                 <h1
                     className="home-title"
-                    style={{ color: 'var(--foreground)', textAlign: 'center', margin: '34px 0 0 0', fontSize: '4.5rem', fontWeight: 700 }}
+                    style={{ color: 'var(--foreground)', textAlign: 'center', margin: '4px 0 0 0', fontSize: '4.5rem', fontWeight: 700 }}
                 >
                     Welcome to the Scott's portfolio
                 </h1>

@@ -401,9 +401,44 @@ export function ProductLifecycleScene({ stageRef }: { stageRef: React.MutableRef
       {s1 > 0.01 && (
         <group ref={productRef}>
           {/* Black mesh shell, animated by stage */}
+          {/* Main box body (no top) */}
           <mesh ref={shellRef} material={shellMat}>
             <boxGeometry args={[0.9, 0.9, 0.9]} />
           </mesh>
+
+          {/* Box flaps (top) - open during Build stage (s3) */}
+          {/* Four flaps, each a thin rectangle, rotate outward during s3 */}
+          {[0, 1, 2, 3].map((i) => {
+            // Flap rotation: closed (0) to open (Math.PI/2) as s3 goes from 0 to 1
+            const open = lerp(0, Math.PI / 2.1, s3); // 85 degrees
+            // Flap positions and axes
+            const flapLength = 0.9;
+            const flapWidth = 0.45;
+            const flapThickness = 0.04;
+            // Flap center offset from box center
+            const offset = 0.45 + flapThickness / 2;
+            // Flap rotation axis and position
+            let pos: [number, number, number] = [0, 0, 0];
+            let rot: [number, number, number] = [0, 0, 0];
+            if (i === 0) { // front
+              pos = [0, offset, flapLength / 2];
+              rot = [-open, 0, 0];
+            } else if (i === 1) { // back
+              pos = [0, offset, -flapLength / 2];
+              rot = [open, 0, 0];
+            } else if (i === 2) { // left
+              pos = [-flapLength / 2, offset, 0];
+              rot = [0, 0, open];
+            } else if (i === 3) { // right
+              pos = [flapLength / 2, offset, 0];
+              rot = [0, 0, -open];
+            }
+            return (
+              <mesh key={i} position={pos} rotation={rot} material={shellMat}>
+                <boxGeometry args={[flapWidth, flapThickness, flapWidth]} />
+              </mesh>
+            );
+          })}
           {/* Tape on top face after Deploy */}
           {shellColor === "#d2b075" && (
             <mesh position={[0, 0.451, 0]} rotation={[0, 0, 0]}>
