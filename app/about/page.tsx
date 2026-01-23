@@ -49,7 +49,7 @@ export default function Home() {
                 {/* About Me Title Section - match Projects page */}
                 <div className="max-w-7xl mt-12 mx-auto px-4">
                     <div className="mb-2">
-                        <h1 className={`text-5xl md:text-6xl font-bold mb-3 text-primary ${isDark ? 'dark' : ''}`}>My WorkPlace</h1>
+                        <h1 className={`text-5xl md:text-6xl font-bold mb-3 text-primary ${isDark ? 'dark' : ''}`}>About Me</h1>
                         <p className={`text-lg text-secondary ${isDark ? 'dark' : ''}`}>Learn more about my background, and journey</p>
                     </div>
                 </div>
