@@ -1,6 +1,7 @@
 // Example service section data
-export const serviceSectionData = [
-  { title: 'Web Development', description: 'Building responsive and performant web applications.' },
+export type ServiceSection = { title: string; description: string };
+export const serviceSectionData: ServiceSection[] = [
+  { title: 'Web Development', description: 'Building responsive and performant web applications, apps and software.' },
   { title: 'UI/UX Design', description: 'Designing user-friendly interfaces and experiences.' },
   { title: 'Consulting', description: 'Providing expert advice for digital projects.' },
 ];

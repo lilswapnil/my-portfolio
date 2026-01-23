@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { impactData } from '../../../data/impact';
-import { serviceSectionData } from '../../../data/service-section';
+import { serviceSectionData, type ServiceSection } from '../../../data/service-section';
 
 type AnimatedCounterProps = {
     value: number;
@@ -62,10 +62,14 @@ export default function ImpactSection() {
                 ))}
             </div>
             <div className="max-w-5xl w-full mt-16 flex flex-col gap-6 bg-[var(--background)] text-[var(--foreground)]">
-                <h2 className="text-2xl md:text-3xl font-bold text-[var(--foreground)] mb-2">{serviceSectionData.title}</h2>
-                <p className="text-lg font-medium text-zinc-500 text-base leading-relaxed">
-                    {serviceSectionData.description}
-                </p>
+                {serviceSectionData.map((section: ServiceSection, idx: number) => (
+                    <div key={idx} className="mb-4">
+                        <h2 className="text-2xl md:text-3xl font-bold text-[var(--foreground)] mb-2">{section.title}</h2>
+                        <p className="text-lg font-medium text-zinc-500 text-base leading-relaxed">
+                            {section.description}
+                        </p>
+                    </div>
+                ))}
             </div>
         </section>
         </>
