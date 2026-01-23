@@ -53,7 +53,7 @@ export default function ImpactSection() {
                 {impactData.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-start px-4">
                     <span className="text-zinc-400 text-base font-medium mb-1">Up to</span>
-                    <h2 className={`text-4xl md:text-5xl font-bold ${item.colorClass} mb-2`}>
+                     <h2 className="text-4xl md:text-5xl font-bold mb-2">
                       <AnimatedCounter value={item.value} decimals={item.decimals} />%
                     </h2>
                     <p className="text-[var(--foreground)] text-base font-medium mb-2">{item.label}</p>
