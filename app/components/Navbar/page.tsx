@@ -147,18 +147,19 @@ export default function Navbar() {
           {/* Mobile Hamburger Menu */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`lg:hidden flex flex-col gap-2 flex-shrink-0 p-2 rounded-lg glass-container dark transition-opacity duration-500 ${
+            className={`lg:hidden flex flex-col gap-2 flex-shrink-0 p-2 rounded-lg transition-opacity duration-500 ${
               isInitialLoad ? 'opacity-0 pointer-events-none' : 'opacity-100 delay-300'
             }`}
             style={{
-              background: 'rgba(24, 24, 27, 0.6)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)'
+              background: isDark ? "#0A0A0A" : "transparent",
+              
+              WebkitBackdropFilter: 'blur(20px)',
+              border: 'none'
             }}
           >
-            <span className={`w-6 h-0.5 transition-all ${isDark ? 'bg-white' : 'bg-gray-800'} ${menuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
-            <span className={`w-6 h-0.5 transition-all ${isDark ? 'bg-white' : 'bg-gray-800'} ${menuOpen ? "opacity-0" : ""}`}></span>
-            <span className={`w-6 h-0.5 transition-all ${isDark ? 'bg-white' : 'bg-gray-800'} ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
+            <span className={`w-6 h-0.5 transition-all ${isDark ? 'bg-white' : 'bg-black'} ${menuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
+            <span className={`w-6 h-0.5 transition-all ${isDark ? 'bg-white' : 'bg-black'} ${menuOpen ? "opacity-0" : ""}`}></span>
+            <span className={`w-6 h-0.5 transition-all ${isDark ? 'bg-white' : 'bg-black'} ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
           </button>
         </div>
       </header>

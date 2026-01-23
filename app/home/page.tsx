@@ -9,6 +9,8 @@ import { Lights } from './Lights.jsx';
 import Texts from './text/page';
 import Showcase from './showcase/page';
 import ImpactSection from './impactsection/page';
+import dynamic from 'next/dynamic';
+const ShowcaseMobile = dynamic(() => import('./showcase-mobile/ShowcaseMobile'), { ssr: false });
 
 
 // Camera animation driven by scroll
@@ -45,20 +47,12 @@ export default function Home() {
     // const { theme } = useTheme();
     // const isDark = theme === 'dark';
     return (
-        <div
-            className="min-h-screen pt-16 smooth-scroll w-screen overflow-x-hidden bg-[var(--background)]"
-        >
-            <div
-                className="text-[var(--foreground)] h-screen relative w-screen overflow-x-hidden"
-            >
-                <h1
-                    className="font-bold mt-1 mb-0 text-center text-[2.2rem] md:text-[4.5rem] md:text-center md:ml-0 md:mr-0 ml-2 mr-0 text-[var(--foreground)]"
-                >
-                    Welcome to the Scott&apos;s portfolio
+        <div className="min-h-screen pt-16 smooth-scroll w-screen overflow-x-hidden bg-[var(--background)]">
+            <div className="text-[var(--foreground)] h-screen relative w-screen overflow-x-hidden">
+                <h1 className="font-bold mt-1 mb-0 text-center text-[2.2rem] md:text-[4.5rem] sm:text-[4.5rem] md:text-center md:ml-0 md:mr-0 ml-2 mr-0 text-[var(--foreground)]">
+                    Welcome to Scott&apos;s portfolio
                 </h1>
-                <p
-                    className="mt-1 mb-0 text-center text-[1rem] md:text-[1.5rem] md:text-center md:ml-0 md:mr-0 ml-2 mr-0 text-[var(--foreground)]"
-                >
+                <p className="mt-1 mb-0 text-center text-[1rem] md:text-[1.5rem] md:text-center md:ml-0 md:mr-0 ml-2 mr-0 text-[var(--foreground)]">
                     Solve complex problems. Ship reliable systems.
                 </p>
                 <Canvas
@@ -78,7 +72,13 @@ export default function Home() {
                     </ScrollControls>
                 </Canvas>
                 <Texts />
-                <Showcase />
+                {/* Use ShowcaseMobile for mobile, Showcase for desktop/tablet */}
+                <div className="block md:hidden">
+                    <ShowcaseMobile />
+                </div>
+                <div className="hidden md:block">
+                    <Showcase />
+                </div>
                 <ImpactSection />
             </div>
         </div>

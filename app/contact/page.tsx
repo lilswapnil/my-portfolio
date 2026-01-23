@@ -164,7 +164,7 @@ export default function ContactPage() {
         />
       </div>
 
-      <div className="max-w-7xl mt-12 mx-auto px-4">
+      <div className="max-w-7xl mt-12 mx-auto lg:px-4 md:px-0 sm:px-0">
         {/* Header */}
         <div className="mb-12">
           <h1 className={`text-5xl md:text-6xl font-bold mb-3 ${colors.textPrimary}`}>
