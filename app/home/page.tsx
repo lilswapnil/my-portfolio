@@ -49,7 +49,7 @@ export default function Home() {
     return (
         <div className="min-h-screen pt-16 smooth-scroll w-screen overflow-x-hidden bg-[var(--background)]">
             <div className="text-[var(--foreground)] h-screen relative w-screen overflow-x-hidden">
-                <h1 className="font-bold mt-1 mb-0 text-center text-[2.2rem] md:text-[4.5rem] sm:text-[4.5rem] md:text-center md:ml-0 md:mr-0 ml-2 mr-0 text-[var(--foreground)]">
+                <h1 className="font-bold mt-2 mb-0 text-center text-5xl sm:text-6xl md:text-[4.5rem] md:text-center md:ml-0 md:mr-0 mr-0 text-[var(--foreground)]">
                     Welcome to Scott&apos;s portfolio
                 </h1>
                 <p className="mt-1 mb-0 text-center text-[1rem] md:text-[1.5rem] md:text-center md:ml-0 md:mr-0 ml-2 mr-0 text-[var(--foreground)]">

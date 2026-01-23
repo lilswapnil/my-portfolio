@@ -54,10 +54,11 @@ export default function ShowcaseMobile() {
                       rel="noopener noreferrer"
                       className={`glass-button font-semibold rounded-full px-6 py-2 text-base transition-all duration-200 border${isDark ? ' dark:border-white/60 dark:bg-transparent dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white' : ' border-black bg-black text-white hover:bg-gray-900 hover:text-white'} focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent`}
                     >
-                      Learn more
+                      Live
                     </a>
                   )}
                   {project.githubRepo && (
+                    
                     <a
                       href={`https://github.com/${project.githubRepo}`}
                       target="_blank"
