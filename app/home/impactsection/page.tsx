@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { impactData } from '../../../data/impact';
 import { serviceSectionData } from '../../../data/service-section';

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from 'next-themes';
 import { projects } from "../../../data/projects";
-import "./showcase.css";
+import "./styles.css";
 
 const screenshots = [
     "/screenshot/musix.png",
