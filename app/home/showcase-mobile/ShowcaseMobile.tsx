@@ -1,5 +1,6 @@
 import React from 'react';
 import { projects } from '../../../data/projects';
+import { useTheme } from 'next-themes';
 const screenshots = [
   '/screenshot/musix.png',
   '/screenshot/moviz.png',
@@ -9,6 +10,8 @@ const screenshots = [
 ];
 
 export default function ShowcaseMobile() {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
   // Map project.id to screenshot if available
   const screenshotMap: Record<string, string> = {
     musix: '/screenshot/musix.png',
@@ -19,7 +22,7 @@ export default function ShowcaseMobile() {
   };
   const filteredProjects = projects.filter((project) => screenshotMap[project.id]);
   return (
-    <section className="w-full h-full flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+    <section className={`w-full h-full flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300${isDark ? ' dark' : ''}`}>
       <div
         className="flex flex-row gap-6 w-full overflow-x-auto scrollbar-hide"
         style={{
@@ -36,20 +39,20 @@ export default function ShowcaseMobile() {
               style={{ scrollSnapAlign: 'center' }}
             >
               <div
-                className="w-full max-w-xs glass-container rounded-2xl p-6 flex flex-col items-center relative transition-all duration-500 shadow-lg dark:shadow-xl"
+                className={`w-full max-w-xs glass-container rounded-2xl p-6 flex flex-col items-center relative transition-all duration-500 shadow-lg${isDark ? ' dark:shadow-xl group dark' : ' dark:shadow-xl group'}`}
               >
-                <h2 className="text-2xl font-bold mb-1 text-center transition-colors duration-300 text-gray-900 dark:text-white">{project.title || project.id}</h2>
+                <h2 className={`text-2xl font-bold mb-1 text-center transition-colors duration-300 group-hover:text-blue-600${isDark ? ' dark:group-hover:text-blue-400 text-white' : ' text-gray-900'}`}>{project.title || project.id}</h2>
                 {project.category && (
-                  <div className="text-xs my-2 font-semibold text-blue-700 dark:text-blue-300">{project.category}</div>
+                  <div className={`text-xs my-2 font-semibold${isDark ? ' text-blue-300' : ' text-blue-700'}`}>{project.category}</div>
                 )}
-                <p className="text-center text-sm leading-relaxed mb-4 text-gray-700 dark:text-gray-300 line-clamp-3">{project.description || 'No description available.'}</p>
+                <p className={`text-center text-sm leading-relaxed mb-4 line-clamp-3${isDark ? ' text-gray-300' : ' text-gray-700'}`}>{project.description || 'No description available.'}</p>
                 <div className="flex flex-row gap-4 mb-6">
                   {project.liveUrl && (
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="glass-button font-semibold rounded-full px-6 py-2 text-base transition-all duration-200 border border-black bg-black text-white hover:bg-gray-900 hover:text-white dark:border-white/60 dark:bg-transparent dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent"
+                      className={`glass-button font-semibold rounded-full px-6 py-2 text-base transition-all duration-200 border${isDark ? ' dark:border-white/60 dark:bg-transparent dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white' : ' border-black bg-black text-white hover:bg-gray-900 hover:text-white'} focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent`}
                     >
                       Learn more
                     </a>
@@ -59,7 +62,7 @@ export default function ShowcaseMobile() {
                       href={`https://github.com/${project.githubRepo}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="glass-button font-semibold rounded-full px-6 py-2 text-base transition-all duration-200 border border-black bg-black text-white hover:bg-gray-900 hover:text-white dark:border-white/60 dark:bg-transparent dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent"
+                      className={`glass-button font-semibold rounded-full px-6 py-2 text-base transition-all duration-200 border${isDark ? ' dark:border-white/60 dark:bg-transparent dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white' : ' border-black bg-black text-white hover:bg-gray-900 hover:text-white'} focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent`}
                     >
                       GitHub
                     </a>
@@ -69,7 +72,7 @@ export default function ShowcaseMobile() {
                   <img
                     src={screenshot}
                     alt={project.title || 'Project screenshot'}
-                    className="rounded-xl shadow-md w-64 h-40 object-cover object-center border border-gray-200 dark:border-gray-700 bg-[var(--bg-secondary-light)] dark:bg-[var(--bg-secondary-dark)]"
+                    className={`rounded-xl shadow-md w-64 h-40 object-cover object-center border${isDark ? ' dark:border-gray-700 dark:bg-[var(--bg-secondary-dark)]' : ' border-gray-200 bg-[var(--bg-secondary-light)]'}`}
                   />
                 </div>
                 {project.tags?.length ? (
@@ -77,7 +80,7 @@ export default function ShowcaseMobile() {
                     {project.tags.map((t) => (
                       <span
                         key={t}
-                        className="text-xs px-3 py-1 rounded-full font-medium border transition-all duration-300 bg-blue-100/40 text-blue-700 border-blue-200/70 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700/50"
+                        className={`text-xs px-3 py-1 rounded-full font-medium border transition-all duration-300${isDark ? ' dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700/50 dark:group-hover:bg-blue-800/50' : ' bg-blue-100/40 text-blue-700 border-blue-200/70 group-hover:bg-blue-100/60'}`}
                       >
                         {t}
                       </span>
