@@ -24,7 +24,7 @@ function ScrollCameraRig() {
     const endRotX = -0.12;
 
     // Animate camera on scroll with smooth lerp
-    useFrame((state: { camera: THREE.PerspectiveCamera }) => {
+    useFrame((state: any) => {
         const t = scroll.offset;
         // Smoothly interpolate camera position
         state.camera.position.lerp(
@@ -42,7 +42,7 @@ function ScrollCameraRig() {
 }
 
 export default function Home() {
-    // const { theme } = useTheme();
+    const { theme } = useTheme();
     // const isDark = theme === 'dark';
     return (
         <div

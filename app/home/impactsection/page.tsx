@@ -56,7 +56,7 @@ export default function ImpactSection() {
                      <h2 className="text-4xl md:text-5xl font-bold mb-2">
                       <AnimatedCounter value={item.value} decimals={0} />%
                     </h2>
-                    <p className="text-[var(--foreground)] text-base font-medium mb-2">{item.label}</p>
+                    {/* Removed item.label as it does not exist in the data */}
                     <p className="text-zinc-500 text-base leading-relaxed">{item.description}</p>
                   </div>
                 ))}
