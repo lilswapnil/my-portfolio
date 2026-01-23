@@ -45,7 +45,7 @@ export default function Home() {
     return (
         <>
             <LenisProvider />
-            <div className={`min-h-screen py-16 ${isDark ? 'dark' : ''}`}> 
+            <div className={`min-h-screen mt-16 ${isDark ? 'dark' : ''}`}> 
                 {/* About Me Title Section - match Projects page */}
                 <div className="max-w-7xl mt-12 mx-auto px-4">
                     <div className="mb-2">
@@ -55,7 +55,7 @@ export default function Home() {
                 </div>
                 {/* Hero Model - Right (70% width) */}
                 <div className="max-w-7xl mx-auto px-4" style={{ height: '90vh' }}>
-                    <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 w-full h-full">
+                    <div className="flex flex-col-reverse lg:grid lg:grid-cols-[30%_70%] gap-8 w-full h-full">
                         {/* Header Section - Left (30% width) */}
                         <div className="flex flex-col justify-center lg:mb-0">
                             <h1 className="text-3xl md:text-4xl font-semibold text-primary">

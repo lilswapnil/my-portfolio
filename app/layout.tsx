@@ -7,6 +7,7 @@ import { LoadingProvider } from "./context/LoadingContext";
 import PageContent from "./components/PageContent";
 import AskScottyWrapper from '@/app/components/AskScottyWrapper';
 // import LenisProvider from "./components/LenisProvider";
+import Footer from "./components/Footer/page";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -76,6 +77,7 @@ export default function RootLayout({
               {/* <LenisProvider /> Only use LenisProvider on pages without custom scroll logic */}
               <Navbar />
               <PageContent>{children}</PageContent>
+                  <Footer />
               <AskScottyWrapper />
             </AskScottyProvider>
           </LoadingProvider>
