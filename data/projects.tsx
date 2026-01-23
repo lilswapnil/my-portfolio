@@ -1,3 +1,6 @@
+// --- Consolidated from projects.ts ---
+// Example projects data
+// ...existing code...
 export type Project = {
   id: string;
   title: string;

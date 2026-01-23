@@ -1,6 +1,6 @@
 'use client';
 import { Canvas } from '@react-three/fiber';
-import { useTheme } from 'next-themes';
+// import { useTheme } from 'next-themes';
 import { ScrollControls, useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
