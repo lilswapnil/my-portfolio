@@ -9,6 +9,15 @@ const screenshots = [
 ];
 
 export default function ShowcaseMobile() {
+  // Map project.id to screenshot if available
+  const screenshotMap: Record<string, string> = {
+    musix: '/screenshot/musix.png',
+    moviz: '/screenshot/moviz.png',
+    'gaming-trends': '/screenshot/gaming-trends.png',
+    'kdrama-analytics': '/screenshot/kdrama-analytics.png',
+    'lung-cancer-detection': '/screenshot/lung-cancer-detection.png',
+  };
+  const filteredProjects = projects.filter((project) => screenshotMap[project.id]);
   return (
     <section className="w-full h-full flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
       <div
@@ -18,8 +27,8 @@ export default function ShowcaseMobile() {
           WebkitOverflowScrolling: 'touch',
         }}
       >
-        {projects.map((project, idx) => {
-          const screenshot = screenshots[idx % screenshots.length];
+        {filteredProjects.map((project) => {
+          const screenshot = screenshotMap[project.id];
           return (
             <div
               key={project.id || project.title}
@@ -40,9 +49,9 @@ export default function ShowcaseMobile() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="glass-button font-semibold rounded-full px-6 py-2 text-base transition-all duration-200 border border-black text-black hover:bg-gray-900 hover:text-white dark:border-white/60 dark:bg-transparent dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent"
+                      className="glass-button font-semibold rounded-full px-6 py-2 text-base transition-all duration-200 border border-black bg-black text-white hover:bg-gray-900 hover:text-white dark:border-white/60 dark:bg-transparent dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent"
                     >
-                      Live
+                      Learn more
                     </a>
                   )}
                   {project.githubRepo && (
