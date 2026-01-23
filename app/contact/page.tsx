@@ -45,11 +45,8 @@ function OrbitSection({
     <div className="w-full h-full flex items-center justify-center overflow-hidden">
       {/* Responsive square that never exceeds the viewport */}
       <div
-        className="relative"
-        style={{
-          width: "min(70vw, 360px)",
-          height: "min(70vw, 360px)",
-        }}
+        className="relative w-[min(90vw,360px)] h-[min(90vw,360px)] sm:w-[min(70vw,360px)] sm:h-[min(70vw,360px)]"
+        style={{}}
       >
         <div className="orbit-container absolute inset-0 flex items-center justify-center">
           {/* Center Image */}
@@ -179,7 +176,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="w-full max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* About/Orbit */}
           <div className="about-container flex items-center justify-center text-white text-4xl relative overflow-x-hidden">
             <OrbitSection icons={icons} />

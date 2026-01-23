@@ -54,11 +54,11 @@ export default function Home() {
                     </div>
                 </div>
                 {/* Hero Model - Right (70% width) */}
-                <div className="max-w-7xl mx-auto px-4 h-1/3 flex flex-col">
-                    <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 w-full flex-1 md:mt-12">
+                <div className="max-w-7xl mx-auto px-4" style={{ height: '90vh' }}>
+                    <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 w-full h-full">
                         {/* Header Section - Left (30% width) */}
                         <div className="flex flex-col justify-center lg:mb-0">
-                            <h1 className="text-3xl md:text-4xl font-semibold mb-3 text-primary">
+                            <h1 className="text-3xl md:text-4xl font-semibold text-primary">
                                 Welcome to <br /> My WorkPlace
                             </h1>
                             <p className="text-lg text-secondary">
