@@ -6,7 +6,7 @@ import { AskScottyProvider } from "./context/AskScottyContext";
 import { LoadingProvider } from "./context/LoadingContext";
 import PageContent from "./components/PageContent";
 import AskScottyWrapper from '@/app/components/AskScottyWrapper';
-import LenisProvider from "./components/LenisProvider";
+// import LenisProvider from "./components/LenisProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {

@@ -12,7 +12,7 @@ interface Message {
 }
 
 export default function AskScotty({ question }: { question: string }) {
-  const { messages, loading, minimized, closed, addMessage, setLoading, setMinimized, setClosed } = useAskScotty();
+  const { messages, loading, minimized, closed, addMessage, setLoading, setMinimized } = useAskScotty();
   const [inputValue, setInputValue] = useState('');
   const [mounted, setMounted] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -122,8 +122,7 @@ export default function AskScotty({ question }: { question: string }) {
 
   if (!mounted) return null;
 
-  // Animation classes for minimize/maximize
-  const animationClass = minimized ? 'askscotty-minimize' : 'askscotty-maximize';
+  // Animation classes for minimize/maximize (removed unused variable)
 
   return (
     <>

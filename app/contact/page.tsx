@@ -5,26 +5,23 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { useIconsConfig } from '../../hooks/useIconsConfig';
-import Footer from "./Footer/page";
+// import Footer from "./Footer/page";
 
 type IconsConfig = ReturnType<typeof useIconsConfig>;
 type IconItem = IconsConfig[number];
 
-function OrbitIcon({
-  item,
-  index,
-  totalIcons,
-}: {
+interface OrbitIconProps {
   item: IconItem;
   index: number;
   totalIcons: number;
-}) {
+}
+function OrbitIcon({ item, index, totalIcons }: OrbitIconProps) {
   const IconComponent = item.icon;
 
   return (
     <div
       className="orbit-item absolute"
-      style={{ ['--rotation' as any]: `${(index * 360) / totalIcons}deg` }}
+      style={{ ['--rotation' as string]: `${(index * 360) / totalIcons}deg` }}
     >
       <a
         href={item.href}
@@ -273,7 +270,7 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
-     
+
     </>
   );
 }

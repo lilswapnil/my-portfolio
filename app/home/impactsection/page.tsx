@@ -11,11 +11,21 @@ type AnimatedCounterProps = {
 function AnimatedCounter({ value, decimals = 0, className = "" }: AnimatedCounterProps) {
     const [count, setCount] = useState(0);
     const raf = useRef<number | null>(null);
+    const resetRef = useRef(false);
+
     useEffect(() => {
-        setCount(0); // Reset count to 0 on value/decimals change
+        resetRef.current = true;
+    }, [value, decimals]);
+
+    useEffect(() => {
         let startTime: number | undefined;
         const duration = 1200;
         function animateCounter(ts: number) {
+            if (resetRef.current) {
+                setCount(0);
+                resetRef.current = false;
+                startTime = ts;
+            }
             if (startTime === undefined) startTime = ts;
             const progress = Math.min((ts - startTime) / duration, 1);
             const current = value * progress;

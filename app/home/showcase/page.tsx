@@ -69,7 +69,7 @@ export default function Showcase() {
                             p => normalize(p.id) === normalize(base) || (p.title && normalize(p.title) === normalize(base))
                         );
                         const name = filename.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-                        let link = project?.liveUrl || (project?.githubRepo ? `https://github.com/${project.githubRepo}` : undefined);
+                        const link = project?.liveUrl || (project?.githubRepo ? `https://github.com/${project.githubRepo}` : undefined);
                         return (
                             <a
                                 href={link}

@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import { useFrame, useThree } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { useScroll, Text } from "@react-three/drei";
 
 // Helper functions
@@ -142,10 +142,10 @@ export function ProductLifecycleScene({ stageRef }: { stageRef: React.MutableRef
   // Get scroll offset and stage morphs for use in JSX
   const t = scroll.offset;
   const s1 = easeOutCubic(smoothstep(0.0, 0.18, t));
-  const s2 = easeOutCubic(smoothstep(0.18, 0.36, t));
+  // const s2 = easeOutCubic(smoothstep(0.18, 0.36, t));
   const s3 = easeOutCubic(smoothstep(0.36, 0.52, t));
-  const s4 = easeOutCubic(smoothstep(0.52, 0.7, t));
-  const s5 = easeOutCubic(smoothstep(0.7, 0.86, t));
+  // const s4 = easeOutCubic(smoothstep(0.52, 0.7, t));
+  // const s5 = easeOutCubic(smoothstep(0.7, 0.86, t));
   // Remove s6 (Iterate) logic
 
   useFrame((state, delta) => {
@@ -332,14 +332,18 @@ export function ProductLifecycleScene({ stageRef }: { stageRef: React.MutableRef
     // Core powers up + evolves color
     if (coreRef.current) {
       coreRef.current.scale.setScalar(0.25 + 0.55 * s3);
-      coreMat.emissiveIntensity = 0.25 + 1.1 * s3 + 0.5 * s6;
-      coreMat.opacity = 0.25 + 0.55 * s3;
+      const newCoreMat = coreMat.clone();
+      newCoreMat.emissiveIntensity = 0.25 + 1.1 * s3 + 0.5 * s6;
+      newCoreMat.opacity = 0.25 + 0.55 * s3;
+      coreRef.current.material = newCoreMat;
     }
 
     // Screen appears in Test stage
     if (screenRef.current) {
-      screenMat.opacity = 0.0 + 0.9 * s4;
-      screenMat.emissiveIntensity = 0.0 + 1.0 * s4;
+      const newScreenMat = screenMat.clone();
+      newScreenMat.opacity = 0.0 + 0.9 * s4;
+      newScreenMat.emissiveIntensity = 0.0 + 1.0 * s4;
+      screenRef.current.material = newScreenMat;
       screenRef.current.position.z =
         0.32 + 0.05 * Math.sin(t * Math.PI * 4) * s4;
       screenRef.current.scale.set(
@@ -352,8 +356,10 @@ export function ProductLifecycleScene({ stageRef }: { stageRef: React.MutableRef
     // Polish ring appears in Deploy stage, but hide at Deploy and after
     if (ringRef.current) {
       if (s5 < 0.99) {
-        ringMat.opacity = 0.0 + 0.8 * s5;
-        ringMat.emissiveIntensity = 0.0 + 1.1 * s5;
+        const newRingMat = ringMat.clone();
+        newRingMat.opacity = 0.0 + 0.8 * s5;
+        newRingMat.emissiveIntensity = 0.0 + 1.1 * s5;
+        ringRef.current.material = newRingMat;
         ringRef.current.scale.setScalar(0.4 + 1.0 * s5);
         ringRef.current.visible = true;
         ringRef.current.rotation.y += delta * 0.7 * s5;

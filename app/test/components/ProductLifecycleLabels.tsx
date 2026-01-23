@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-const labels: Record<string, any> = {
+const labels: {
+  wrap: React.CSSProperties;
+  kicker: React.CSSProperties;
+  item: React.CSSProperties;
+  active: React.CSSProperties;
+  dot: (active: boolean) => React.CSSProperties;
+} = {
   wrap: {
     position: "absolute",
     right: 20,
@@ -47,42 +53,39 @@ const labels: Record<string, any> = {
   }),
 };
 
-export function ProductLifecycleLabels({
-  stageRef,
-}: {
+interface ProductLifecycleLabelsProps {
   stageRef: React.MutableRefObject<number>;
-}) {
+}
+export function ProductLifecycleLabels({ stageRef }: ProductLifecycleLabelsProps) {
   const stages = ["Plan", "Design", "Build", "Test", "Deploy"];
-  const [, force] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
   useEffect(() => {
-    const id = setInterval(() => force((n) => n + 1), 80);
+    const id = setInterval(() => setActiveIndex(stageRef.current), 80);
     return () => clearInterval(id);
-  }, []);
+  }, [stageRef]);
 
   return (
     <>
-    <div style={labels.wrap}>
-      <div style={labels.kicker}>PRODUCT LIFECYCLE</div>
-      {stages.map((name, i) => {
-        const active = stageRef.current === i;
-        return (
-          <div
-            key={name}
-            style={{
-              ...labels.item,
-              ...(active ? labels.active : {}),
-            }}
-          >
-            <span style={labels.dot(active)} />
-            {name}
-          </div>
-        );
-      })}
-    </div>
-    <div className="room-wrapper">
-
-    </div>
+      <div style={labels.wrap}>
+        <div style={labels.kicker}>PRODUCT LIFECYCLE</div>
+        {stages.map((name, i) => {
+          const active = activeIndex === i;
+          return (
+            <div
+              key={name}
+              style={{
+                ...labels.item,
+                ...(active ? labels.active : {}),
+              }}
+            >
+              <span style={labels.dot(active)} />
+              {name}
+            </div>
+          );
+        })}
+      </div>
+      <div className="room-wrapper"></div>
     </>
   );
 }
