@@ -157,6 +157,7 @@ export default function ContactPage() {
     <>
     <div className="min-h-screen py-16">
       <LenisProvider />
+      
       {/* Background gradient blur effect */}
       <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
         <div
@@ -167,7 +168,7 @@ export default function ContactPage() {
         />
       </div>
 
-      <div className="max-w-7xl mt-12 mx-auto">
+      <div className="max-w-7xl mt-12 mx-auto px-4">
         {/* Header */}
         <div className="mb-12">
           <h1 className={`text-5xl md:text-6xl font-bold mb-3 ${colors.textPrimary}`}>

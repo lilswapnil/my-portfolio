@@ -46,7 +46,7 @@ export default function TileHighlightSection() {
             className="glass-tile h-48 rounded-2xl gap-4 p-6 flex flex-col text-center justify-center"
             variants={tileVariants}
           >
-            <h3 className="text-2xl font-bold text-primary">{tile.title}</h3>
+            <h3 className="text-2xl  text-primary">{tile.title}</h3>
             <p className="text-base text-secondary">{tile.description}</p>
           </motion.div>
         ))}
