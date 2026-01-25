@@ -15,9 +15,9 @@ const screenshots = [
 const screenshotLabels = [
   "Musix",
   "Moviz",
-//   "Gaming Trends",
-//   "Kdrama Analytics",
-//   "Lung Cancer Detection",
+  "Gaming Trends",
+  "Kdrama Analytics",
+  "Lung Cancer Detection",
 ];
 
 export default function ShowcaseIpad() {
@@ -82,7 +82,7 @@ export default function ShowcaseIpad() {
     <div className="w-full">
       {/* Tabs */}
       <div className="max-w-3xl mx-auto mt-8 mb-4">
-        <div className="flex justify-center space-x-4 mb-6 overflow-x-auto scrollbar-hide">
+        <div className="flex mx-2 justify-center space-x-4 mb-6 overflow-x-auto custom-scrollbar-hide">
           {screenshotLabels.map((label, idx) => (
             <button
               key={label}
@@ -102,6 +102,15 @@ export default function ShowcaseIpad() {
             </button>
           ))}
         </div>
+        <style jsx>{`
+          .custom-scrollbar-hide::-webkit-scrollbar {
+            display: none;
+          }
+          .custom-scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+        `}</style>
       </div>
 
       {/* iPad */}

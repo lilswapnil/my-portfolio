@@ -22,13 +22,21 @@ export default function AskScotty({ question }: { question: string }) {
 
   const isDark = theme === 'dark';
   const colors = {
-    chatWindow: isDark ? 'glass-container askscotty-chat-window dark' : 'bg-white border border-gray-200 shadow askscotty-chat-window',
+    chatWindow: isDark
+      ? 'backdrop-blur-2xl bg-white/10 dark:bg-zinc-900/70 border border-white/20 shadow-2xl askscotty-chat-window'
+      : 'backdrop-blur-2xl bg-white/80 border border-gray-200 shadow-2xl askscotty-chat-window',
     headerText: isDark ? 'text-primary dark:text-white' : 'text-primary',
     secondaryText: isDark ? 'text-secondary dark:text-white/70' : 'text-secondary',
     userMsg: isDark ? 'bg-blue-500/70 text-white dark:text-white rounded-br-none' : 'bg-blue-200 text-primary rounded-br-none',
-    assistantMsg: isDark ? 'bg-white/80 text-primary dark:bg-white/15 dark:text-white/95 backdrop-blur-md rounded-bl-none border border-black/10 dark:border-white/30' : 'bg-zinc-100 text-primary rounded-bl-none border border-gray-200',
-    input: isDark ? 'glass-input flex-1 text-sm placeholder-secondary dark:placeholder-white/50 text-primary dark:text-white disabled:opacity-50' : 'bg-zinc-100 border border-gray-300 text-primary flex-1 text-sm placeholder-gray-400 disabled:opacity-50 rounded-lg px-4 py-2',
-    button: isDark ? 'glass-button px-4 py-2 text-sm font-medium text-primary dark:text-white disabled:opacity-50 disabled:cursor-not-allowed' : 'bg-zinc-200 px-4 py-2 text-sm font-medium text-primary rounded-lg border border-gray-300 hover:bg-zinc-300 disabled:opacity-50 disabled:cursor-not-allowed',
+    assistantMsg: isDark
+      ? 'bg-white/20 text-white/95 dark:bg-white/10 dark:text-white/95 backdrop-blur-lg rounded-bl-none border border-white/20'
+      : 'bg-zinc-100/80 text-primary rounded-bl-none border border-gray-200',
+    input: isDark
+      ? 'glass-input flex-1 text-sm placeholder-secondary dark:placeholder-white/50 text-primary dark:text-white disabled:opacity-50'
+      : 'bg-zinc-100/80 border border-gray-300 text-primary flex-1 text-sm placeholder-gray-400 disabled:opacity-50 rounded-lg px-4 py-2',
+    button: isDark
+      ? 'glass-button px-4 py-2 text-sm font-medium text-primary dark:text-white disabled:opacity-50 disabled:cursor-not-allowed'
+      : 'bg-zinc-200/80 px-4 py-2 text-sm font-medium text-primary rounded-lg border border-gray-300 hover:bg-zinc-300 disabled:opacity-50 disabled:cursor-not-allowed',
   };
   
   // Initialize on mount
