@@ -10,8 +10,8 @@ import Texts from './text/page';
 import Showcase from './showcase/page';
 import ImpactSection from './impactsection/page';
 import dynamic from 'next/dynamic';
-const ShowcaseMobile = dynamic(() => import('./showcase-mobile/ShowcaseMobile'), { ssr: false });
 
+const ShowcaseIpad = dynamic(() => import('./showcase-sm/page'), { ssr: false });
 
 // Camera animation driven by scroll
 function ScrollCameraRig() {
@@ -72,11 +72,12 @@ export default function Home() {
                     </ScrollControls>
                 </Canvas>
                 <Texts />
-                {/* Use ShowcaseMobile for mobile, Showcase for desktop/tablet */}
-                <div className="block md:hidden">
-                    <ShowcaseMobile />
+                {/* Use ShowcaseMobile for mobile, ShowcaseIpad for tablet, Showcase for desktop */}
+                
+                <div className="hidden md:block lg:hidden">
+                    <ShowcaseIpad />
                 </div>
-                <div className="hidden md:block">
+                <div className="hidden lg:block">
                     <Showcase />
                 </div>
                 <ImpactSection />
