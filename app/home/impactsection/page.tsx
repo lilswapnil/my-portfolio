@@ -64,7 +64,7 @@ export default function ImpactSection() {
             <div className="max-w-5xl w-full mt-16 px-4 flex flex-col gap-6 bg-[var(--background)] text-[var(--foreground)]">
                 {serviceSectionData.map((section: ServiceSection, idx: number) => (
                     <div key={idx} className="mb-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-[var(--foreground)] mb-2">{section.title}</h2>
+                        <h2 className="text-2xl md:text-6xl sm:text-6xl font-bold text-[var(--foreground)] mb-2">{section.title}</h2>
                         <p className="text-lg font-medium text-zinc-500 text-base leading-relaxed">
                             {section.description}
                         </p>
