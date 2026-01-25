@@ -6,7 +6,7 @@ import { projects } from "../../../data/projects";
 // ...existing code...
 const screenshots = [
     "/screenshot/musix.png",
-    "/screenshot/moviz.png",
+    "/screenshot/moviez.png",
     "/screenshot/gaming-trends.png",
     "/screenshot/kdrama-analytics.png",
     "/screenshot/lung-cancer-detection.png",
@@ -14,7 +14,7 @@ const screenshots = [
 
 const screenshotLabels = [
     "Musix",
-    "Moviz",
+    "Moviez",
     "Gaming Trends",
     "Kdrama Analytics",
     "Lung Cancer Detection",
