@@ -65,7 +65,7 @@ export default function Showcase() {
                         className="showcase-image"
                     />
                     <div
-                        className="absolute left-1/2 top-1/2 w-[920px] h-[600px] -translate-x-1/2 -translate-y-[54%] rounded-[18px] overflow-hidden bg-[#18181b] z-2 flex items-center justify-center pointer-events-auto shadow-2xl"
+                        className="absolute left-1/2 top-1/2 w-[930px] h-[590px] -translate-x-1/2 -translate-y-[54%] rounded-t-[18px] overflow-hidden bg-[#18181b] z-2 flex items-center justify-center pointer-events-auto shadow-2xl"
                         style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}
                     >
                         <Image
