@@ -1,9 +1,9 @@
 # Welcome to Scott's portfolio
 
-## 📸 Screenshot
+## 📸 Preview
 
 <p align="center">
-  <img src="./assets/screenshot.png" width="80%" alt="Moviez Preview" />
+  <img src="./assets/screenshot.png" width="80%" alt="Portfolio Preview" />
 </p>
 
 
