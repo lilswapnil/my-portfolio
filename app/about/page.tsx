@@ -49,8 +49,8 @@ export default function Home() {
                 {/* About Me Title Section - match Projects page */}
                 <div className="max-w-7xl mt-12 mx-auto px-4">
                     <div className="mb-2">
-                        <h1 className={`text-5xl md:text-6xl font-bold mb-3 text-primary ${isDark ? 'dark' : ''}`}>About Me</h1>
-                        <p className={`text-lg text-secondary ${isDark ? 'dark' : ''}`}>Learn more about my background, and journey</p>
+                        <h1 className={`text-5xl md:text-6xl font-bold mb-3 ${isDark ? 'text-primary' : 'text-gray-900'}`}>About Me</h1>
+                        <p className={`text-lg ${isDark ? 'text-secondary' : 'text-gray-700'}`}>Learn more about my background, and journey</p>
                     </div>
                 </div>
                 {/* Hero Model - Right (70% width) */}
@@ -58,17 +58,17 @@ export default function Home() {
                     <div className="flex flex-col-reverse lg:grid lg:grid-cols-[30%_70%] gap-8 w-full h-full">
                         {/* Header Section - Left (30% width) */}
                         <div className="flex flex-col justify-center lg:mb-0">
-                            <h1 className="text-3xl md:text-4xl font-semibold text-primary">
+                            <h1 className={`text-3xl md:text-4xl font-semibold ${isDark ? 'text-primary' : 'text-gray-900'}`}>
                                 Welcome to <br /> My WorkPlace
                             </h1>
-                            <p className="text-lg text-secondary">
+                            <p className={`text-lg ${isDark ? 'text-secondary' : 'text-gray-700'}`}>
                                 Explore my latest work and contributions
                             </p>
                             <button
                                 className="mt-6 px-8 w-fit py-3 glass-button font-semibold rounded-lg active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
                                 onClick={() => window.location.href = '/projects'}
                             >
-                                Explore
+                                Explore Projects
                             </button>
                         </div>
 

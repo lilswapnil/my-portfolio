@@ -5,11 +5,11 @@ import { useTheme } from 'next-themes';
 import { projects } from "../../../data/projects";
 // ...existing code...
 const screenshots = [
-    "/screenshot/musix.png",
-    "/screenshot/moviez.png",
-    "/screenshot/gaming-trends.png",
-    "/screenshot/kdrama-analytics.png",
-    "/screenshot/lung-cancer-detection.png",
+    "/screenshots/musix.png",
+    "/screenshots/moviz.png",
+    "/screenshots/gaming-trends.png",
+    "/screenshots/kdrama-analytics.png",
+    "/screenshots/lung-cancer-detection.png",
 ];
 
 const screenshotLabels = [
@@ -33,12 +33,12 @@ export default function Showcase() {
     return (
         <div className="max-h-screen bg-transparent mx-16 my-0 border-box">
             {/* Tabs above laptop */}
-            <div className="max-w-3xl mx-auto mt-8 mb-4">
+            <div className="mx-auto mt-8 mb-4">
                 <div className="flex justify-center space-x-4 mb-4 overflow-x-auto scrollbar-hide">
                     {screenshotLabels.map((label, idx) => (
                         <button
                             key={label}
-                            className={`px-6 py-2 rounded-full font-medium transition-all duration-200 focus:outline-none whitespace-nowrap ${
+                            className={`px-4 py-2 rounded-full font-medium transition-all duration-200 focus:outline-none whitespace-nowrap ${
                                 currentIndex === idx
                                     ? isDark
                                         ? 'glass-button dark scale-100 shadow-lg'
@@ -65,7 +65,7 @@ export default function Showcase() {
                         className="showcase-image"
                     />
                     <div
-                        className="absolute left-1/2 top-1/2 w-[930px] h-[590px] -translate-x-1/2 -translate-y-[54%] rounded-t-[18px] overflow-hidden bg-[#18181b] z-2 flex items-center justify-center pointer-events-auto shadow-2xl"
+                        className="absolute left-1/2 top-1/2 w-[920px] h-[590px] -translate-x-1/2 -translate-y-[54%] rounded-t-[18px] overflow-hidden bg-[#18181b] z-2 flex items-center justify-center pointer-events-auto shadow-2xl"
                         style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}
                     >
                         <Image

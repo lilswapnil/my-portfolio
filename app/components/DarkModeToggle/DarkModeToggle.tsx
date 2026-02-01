@@ -3,11 +3,26 @@
 import { useTheme } from "next-themes";
 import React from "react";
 
+
 export default function DarkModeToggle({ size = 16 }: { size?: number }) {
-  const { theme, setTheme } = useTheme();
-  const isDark = theme === "dark";
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const isDark = theme === "dark" || resolvedTheme === "dark";
   const [animating, setAnimating] = React.useState(false);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+  // Set default theme based on local time on first mount
+  React.useEffect(() => {
+    // Only set if theme is not already set (prevents flicker/override)
+    if (!theme || theme === "system") {
+      const hour = new Date().getHours();
+      // Night: 7pm–7am (19–7)
+      if (hour >= 19 || hour < 7) {
+        setTheme("dark");
+      } else {
+        setTheme("light");
+      }
+    }
+  }, [theme, setTheme]);
 
   // Animation handler
   const handleToggle = () => {

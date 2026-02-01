@@ -3,6 +3,7 @@ import './contact.css';
 import LenisProvider from '../components/LenisProvider';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { image } from '../../data/images';
 import { useTheme } from 'next-themes';
 import { useIconsConfig } from '../../hooks/useIconsConfig';
 
@@ -51,7 +52,7 @@ function OrbitSection({
           {/* Center Image */}
           <div className="absolute z-10">
             <Image
-              src="/logo/image.jpeg"
+              src= {image}
               alt="Profile"
               width={160}
               height={160}

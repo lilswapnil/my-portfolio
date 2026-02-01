@@ -11,9 +11,9 @@ const items: Array<{ label: string; special?: boolean; bold?: boolean }> = [
   { label: "Bash" },
   { label: "HTML" },
   { label: "CSS" },
-  { label: "React" },
   { label: "Next.js" },
   { label: "Angular" },
+  { label: "React" },
   
   { label: "TailwindCSS" },
   { label: "Node.js" },
@@ -28,6 +28,7 @@ const items: Array<{ label: string; special?: boolean; bold?: boolean }> = [
   
   { label: "MongoDB" },
   { label: "DynamoDB" },
+  { label: "RESTful APIs" },
   { label: "Apache Spark" },
   { label: "Apache Hadoop" },
   { label: "Tableau" },
@@ -53,7 +54,6 @@ const items: Array<{ label: string; special?: boolean; bold?: boolean }> = [
   { label: "Terraform" },
   { label: "Jenkins" },
   { label: "GitHub Actions" },
-  { label: "RESTful APIs" },
   { label: "Linux/Unix" },
   { label: "Software Engineer", special: true, bold: true },
 ];

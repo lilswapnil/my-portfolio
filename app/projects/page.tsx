@@ -4,6 +4,7 @@ import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import type { Project } from "@/data/projects";
 import { projects } from "@/data/projects";
+import * as images from "@/data/images";
 import { FaGithub } from "react-icons/fa";
 import { SiJupyter } from "react-icons/si";
 
@@ -270,21 +271,20 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
   const learnMoreHref = project.liveUrl || gh?.homepage || (gh?.html_url ?? (project.githubRepo ? `https://github.com/${project.githubRepo}` : "#"));
   const desc = gh?.description || project.description;
 
-  // Map project.id to preview PNGs if available
-  const previewPngs: Record<string, string> = {
-    musix: '/preview/musix-preview.png',
-    moviz: '/preview/moviez-preview.png',
-    'trends-analytics': '/preview/gaming-trends-preview.png',
-    'wildlife-monitoring': '/preview/forestwatch-preview.png',
-    'lung-cancer-detection': '/preview/lung-cancer-preview.png',
-    'kdrama-analytics': '/preview/kdrama-analytics-preview.png',
-    'gaming-trends': '/preview/gaming-trends-preview.png',
-    // Add/adjust mappings for visible projects if needed
-    // Example: 'ai-assistant': '/preview/ai-assistant-preview.png',
-    // Example: 'book-scraper': '/preview/book-scraper-preview.png',
-    // Add more as you add PNGs to /public/preview
+  // Map project.id to preview PNGs using images.ts
+  // Map project.id to preview image variable (ensure keys match your actual project IDs)
+  const previewPngs: Record<string, string | undefined> = {
+    musix: images.musixPreview,
+    moviz: images.movizPreview,
+    "gaming-trends": images.gamingTrendsPreview,
+    "kdrama-analytics": images.kdramaAnalyticsPreview,
+    "lung-cancer-detection": images.lungCancerPreview,
+    "wildlife-monitoring": images.forestWatchPreview,
+    // "university-recruitment": images.universityRecruitmentPreview,
+    // Add more mappings as needed, and ensure project.id matches these keys
   };
-  const previewImg = previewPngs[project.id];
+  // Fallback: if no preview image, use a generic placeholder or undefined
+  const previewImg = previewPngs[project.id] || undefined;
 
   return (
     <a

@@ -9,6 +9,7 @@ import { useAskScotty } from '@/app/context/AskScottyContext';
 import DarkModeToggle from '../DarkModeToggle/DarkModeToggle';
 import { useLoading } from '@/app/context/LoadingContext';
 import './navbar.css';
+import {logo, askScotty} from '../../../data/images';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -98,12 +99,13 @@ export default function Navbar() {
           {/* Logo & AskScotty Text as Link */}
           <Link href="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center gap-3 flex-shrink-0 group" style={{ textDecoration: 'none' }}>
             <Image
-              src="/logo/logo.png"
+              src={logo}
               alt="Logo"
               width={40}
               height={40}
               className="rounded-full shadow-md"
               priority
+              loading="eager"
             />
             <h3 className={`text-l font-medium select-none accent-hover transition ${isActive('') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : 'text-black'}`}>AskScotty</h3>
           </Link>
@@ -134,7 +136,7 @@ export default function Navbar() {
                 title="Ask Scotty"
               >
                 <Image
-                  src="/logo/askscotty.png"
+                  src={askScotty}
                   alt="Ask Scotty"
                   width={20}
                   height={20}
