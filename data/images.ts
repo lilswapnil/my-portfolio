@@ -21,7 +21,7 @@
 // (Add your actual image exports here)
 
 // General images
-export const logo = "/logo.png";
+export const logo = "/logo.svg";
 export const askScotty = "/askscotty.png";
 export const laptop = "/laptop.png";
 export const ipad = "/ipad.png";
