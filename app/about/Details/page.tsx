@@ -53,7 +53,7 @@ export default function Details() {
                 alt={`${item.title} campus`}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className={styles.heroImage}
+                className={`${styles.heroImage} ${!isDark ? styles.brightImage : ''}`}
                 priority={idx === 0}
               />
             </figure>
