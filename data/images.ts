@@ -33,9 +33,9 @@ export const sppu = "/assets/sppu.jpg";
 export const bvp = "/assets/bvp.jpeg";
 
 // Icons
-export const syr_icon = "/icons/SU.png";
+export const syr_icon = "/icons/su.png";
 export const sppu_icon = "/icons/sppu.png";
-export const bvp_icon = "/icons/BVP.png";
+export const bvp_icon = "/icons/bvp.png";
 
 // Homepage screenshots
 export const musix = "/screenshots/musix.png";

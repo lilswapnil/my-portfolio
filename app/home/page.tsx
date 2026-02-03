@@ -1,4 +1,5 @@
 'use client';
+import { Analytics } from "@vercel/analytics/next";
 import { Canvas } from '@react-three/fiber';
 // import { useTheme } from 'next-themes';
 import { ScrollControls, useScroll } from '@react-three/drei';
