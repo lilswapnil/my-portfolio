@@ -1,6 +1,5 @@
-
-
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { syr, sppu, bvp, syr_icon, sppu_icon, bvp_icon } from "../../../data/images";
 
 const education = [
@@ -34,9 +33,9 @@ const education = [
 import styles from "../Details/details.module.css";
 
 export default function Details() {
-    const [isDarkMode, setIsDarkMode] = React.useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         setIsDarkMode(mediaQuery.matches);
 
