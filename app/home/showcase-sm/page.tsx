@@ -4,12 +4,13 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { useTheme } from 'next-themes';
 import Image from "next/image";
 
+
 const screenshots = [
-  "/screenshot/musix.png",
-  "/screenshot/moviez.png",
-  "/screenshot/gaming-trends.png",
-  "/screenshot/kdrama-analytics.png",
-  "/screenshot/lung-cancer-detection.png",
+  "/screenshots/musix1.png",
+  "/screenshots/moviz1.png",
+  "/screenshots/gaming-trends.png",
+  "/screenshots/kdrama-analytics.png",
+  "/screenshots/lung-cancer-detection.png",
 ];
 
 const screenshotLabels = [
@@ -127,7 +128,7 @@ export default function ShowcaseIpad() {
           />
 
           {/* Screens */}
-          <div className="absolute rounded-2xl w-[88%] h-[95%] sm: w-[94%] h-[90%]  z-0 overflow-hidden bg-black">
+          <div className="absolute rounded-2xl w-[88%] h-[95%] sm: w-[94%] h-[90%]  z-0 overflow-hidden">
             <div
               ref={scrollRef}
               className="w-full h-full flex overflow-x-auto scrollbar-hide snap-x snap-mandatory"
@@ -136,14 +137,14 @@ export default function ShowcaseIpad() {
               {screenshots.map((src, idx) => (
                 <div
                   key={src}
-                  className="relative w-full h-full flex-shrink-0 snap-center"
+                  className="relative h-full flex-shrink-0 snap-center"
                   style={{ minWidth: "100%", minHeight: "100%" }}
                 >
                   <Image
                     src={src}
                     alt={screenshotLabels[idx] ?? "screenshot"}
                     fill
-                    className="contain"
+                    className="contain md:px-12"
                     priority={idx === 0}
                     sizes="(max-width: 768px) 90vw, 700px"
                   />
