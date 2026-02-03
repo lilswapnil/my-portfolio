@@ -1,4 +1,5 @@
 "use client";
+import { Analytics } from "@vercel/analytics/next";
 import LenisProvider from '../components/LenisProvider';
 import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { useTheme } from "next-themes";
@@ -145,7 +146,12 @@ export default function Projects() {
     () => projects.map((p) => ({ project: p, roles: inferProjectRoles(p), gh: null as GitHubInfo | null }))
   );
 
-  return <ProjectsClient items={items} />;
+  return (
+    <>
+      <ProjectsClient items={items} />
+      <Analytics />
+    </>
+  );
 }
 
 function ProjectsClient({ items }: { items: Enriched[] }) {

@@ -48,41 +48,44 @@ export default function Home() {
     // const { theme } = useTheme();
     // const isDark = theme === 'dark';
     return (
-        <div className="min-h-screen pt-16 smooth-scroll w-screen overflow-x-hidden bg-[var(--background)]">
-            <div className="text-[var(--foreground)] h-screen relative w-screen overflow-x-hidden">
-                <h1 className="font-bold mt-6 mb-0 text-center text-5xl sm:text-6xl mx-3 font-px-4 text-left md:text-[4.5rem] md:text-center md:ml-0 md:mr-0 mr-0 text-[var(--foreground)]">
-                    Welcome to Scott&apos;s portfolio
-                </h1>
-                <p className="mt-1 mb-0 text-center text-[1rem] md:text-[1.5rem] md:text-center md:ml-0 md:mr-0 ml-2 mr-0 text-[var(--foreground)]">
-                    Solve complex problems. Ship reliable systems.
-                </p>
-                <Canvas
-                    camera={{ position: [0, 0.2, 1.0], fov: 50 }}
-                    style={{ background: 'transparent', overflowX: 'hidden' }}
-                    gl={{ preserveDrawingBuffer: true, alpha: true }}
-                >
-                    <Lights />
-                    <ambientLight intensity={0.7} />
-                    <directionalLight position={[5, 5, 5]} intensity={1} />
-                    <ScrollControls pages={3} damping={0.6}>
-                        <ScrollCameraRig />
-                        <FormalScottModel
-                            rotation={[0, -Math.PI / 2, 0]}
-                            position={[0, 0.25, 0]}
-                        />
-                    </ScrollControls>
-                </Canvas>
-                <Texts />
-                {/* Use ShowcaseMobile for mobile, ShowcaseIpad for tablet, Showcase for desktop */}
-                
-                <div className="hidden md:block lg:hidden">
-                    <ShowcaseIpad />
+        <>
+            <div className="min-h-screen pt-16 smooth-scroll w-screen overflow-x-hidden bg-[var(--background)]">
+                <div className="text-[var(--foreground)] h-screen relative w-screen overflow-x-hidden">
+                    <h1 className="font-bold mt-6 mb-0 text-center text-5xl sm:text-6xl mx-3 font-px-4 text-left md:text-[4.5rem] md:text-center md:ml-0 md:mr-0 mr-0 text-[var(--foreground)]">
+                        Welcome to Scott&apos;s portfolio
+                    </h1>
+                    <p className="mt-1 mb-0 text-center text-[1rem] md:text-[1.5rem] md:text-center md:ml-0 md:mr-0 ml-2 mr-0 text-[var(--foreground)]">
+                        Solve complex problems. Ship reliable systems.
+                    </p>
+                    <Canvas
+                        camera={{ position: [0, 0.2, 1.0], fov: 50 }}
+                        style={{ background: 'transparent', overflowX: 'hidden' }}
+                        gl={{ preserveDrawingBuffer: true, alpha: true }}
+                    >
+                        <Lights />
+                        <ambientLight intensity={0.7} />
+                        <directionalLight position={[5, 5, 5]} intensity={1} />
+                        <ScrollControls pages={3} damping={0.6}>
+                            <ScrollCameraRig />
+                            <FormalScottModel
+                                rotation={[0, -Math.PI / 2, 0]}
+                                position={[0, 0.25, 0]}
+                            />
+                        </ScrollControls>
+                    </Canvas>
+                    <Texts />
+                    {/* Use ShowcaseMobile for mobile, ShowcaseIpad for tablet, Showcase for desktop */}
+                    
+                    <div className="hidden md:block lg:hidden">
+                        <ShowcaseIpad />
+                    </div>
+                    <div className="hidden lg:block">
+                        <Showcase />
+                    </div>
+                    <ImpactSection />
                 </div>
-                <div className="hidden lg:block">
-                    <Showcase />
-                </div>
-                <ImpactSection />
             </div>
-        </div>
+            <Analytics />
+        </>
     );
 }

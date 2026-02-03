@@ -1,4 +1,6 @@
-
+.content.light {
+	color: #111;
+}
 .root {
 	--scale: 0.1;
 	--space: 8vmin;
@@ -47,6 +49,12 @@
 	height: 100vh;
 }
 
+.schoolIcon {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .main {}
 
 .section {
@@ -56,7 +64,7 @@
 .section > * {
 	transform-origin: center top;
 	transform: scaleY(calc(1 / (1 - var(--scale))));
-    opacity: 0.85
+	opacity: 0.97;
 }
 
 .sectionTitle {
@@ -73,16 +81,20 @@
 }
 
 .content {
-	position: relative;
-	margin: -50vh auto 0;
-	padding: var(--space);
-	max-width: 55ch;
-	width: calc(100% - var(--space));
-	background: hsla(5, 15%, 5%, 0.9);
-	border-radius: 1.5rem;
-	/* border: 1.5px solid hsl(0,0%,60%); */
-	/* rounded-lg border */
+  position: relative;
+  margin: -50vh auto 0;
+  padding: var(--space);
+  max-width: 55ch;
+  width: calc(100% - var(--space));
+
+  /* keep shape/layout here */
+  border-radius: 1.5rem;
+
+  /* IMPORTANT: do NOT set background/border/blur here.
+     Those should come from .glass-container (global), just like Projects. */
+  color: inherit;
 }
+
 .content > * + * {
 	margin-top: 2rem;
 }
