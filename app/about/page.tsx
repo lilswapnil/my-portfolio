@@ -3,7 +3,7 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import HeroModel from './HeroModel/page';
-import TileHighlightSection from './TileHighlightSection/page';
+import Details from './Details/page';
 import ScottModel from '../components/ScottModel/page';
 import LenisProvider from '../components/LenisProvider';
 
@@ -81,7 +81,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <TileHighlightSection />
+                <Details />
 
                 {/* Background gradient blur effect with molecular animation - only render after mounted */}
                 <figure className="w-full h-100vh">

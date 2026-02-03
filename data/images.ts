@@ -27,6 +27,16 @@ export const laptop = "/laptop.png";
 export const ipad = "/ipad.png";
 export const image = "/image.jpeg";
 
+// Assets
+export const syr = "/assets/syr.jpg";
+export const sppu = "/assets/sppu.jpg";
+export const bvp = "/assets/bvp.jpeg";
+
+// Icons
+export const syr_icon = "/icons/SU.png";
+export const sppu_icon = "/icons/sppu.png";
+export const bvp_icon = "/icons/BVP.png";
+
 // Homepage screenshots
 export const musix = "/screenshots/musix.png";
 export const moviz = "/screenshots/moviz.png";
