@@ -10,6 +10,7 @@ const education = [
   {
     icon: syr_icon,
     image: syr,
+    color: "#F76900",
     title: "Syracuse University",
     subtitle: "Masters in Computer Science",
     description:
@@ -18,6 +19,7 @@ const education = [
   {
     icon: sppu_icon,
     image: sppu,
+    color: "#F28500",
     title: "Pune University",
     subtitle: "Bachelors in Information Technology",
     description:
@@ -26,6 +28,7 @@ const education = [
   {
     icon: bvp_icon,
     image: bvp,
+    color: "#F09800",
     title: "Bharati Vidyapeeth",
     subtitle: "Diploma in Computer Technology",
     description:
@@ -74,19 +77,21 @@ export default function Details() {
                   />
                 )}
                 <h2
-                  className={`${styles.sectionTitle} ${!isDark ? 'text-black' : ''}`}
+                  className={`${styles.sectionTitle} ${!isDark ? styles['text-shadow-light'] : ''}`}
+                  style={!isDark ? { color: item.color } : undefined}
                 >
                   {item.title}
                 </h2>
               </div>
 
               <h3
-                className={`${styles.sectionSubtitle} ${!isDark ? 'text-black' : ''}`}
+                className={`${styles.sectionSubtitle} ${!isDark ? styles['text-shadow-light'] : ''}`}
+                style={!isDark ? { color: item.color } : undefined}
               >
                 {item.subtitle}
               </h3>
               <p
-                className={`${styles.description} ${!isDark ? 'text-black' : ''}`}
+                className={`${styles.description} ${!isDark ? 'text-white ' + styles['text-shadow-light'] : ''}`}
               >
                 {item.description}
               </p>

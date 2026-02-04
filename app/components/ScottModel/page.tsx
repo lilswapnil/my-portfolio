@@ -103,6 +103,9 @@ export default function ScottModel() {
 
     const content = getContainerContent();
 
+    // Detect dark mode using window/document or fallback to light
+    const isDark = typeof window !== 'undefined' && document.documentElement.classList.contains('dark');
+
     return (
         <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
             <Canvas
@@ -156,12 +159,15 @@ export default function ScottModel() {
                 </Suspense>
             </Canvas>
 
-            <div className={`character-info-panel ${animateIn ? 'animate-in' : 'animate-out'}`}>
-                <h2 className="info-panel-title">{content.title}</h2>
+            <div
+                className={`character-info-panel ${animateIn ? 'animate-in' : 'animate-out'} ${!isDark ? 'text-black' : ''}`}
+                style={{ position: 'absolute', top: '10rem' }}
+            >
+                <h2 className={`info-panel-title ${!isDark ? 'text-black' : ''}`}>{content.title}</h2>
                 <div className="info-panel-divider"></div>
-                <p className="info-panel-description">{content.description}</p>
+                <p className={`info-panel-description ${!isDark ? 'text-black' : ''}`}>{content.description}</p>
                 {content.details && (
-                    <div className="info-panel-details">{content.details}</div>
+                    <div className={`info-panel-details ${!isDark ? 'text-black' : ''}`}>{content.details}</div>
                 )}
             </div>
         </div>

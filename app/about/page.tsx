@@ -84,7 +84,7 @@ export default function Home() {
                 <Details />
 
                 {/* Background gradient blur effect with molecular animation - only render after mounted */}
-                <figure className="w-full h-100vh">
+                <figure className="w-full" style={{ height: '100vh' }}>
                     <div className="w-full h-full">
                         <ScottModel />
                     </div>
