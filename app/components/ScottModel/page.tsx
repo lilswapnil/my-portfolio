@@ -159,9 +159,19 @@ export default function ScottModel() {
                 </Suspense>
             </Canvas>
 
+            {/* About Me Title Section - moved from about/page.tsx */}
+            <div style={{ position: 'absolute', top: '2.5rem', left: 0, width: '100%', zIndex: 10 }}>
+                <div className="max-w-7xl mx-auto px-4">
+                    <div className="mb-2">
+                        <h1 className={`text-5xl md:text-6xl font-bold mb-3 ${isDark ? 'text-primary' : 'text-gray-900'}`}>About Me</h1>
+                        <p className={`text-lg ${isDark ? 'text-secondary' : 'text-gray-700'}`}>Learn more about my background, and journey</p>
+                    </div>
+                </div>
+            </div>
+
             <div
                 className={`character-info-panel ${animateIn ? 'animate-in' : 'animate-out'} ${!isDark ? 'text-black' : ''}`}
-                style={{ position: 'absolute', top: '10rem' }}
+                style={{ position: 'absolute', top: '20rem' }}
             >
                 <h2 className={`info-panel-title ${!isDark ? 'text-black' : ''}`}>{content.title}</h2>
                 <div className="info-panel-divider"></div>

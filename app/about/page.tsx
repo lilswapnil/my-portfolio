@@ -45,17 +45,20 @@ export default function Home() {
     return (
         <>
             <LenisProvider />
-            <div className={`min-h-screen mt-16 ${isDark ? 'dark' : ''}`}> 
-                {/* About Me Title Section - match Projects page */}
-                <div className="max-w-7xl mt-12 mx-auto px-4">
-                    <div className="mb-2">
-                        <h1 className={`text-5xl md:text-6xl font-bold mb-3 ${isDark ? 'text-primary' : 'text-gray-900'}`}>About Me</h1>
-                        <p className={`text-lg ${isDark ? 'text-secondary' : 'text-gray-700'}`}>Learn more about my background, and journey</p>
+            <div className={`min-h-screen mt-16 ${isDark ? 'dark' : ''}`}>                 
+                 {/* Background gradient blur effect with molecular animation - only render after mounted */}
+                <figure className="w-full" style={{ height: '100vh' }}>
+                    <div className="w-full h-full">
+                        <ScottModel />
                     </div>
-                </div>
+                </figure>
+
+                <Details />
+
+
                 {/* Hero Model - Right (70% width) */}
-                <div className="max-w-7xl mx-auto px-4" style={{ height: '90vh' }}>
-                    <div className="flex flex-col-reverse lg:grid lg:grid-cols-[30%_70%] gap-8 w-full h-full">
+                <div className="max-w-7xl mx-auto px-4" style={{ height: '100vh' }}>
+                    <div className="flex flex-col-reverse lg:grid lg:grid-cols-[30%_70%] lg:pt-28 gap-8 w-full h-full">
                         {/* Header Section - Left (30% width) */}
                         <div className="flex flex-col justify-center lg:mb-0">
                             <h1 className={`text-3xl md:text-4xl font-semibold ${isDark ? 'text-primary' : 'text-gray-900'}`}>
@@ -80,15 +83,6 @@ export default function Home() {
                         </figure>
                     </div>
                 </div>
-
-                <Details />
-
-                {/* Background gradient blur effect with molecular animation - only render after mounted */}
-                <figure className="w-full" style={{ height: '100vh' }}>
-                    <div className="w-full h-full">
-                        <ScottModel />
-                    </div>
-                </figure>
 
                 {mounted && (
                     <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
