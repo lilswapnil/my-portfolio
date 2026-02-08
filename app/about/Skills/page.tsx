@@ -78,11 +78,10 @@ export default function Skills() {
               >
                 <Icon size={40} color={color} style={{ zIndex: 1 }} />
                 <span style={{
-                  color: '#fff',
+                  color: isDark ? '#fff' : '#1A1A1A',
                   fontSize: '1rem',
-
-                  fontFamily: 'var(--font-geist-sans), sans-serif', // Use project font if available
-                  textShadow: '0 2px 4px rgba(0,0,0,0.5)'
+                  fontFamily: 'var(--font-geist-sans), sans-serif',
+                  textShadow: isDark ? '0 2px 4px rgba(0,0,0,0.5)' : 'none'
                 }}>
                   {name}
                 </span>

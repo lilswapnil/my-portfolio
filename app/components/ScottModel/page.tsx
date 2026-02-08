@@ -180,8 +180,8 @@ export default function ScottModel() {
                 <h2
                     className="info-panel-title"
                     style={{
-                        color: isDark ? 'rgba(255, 255, 255, 0.95)' : '#fff',
-                        textShadow: isDark ? '0 2px 4px rgba(0, 0, 0, 0.2)' : '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.6)'
+                        color: isDark ? 'rgba(255, 255, 255, 0.95)' : '#1A1A1A',
+                        textShadow: isDark ? '0 2px 4px rgba(0, 0, 0, 0.2)' : '0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.6)'
                     }}
                 >
                     {content.title}
@@ -190,8 +190,8 @@ export default function ScottModel() {
                 <p
                     className="info-panel-description"
                     style={{
-                        color: isDark ? 'rgba(255, 255, 255, 0.85)' : '#fff',
-                        textShadow: isDark ? 'none' : '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.6)'
+                        color: isDark ? 'rgba(255, 255, 255, 0.85)' : '#1A1A1A',
+                        textShadow: isDark ? 'none' : '0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.6)'
                     }}
                 >
                     {content.description}
@@ -200,8 +200,8 @@ export default function ScottModel() {
                     <div
                         className="info-panel-details"
                         style={{
-                            color: isDark ? 'rgba(255, 255, 255, 0.9)' : '#fff',
-                            textShadow: isDark ? 'none' : '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.6)'
+                            color: isDark ? 'rgba(255, 255, 255, 0.9)' : '#171717',
+                            textShadow: isDark ? 'none' : '0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.6)'
                         }}
                     >
                         {content.details}
