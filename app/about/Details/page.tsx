@@ -78,7 +78,10 @@ export default function Details() {
                 )}
                 <h2
                   className={`${styles.sectionTitle} ${!isDark ? styles['text-shadow-light'] : ''}`}
-                  style={!isDark ? { color: item.color } : undefined}
+                  style={!isDark ? {
+                    color: '#fff',
+                    textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.6)'
+                  } : undefined}
                 >
                   {item.title}
                 </h2>
@@ -86,7 +89,10 @@ export default function Details() {
 
               <h3
                 className={`${styles.sectionSubtitle} ${!isDark ? styles['text-shadow-light'] : ''}`}
-                style={!isDark ? { color: item.color } : undefined}
+                style={!isDark ? {
+                  color: '#fff',
+                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.6)'
+                } : undefined}
               >
                 {item.subtitle}
               </h3>

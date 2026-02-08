@@ -9,7 +9,7 @@ const skillSet = {
         { name: 'TypeScript', icon: SiTypescript, bgColor: 'bg-[#3178c6]' },
         { name: 'JavaScript', icon: SiJavascript, bgColor: 'bg-[#f7df1e]' },
         { name: 'Tailwind CSS', icon: SiTailwindcss, bgColor: 'bg-[#06b6d4]' },
-        { name: 'Bootstrap', icon: SiBootstrap, bgColor: 'bg-[#7952b3]' },
+        // { name: 'Bootstrap', icon: SiBootstrap, bgColor: 'bg-[#7952b3]' },
         { name: 'HTML5', icon: SiHtml5, bgColor: 'bg-[#e34c26]' },
         { name: 'CSS3', icon: SiCss3, bgColor: 'bg-[#1572b6]' },
     ],

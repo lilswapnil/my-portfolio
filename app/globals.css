@@ -288,13 +288,8 @@ button {
     transform: translateY(-50%);
     width: 320px;
     padding: 24px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Styles now handled by glass-container utility class */
     color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
   }
 

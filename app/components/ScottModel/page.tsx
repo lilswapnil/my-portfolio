@@ -8,6 +8,7 @@ import { FormalScottModel } from './Formal-scott';
 import { Model as GraduationScottModel } from './Graduation-scott';
 import { Model as CasualScottModel } from './Casual-scott';
 import { Lights } from './Lights';
+import { useTheme } from 'next-themes';
 
 
 function FloatingModel({ children }: { children: React.ReactNode }) {
@@ -20,7 +21,13 @@ function FloatingModel({ children }: { children: React.ReactNode }) {
 
 
 export default function ScottModel() {
+    const { theme } = useTheme();
     const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     // Start at graduation model: azimuth -Math.PI
     const [currentAzimuth, setCurrentAzimuth] = useState(-Math.PI);
     const [activeModel, setActiveModel] = useState('graduation');
@@ -30,20 +37,15 @@ export default function ScottModel() {
     const prevModelRef = useRef('graduation');
 
     useEffect(() => {
-        let isMounted = true;
-        requestAnimationFrame(() => {
-            if (isMounted) setMounted(true);
-            if (orbitControlsRef.current) {
-                (orbitControlsRef.current as { reset?: () => void; target?: { set: (x: number, y: number, z: number) => void } }).reset?.();
-                (orbitControlsRef.current as { reset?: () => void; target?: { set: (x: number, y: number, z: number) => void } }).target?.set(0, -1, 0);
-            }
-        });
-        return () => {
-            isMounted = false;
-        };
-    }, []);
+        if (orbitControlsRef.current) {
+            (orbitControlsRef.current as { reset?: () => void; target?: { set: (x: number, y: number, z: number) => void } }).reset?.();
+            (orbitControlsRef.current as { reset?: () => void; target?: { set: (x: number, y: number, z: number) => void } }).target?.set(0, -1, 0);
+        }
+    }, [mounted]); // Only run when mounted
 
     if (!mounted) return null;
+
+    const isDark = theme === 'dark';
 
     const handleOrbitChange = () => {
         if (orbitControlsRef.current) {
@@ -103,9 +105,6 @@ export default function ScottModel() {
 
     const content = getContainerContent();
 
-    // Detect dark mode using window/document or fallback to light
-    const isDark = typeof window !== 'undefined' && document.documentElement.classList.contains('dark');
-
     return (
         <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
             <Canvas
@@ -132,15 +131,15 @@ export default function ScottModel() {
                 <Suspense fallback={null}>
                     <mesh position={[0, 0, 8]}>
                         <planeGeometry args={[6, 6]} />
-                        <meshStandardMaterial 
-                            color="#ffffff" 
+                        <meshStandardMaterial
+                            color="#ffffff"
                             metalness={0.3}
                             roughness={0.1}
                             transparent
                             opacity={0}
                         />
                     </mesh>
-                   
+
                     {currentAzimuth >= -Math.PI / 3 && currentAzimuth <= Math.PI / 3 && (
                         <FloatingModel>
                             <FormalScottModel scale={4.9} />
@@ -170,14 +169,43 @@ export default function ScottModel() {
             </div>
 
             <div
-                className={`character-info-panel ${animateIn ? 'animate-in' : 'animate-out'} ${!isDark ? 'text-black' : ''}`}
-                style={{ position: 'absolute', top: '20rem' }}
+                className={`glass-container character-info-panel ${animateIn ? 'animate-in' : 'animate-out'} ${isDark ? 'dark' : ''}`}
+                style={{
+                    position: 'absolute',
+                    top: '20rem',
+                    // Override glass-container border radius if needed, but rounded-2xl should be fine.
+                    // character-info-panel has rounded-12px (approx rounded-xl). rounded-2xl is 16px. Close enough.
+                }}
             >
-                <h2 className={`info-panel-title ${!isDark ? 'text-black' : ''}`}>{content.title}</h2>
+                <h2
+                    className="info-panel-title"
+                    style={{
+                        color: isDark ? 'rgba(255, 255, 255, 0.95)' : '#fff',
+                        textShadow: isDark ? '0 2px 4px rgba(0, 0, 0, 0.2)' : '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.6)'
+                    }}
+                >
+                    {content.title}
+                </h2>
                 <div className="info-panel-divider"></div>
-                <p className={`info-panel-description ${!isDark ? 'text-black' : ''}`}>{content.description}</p>
+                <p
+                    className="info-panel-description"
+                    style={{
+                        color: isDark ? 'rgba(255, 255, 255, 0.85)' : '#fff',
+                        textShadow: isDark ? 'none' : '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.6)'
+                    }}
+                >
+                    {content.description}
+                </p>
                 {content.details && (
-                    <div className={`info-panel-details ${!isDark ? 'text-black' : ''}`}>{content.details}</div>
+                    <div
+                        className="info-panel-details"
+                        style={{
+                            color: isDark ? 'rgba(255, 255, 255, 0.9)' : '#fff',
+                            textShadow: isDark ? 'none' : '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.6)'
+                        }}
+                    >
+                        {content.details}
+                    </div>
                 )}
             </div>
         </div>
