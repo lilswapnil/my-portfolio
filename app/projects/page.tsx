@@ -7,7 +7,7 @@ import type { Project } from "@/data/projects";
 import { projects } from "@/data/projects";
 import * as images from "@/data/images";
 import { FaGithub } from "react-icons/fa";
-import { SiJupyter } from "react-icons/si";
+
 
 type GitHubInfo = {
   html_url: string;
@@ -230,10 +230,9 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
                     onClick={() => setSelectedRole(role)}
                     className={`
                       px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300
-                      ${
-                        active
-                          ? `glass-button ${isDark ? 'dark' : ''} scale-105 shadow-lg`
-                          : `border ${isDark ? 'border-gray-700/50 text-secondary' : 'border-white/40 text-secondary'} 
+                      ${active
+                        ? `glass-button ${isDark ? 'dark' : ''} scale-105 shadow-lg`
+                        : `border ${isDark ? 'border-gray-700/50 text-secondary' : 'border-white/40 text-secondary'} 
                              hover:border-white/60 hover:scale-105 ${isDark ? 'dark' : ''}`
                       }
                     `}
@@ -348,17 +347,17 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
         <div className="mb-4">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className={`text-2xl font-bold mb-1 transition-colors duration-300 ${isDark ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}`}> 
+              <h2 className={`text-2xl font-bold mb-1 transition-colors duration-300 ${isDark ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}`}>
                 {project.title}
               </h2>
               {project.category && (
-                <div className={`text-xs my-2 font-semibold ${isDark ? 'text-blue-300' : 'text-blue-700'}`}> 
+                <div className={`text-xs my-2 font-semibold ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>
                   {project.category}
                 </div>
               )}
             </div>
-            {(project.notebookUrl || project.githubRepo) && (
-              <div className="flex flex-col gap-2 items-start justify-start">
+            {project.githubRepo && (
+              <div className="flex flex-col items-end justify-start">
                 {project.githubRepo && (
                   <button
                     type="button"
@@ -378,25 +377,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
                     <span className="font-bold tracking-wide">GitHub</span>
                   </button>
                 )}
-                {project.notebookUrl && (
-                  <button
-                    type="button"
-                    className={`px-3 py-1.5 rounded-full border flex items-center gap-2 font-semibold text-xs transition-all duration-200
-                      ${isDark
-                        ? 'border-white/60 text-white/80 bg-transparent hover:bg-white/10 hover:text-white'
-                        : 'border-black bg-black text-white hover:bg-gray-900 hover:text-white'}
-                      focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent`}
-                    title="View Notebook"
-                    onClick={e => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      window.open(project.notebookUrl, '_blank', 'noopener,noreferrer');
-                    }}
-                  >
-                    <SiJupyter size={18} style={{ display: 'inline', verticalAlign: 'middle' }} />
-                    <span className="font-bold tracking-wide">Notebook</span>
-                  </button>
-                )}
+
               </div>
             )}
           </div>
@@ -410,7 +391,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
         <div className="flex-1" />
         {/* Description and tags at bottom */}
         {desc ? (
-          <p className={`mt-4 line-clamp-3 text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}> 
+          <p className={`mt-4 line-clamp-3 text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
             {desc}
           </p>
         ) : (
@@ -424,11 +405,10 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
             {project.tags.map((t) => (
               <span
                 key={t}
-                className={`text-xs px-3 py-1 rounded-full font-medium border transition-all duration-300 ${
-                  isDark
-                    ? 'bg-blue-900/30 text-blue-300 border-blue-700/50 group-hover:bg-blue-800/50'
-                    : 'bg-blue-100/40 text-blue-700 border-blue-200/70 group-hover:bg-blue-100/60'
-                }`}
+                className={`text-xs px-3 py-1 rounded-full font-medium border transition-all duration-300 ${isDark
+                  ? 'bg-blue-900/30 text-blue-300 border-blue-700/50 group-hover:bg-blue-800/50'
+                  : 'bg-blue-100/40 text-blue-700 border-blue-200/70 group-hover:bg-blue-100/60'
+                  }`}
               >
                 {t}
               </span>
@@ -438,5 +418,5 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
       </div>
     </a>
   );
-// End of ProjectCard
+  // End of ProjectCard
 });

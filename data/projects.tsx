@@ -144,9 +144,9 @@ export const projects: Project[] = [
     githubRepo: "lilswapnil/cost-aware-AI-system",
     tech: ["Python", "PyTorch", "NumPy", "Matplotlib"],
     highlights: [
-       "Implements custom tokenization, attention mechanisms, multi-head attention, MLP blocks, and a full training loop.", 
-       "Step-by-step notebooks with clear visualizations.", 
-       "Comprehensive unit tests for tensor shapes and gradient correctness." ],
+      "Implements custom tokenization, attention mechanisms, multi-head attention, MLP blocks, and a full training loop.",
+      "Step-by-step notebooks with clear visualizations.",
+      "Comprehensive unit tests for tensor shapes and gradient correctness."],
     role: "AI/ML",
     timeframe: "2024",
     category: "ML Project / Deep Learning / Education",
