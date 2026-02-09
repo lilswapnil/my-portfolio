@@ -1,58 +1,53 @@
 
-import { FaReact, FaNode, FaPython, FaGitAlt, FaDocker, FaJava, FaAws, FaLinux } from 'react-icons/fa';
-import { SiTypescript, SiJavascript, SiPostgresql, SiMongodb, SiTailwindcss, SiNextdotjs, SiGraphql, SiRedis, SiKubernetes, SiRabbitmq, SiElasticsearch, SiApache, SiNginx, SiGithub, SiGitlab, SiJira, SiNotion, SiPostman, SiSlack, SiHtml5, SiCss3, SiBootstrap, SiMysql, SiFirebase, SiFlask, SiDjango, SiExpress, SiSpringboot } from 'react-icons/si';
+import { FaReact, FaNode, FaPython, FaGitAlt, FaDocker, FaAws, FaLinux, FaDatabase, FaWindows, FaApple, FaBrain, FaChartBar, FaChartArea, FaFileExcel, FaTerminal } from 'react-icons/fa';
+import { SiTypescript, SiJavascript, SiPostgresql, SiMongodb, SiFastapi, SiFlask, SiNextdotjs, SiPandas, SiNumpy, SiScikitlearn, SiPytorch, SiTensorflow, SiHuggingface, SiKubernetes, SiGnubash, SiSqlite, SiOracle } from 'react-icons/si';
+import { VscAzure } from 'react-icons/vsc';
+
+// Icons that might not exist in older react-icons versions are commented with alternatives or generic icons reused.
+// We'll use FaBrain for generic ML terms if specific icons are missing.
 
 const skillSet = {
-    'Frontend': [
-        { name: 'React', icon: FaReact, bgColor: 'bg-[#61dafb]' },
-        { name: 'Next.js', icon: SiNextdotjs, bgColor: 'bg-[#000000]' },
+    'Languages & Databases': [
+        { name: 'Python', icon: FaPython, bgColor: 'bg-[#3776ab]' },
+        // SQL is generic, using FaDatabase
+        { name: 'SQL', icon: FaDatabase, bgColor: 'bg-[#00758f]' },
+        // PL/SQL is Oracle, using SiOracle if available, else generic. 
+        { name: 'PL/SQL', icon: SiOracle, bgColor: 'bg-[#F80000]' },
         { name: 'TypeScript', icon: SiTypescript, bgColor: 'bg-[#3178c6]' },
         { name: 'JavaScript', icon: SiJavascript, bgColor: 'bg-[#f7df1e]' },
-        { name: 'Tailwind CSS', icon: SiTailwindcss, bgColor: 'bg-[#06b6d4]' },
-        // { name: 'Bootstrap', icon: SiBootstrap, bgColor: 'bg-[#7952b3]' },
-        { name: 'HTML5', icon: SiHtml5, bgColor: 'bg-[#e34c26]' },
-        { name: 'CSS3', icon: SiCss3, bgColor: 'bg-[#1572b6]' },
+        { name: 'Bash', icon: SiGnubash, bgColor: 'bg-[#4EAA25]' },
+        { name: 'PowerShell', icon: FaTerminal, bgColor: 'bg-[#5391FE]' },
+        { name: 'SQL Server', icon: FaDatabase, bgColor: 'bg-[#CC2927]' },
+        { name: 'SQLite', icon: SiSqlite, bgColor: 'bg-[#003B57]' },
     ],
-    'Backend': [
-        { name: 'Node.js', icon: FaNode, bgColor: 'bg-[#339933]' },
-        { name: 'Python', icon: FaPython, bgColor: 'bg-[#3776ab]' },
-        { name: 'Java', icon: FaJava, bgColor: 'bg-[#007396]' },
-        { name: 'Express.js', icon: SiExpress, bgColor: 'bg-[#000000]' },
+    'Frameworks & Libraries': [
         { name: 'Flask', icon: SiFlask, bgColor: 'bg-[#000000]' },
-        { name: 'Django', icon: SiDjango, bgColor: 'bg-[#092e20]' },
-        { name: 'Spring Boot', icon: SiSpringboot, bgColor: 'bg-[#6db33f]' },
+        { name: 'FastAPI', icon: SiFastapi, bgColor: 'bg-[#009688]' },
+        { name: 'Pandas', icon: SiPandas, bgColor: 'bg-[#150458]' },
+        { name: 'NumPy', icon: SiNumpy, bgColor: 'bg-[#013243]' },
+        // Polars doesn't have a standard React Icon yet in older versions? Using FaChartBar or FaDatabase
+        { name: 'Polars', icon: FaChartBar, bgColor: 'bg-[#CD792C]' },
+        { name: 'Node.js', icon: FaNode, bgColor: 'bg-[#339933]' },
+        { name: 'React', icon: FaReact, bgColor: 'bg-[#61dafb]' },
     ],
-    'Database': [
-        { name: 'PostgreSQL', icon: SiPostgresql, bgColor: 'bg-[#336791]' },
-        { name: 'MongoDB', icon: SiMongodb, bgColor: 'bg-[#13aa52]' },
-        { name: 'MySQL', icon: SiMysql, bgColor: 'bg-[#00758f]' },
-        { name: 'Firebase', icon: SiFirebase, bgColor: 'bg-[#ffa000]' },
-        { name: 'Redis', icon: SiRedis, bgColor: 'bg-[#dc382d]' },
-        { name: 'Elasticsearch', icon: SiElasticsearch, bgColor: 'bg-[#005571]' },
+    'Machine Learning, Data & Analytics': [
+        { name: 'TensorFlow', icon: SiTensorflow, bgColor: 'bg-[#FF6F00]' },
+        { name: 'PyTorch', icon: SiPytorch, bgColor: 'bg-[#EE4C2C]' },
+        { name: 'scikit-learn', icon: SiScikitlearn, bgColor: 'bg-[#F7931E]' },
+        { name: 'Hugging Face Transformers', icon: SiHuggingface, bgColor: 'bg-[#FFD21E]' },
+        { name: 'Matplotlib', icon: FaChartBar, bgColor: 'bg-[#11557c]' },
+        { name: 'Seaborn', icon: FaChartArea, bgColor: 'bg-[#ce4a4a]' },
+        { name: 'Excel', icon: FaFileExcel, bgColor: 'bg-[#217346]' },
     ],
-    'DevOps & Cloud': [
+    'Cloud, DevOps & Systems': [
         { name: 'AWS', icon: FaAws, bgColor: 'bg-[#ff9900]' },
+        { name: 'Azure', icon: VscAzure, bgColor: 'bg-[#0078D4]' },
         { name: 'Docker', icon: FaDocker, bgColor: 'bg-[#2496ed]' },
         { name: 'Kubernetes', icon: SiKubernetes, bgColor: 'bg-[#326ce5]' },
         { name: 'Linux', icon: FaLinux, bgColor: 'bg-[#fcc624]' },
-        { name: 'Nginx', icon: SiNginx, bgColor: 'bg-[#009639]' },
-        { name: 'Apache', icon: SiApache, bgColor: 'bg-[#d70015]' },
-    ],
-    'APIs & Message Queue': [
-        { name: 'GraphQL', icon: SiGraphql, bgColor: 'bg-[#e10098]' },
-        { name: 'RabbitMQ', icon: SiRabbitmq, bgColor: 'bg-[#ff6600]' },
-        { name: 'REST API', icon: SiPostman, bgColor: 'bg-[#ff6c02]' },
-    ],
-    'Version Control': [
+        { name: 'Windows', icon: FaWindows, bgColor: 'bg-[#0078D6]' },
+        { name: 'macOS', icon: FaApple, bgColor: 'bg-[#000000]' },
         { name: 'Git', icon: FaGitAlt, bgColor: 'bg-[#f1502f]' },
-        { name: 'GitHub', icon: SiGithub, bgColor: 'bg-[#181717]' },
-        { name: 'GitLab', icon: SiGitlab, bgColor: 'bg-[#fc6d26]' },
-    ],
-    'Tools & Productivity': [
-        { name: 'Postman', icon: SiPostman, bgColor: 'bg-[#ff6c02]' },
-        { name: 'Jira', icon: SiJira, bgColor: 'bg-[#0052cc]' },
-        { name: 'Notion', icon: SiNotion, bgColor: 'bg-[#000000]' },
-        { name: 'Slack', icon: SiSlack, bgColor: 'bg-[#4a154b]' },
     ]
 };
 

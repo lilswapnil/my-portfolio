@@ -8,7 +8,10 @@ const marqueeAnimation = {
 };
 
 export default function Skills() {
-  const allSkills = Object.values(skillSet).flat();
+  const allSkills = [
+    ...skillSet['Languages & Databases'],
+    ...skillSet['Frameworks & Libraries']
+  ];
   // Duplicate skills for seamless loop
   const marqueeSkills = [...allSkills, ...allSkills];
   const { theme } = useTheme();
@@ -78,10 +81,10 @@ export default function Skills() {
               >
                 <Icon size={40} color={color} style={{ zIndex: 1 }} />
                 <span style={{
-                  color: isDark ? '#fff' : '#1A1A1A',
+                  color: '#FFFFFF',
                   fontSize: '1rem',
                   fontFamily: 'var(--font-geist-sans), sans-serif',
-                  textShadow: isDark ? '0 2px 4px rgba(0,0,0,0.5)' : 'none'
+                  textShadow: '2px 2px 4px #000000, 4px 4px 8px rgba(10, 10, 10, 0.5)'
                 }}>
                   {name}
                 </span>

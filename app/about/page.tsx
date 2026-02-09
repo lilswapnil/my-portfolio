@@ -7,6 +7,7 @@ import Details from './Details/page';
 import ScottModel from '../components/ScottModel/page';
 import LenisProvider from '../components/LenisProvider';
 import Skills from './Skills/page';
+import Skills1 from './Skills/page1';
 
 // Dynamic colors based on theme
 function getColors(isDark: boolean) {
@@ -48,14 +49,14 @@ export default function Home() {
             <LenisProvider />
             <div className={`min-h-screen mt-16 ${isDark ? 'dark' : ''}`}>
                 {/* Background gradient blur effect with molecular animation - only render after mounted */}
-                <figure className="w-full" style={{ height: '82vh' }}>
+                <figure className="w-full" style={{ height: '83vh' }}>
                     <div className="w-full h-full">
                         <ScottModel />
                     </div>
                 </figure>
                 <Skills />
                 <Details />
-
+                <Skills1 />
 
                 {/* Hero Model - Right (70% width) */}
                 <div className="max-w-7xl mx-auto px-4" style={{ height: '100vh' }}>

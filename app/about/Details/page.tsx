@@ -79,8 +79,8 @@ export default function Details() {
                 <h2
                   className={`${styles.sectionTitle} ${!isDark ? styles['text-shadow-light'] : ''}`}
                   style={!isDark ? {
-                    color: '#1A1A1A',
-                    textShadow: '0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.6)'
+                    color: '#FFFFFF',
+                    textShadow: '2px 2px 4px #000000, 4px 4px 8px rgba(0,0,0,0.5)'
                   } : undefined}
                 >
                   {item.title}
@@ -90,8 +90,8 @@ export default function Details() {
               <h3
                 className={`${styles.sectionSubtitle} ${!isDark ? styles['text-shadow-light'] : ''}`}
                 style={!isDark ? {
-                  color: '#1A1A1A',
-                  textShadow: '0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.6)'
+                  color: '#FFFFFF',
+                  textShadow: '2px 2px 4px #000000, 4px 4px 8px rgba(0,0,0,0.5)'
                 } : undefined}
               >
                 {item.subtitle}
@@ -99,8 +99,8 @@ export default function Details() {
               <p
                 className={`${styles.description} ${!isDark ? styles['text-shadow-light'] : ''}`}
                 style={!isDark ? {
-                  color: '#171717',
-                  textShadow: '0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.6)'
+                  color: '#FFFFFF',
+                  textShadow: '2px 2px 4px #000000, 4px 4px 8px rgba(0,0,0,0.5)'
                 } : undefined}
               >
                 {item.description}
