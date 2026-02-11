@@ -39,7 +39,7 @@ export default function AskScotty({ question }: { question: string }) {
       ? 'glass-button px-4 py-2 text-sm font-medium text-primary dark:text-white disabled:opacity-50 disabled:cursor-not-allowed'
       : 'bg-zinc-200/80 px-4 py-2 text-sm font-medium text-primary rounded-lg border border-gray-300 hover:bg-zinc-300 disabled:opacity-50 disabled:cursor-not-allowed',
   };
-  
+
   // Initialize on mount
   useEffect(() => {
     setMounted(true);
@@ -158,7 +158,7 @@ export default function AskScotty({ question }: { question: string }) {
 
       {/* Mobile Chat Backdrop (sm screens only) */}
       {mobileOpen && (
-        <div 
+        <div
           className="flex md:hidden lg:hidden fixed inset-0 z-40"
           style={{
             background: 'rgba(0, 0, 0, 0.4)',
@@ -178,14 +178,12 @@ export default function AskScotty({ question }: { question: string }) {
           {/* Header */}
           <div className="h-16 w-full flex items-center justify-between gap-2 p-4 border-b border-white/20 flex-shrink-0">
             <h3 className={`text-lg font-bold ${colors.headerText}`}>Ask Scotty</h3>
-            {!minimized && (
-              <button
-                onClick={() => { setMobileOpen(false); setMinimized(true); }}
-                className={`text-2xl font-bold transition flex-shrink-0 ${colors.secondaryText} hover:text-primary`}
-              >
-                ×
-              </button>
-            )}
+            <button
+              onClick={() => { setMobileOpen(false); setMinimized(true); }}
+              className={`text-2xl font-bold transition flex-shrink-0 ${colors.secondaryText} hover:text-primary`}
+            >
+              ×
+            </button>
           </div>
 
           {/* Messages Container */}
@@ -256,13 +254,12 @@ export default function AskScotty({ question }: { question: string }) {
       {!closed && (
         <div
           ref={chatRef}
-          className={`hidden md:flex fixed bottom-4 right-4 z-40 flex-col ${colors.chatWindow} rounded-2xl transition-all duration-300 ease-out ${
-            minimized ? 'w-80 chat-minimized' : 'h-96 w-80 chat-expanded'
-          } chat-window-enter ' + animationClass}`}
+          className={`hidden md:flex fixed bottom-4 right-4 z-40 flex-col ${colors.chatWindow} rounded-2xl transition-all duration-300 ease-out ${minimized ? 'w-80 chat-minimized' : 'h-96 w-80 chat-expanded'
+            } chat-window-enter ' + animationClass}`}
         >
-        
+
           {/* Header */}
-          <div className="h-12 w-full flex items-center justify-between gap-2 p-2 border-b border-white/20 flex-shrink-0">
+          <div className="h-12 w-full flex items-center justify-between gap-2 p-2 border-b rounded-xl border-white/10 flex-shrink-0">
             <button
               onClick={() => setMinimized(!minimized)}
               className="flex items-center gap-2 flex-1 cursor-pointer hover:opacity-80 transition"

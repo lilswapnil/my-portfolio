@@ -9,7 +9,7 @@ import { useAskScotty } from '@/app/context/AskScottyContext';
 import DarkModeToggle from '../DarkModeToggle/DarkModeToggle';
 import { useLoading } from '@/app/context/LoadingContext';
 import './navbar.css';
-import {logo, askScotty} from '../../../data/images';
+import { logo, askScotty } from '../../../data/images';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function Navbar() {
     return () => {
       isMounted = false;
     };
-    }, [setIsInitialLoad, setIsPageLoading, setTheme]);
+  }, [setIsInitialLoad, setIsPageLoading, setTheme]);
 
   useEffect(() => {
     if (!isInitialLoad) return;
@@ -55,7 +55,7 @@ export default function Navbar() {
     }, 1000); // Initial delay before animation starts
 
     return () => clearTimeout(initialLoadTimer);
-    }, [isInitialLoad, setIsInitialLoad, setIsPageLoading, setTheme]);
+  }, [isInitialLoad, setIsInitialLoad, setIsPageLoading, setTheme]);
 
   if (!mounted) return null;
 
@@ -76,7 +76,7 @@ export default function Navbar() {
   return (
     <>
       {/* Loading/Growing Navbar */}
-      <header 
+      <header
         className={`fixed z-50 rounded-4xl glass-container transition-all duration-700 ease-in-out ${isDark ? 'dark' : ''}`}
         style={{
           left: '50%',
@@ -88,14 +88,14 @@ export default function Navbar() {
           height: isInitialLoad ? '58px' : '64px',
           opacity: 1,
           padding: isInitialLoad ? '20px' : '0',
-          boxShadow: isInitialLoad 
+          boxShadow: isInitialLoad
             ? `0 -8px 24px 0 ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.18)'}, -8px 0 24px 0 rgba(0,0,0,0.10), 8px 0 24px 0 rgba(0,0,0,0.10), inset 0 0 20px ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}`
             : `0 -8px 24px 0 rgba(0,0,0,0.10), -8px 0 24px 0 rgba(0,0,0,0.10), 8px 0 24px 0 rgba(0,0,0,0.10), 0 0 0 2px rgba(0,0,0,0.04)`,
           animation: isInitialLoad ? 'glowPulse 2s ease-in-out infinite' : 'none',
         }}
       >
         <div className="flex items-center justify-between p-2 px-2 h-full">
-          
+
           {/* Logo & AskScotty Text as Link */}
           <Link href="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center gap-3 flex-shrink-0 group" style={{ textDecoration: 'none' }}>
             <Image
@@ -111,10 +111,9 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navbar - Center */}
-          <div 
-            className={`hidden lg:flex absolute left-1/2 transform -translate-x-1/2 h-full items-center transition-opacity duration-500 ${
-              isInitialLoad ? 'opacity-0 pointer-events-none' : 'opacity-100 delay-300'
-            }`}
+          <div
+            className={`hidden lg:flex absolute left-1/2 transform -translate-x-1/2 h-full items-center transition-opacity duration-500 ${isInitialLoad ? 'opacity-0 pointer-events-none' : 'opacity-100 delay-300'
+              }`}
           >
             <nav className="flex flex-col lg:flex-row justify-center gap-8">
               <Link href="/about" className={`accent-hover transition ${isActive('/about') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : 'text-black'}`} onClick={(e) => handleNavClick(e, '/about')}>About</Link>
@@ -140,7 +139,7 @@ export default function Navbar() {
                   alt="Ask Scotty"
                   width={20}
                   height={20}
-                  style={{ filter: isDark ? "invert(1)" : "invert(0)"}}
+                  style={{ filter: isDark ? "invert(1)" : "invert(0)" }}
                 />
               </button>
             </>}
@@ -149,12 +148,11 @@ export default function Navbar() {
           {/* Mobile Hamburger Menu */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`lg:hidden flex flex-col gap-2 flex-shrink-0 p-2 rounded-lg transition-opacity duration-500 ${
-              isInitialLoad ? 'opacity-0 pointer-events-none' : 'opacity-100 delay-300'
-            }`}
+            className={`lg:hidden flex flex-col gap-2 flex-shrink-0 p-2 rounded-lg transition-opacity duration-500 ${isInitialLoad ? 'opacity-0 pointer-events-none' : 'opacity-100 delay-300'
+              }`}
             style={{
               background: isDark ? "#0A0A0A" : "transparent",
-              
+
               WebkitBackdropFilter: 'blur(20px)',
               border: 'none'
             }}
@@ -168,7 +166,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Backdrop */}
       {menuOpen && !isInitialLoad && (
-        <div 
+        <div
           className="lg:hidden fixed inset-0 z-30"
           style={{
             background: 'rgba(0, 0, 0, 0.5)',
@@ -181,7 +179,7 @@ export default function Navbar() {
 
       {/* Mobile Menu - Half Screen Width from Right */}
       {menuOpen && !isInitialLoad && (
-        <div 
+        <div
           className={`lg:hidden fixed right-0 top-0 bottom-0 z-40 w-3/5 flex flex-col justify-between p-6 glass-container ${isDark ? 'dark' : ''}`}
           style={{
             backdropFilter: 'blur(40px)',
@@ -192,29 +190,29 @@ export default function Navbar() {
           }}
         >
           <nav className="flex flex-col justify-center gap-12 flex-1 text-right my-8">
-            <a 
-              href="/about" 
+            <a
+              href="/about"
               onClick={(e) => { setMenuOpen(false); handleNavClick(e, '/about'); }}
               className={`accent-hover transition text-2xl ${isActive('/about') ? 'font-bold' : 'font-medium'} text-white`}
             >
               About
             </a>
-            <a 
-              href="/projects" 
+            <a
+              href="/projects"
               onClick={(e) => { setMenuOpen(false); handleNavClick(e, '/projects'); }}
               className={`accent-hover transition text-2xl ${isActive('/projects') ? 'font-bold' : 'font-medium'} text-white`}
             >
               Projects
             </a>
-            <a 
-              href="/credentials" 
+            <a
+              href="/credentials"
               onClick={(e) => { setMenuOpen(false); handleNavClick(e, '/credentials'); }}
               className={`accent-hover transition text-2xl ${isActive('/credentials') ? 'font-bold' : 'font-medium'} text-white`}
             >
               Credentials
             </a>
-            <a 
-              href="/contact" 
+            <a
+              href="/contact"
               onClick={(e) => { setMenuOpen(false); handleNavClick(e, '/contact'); }}
               className={`accent-hover transition text-2xl ${isActive('/contact') ? 'font-bold' : 'font-medium'} text-white`}
             >
