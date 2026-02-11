@@ -56,7 +56,7 @@ export const projects: Project[] = [
   },
   {
     id: "gaming-trends",
-    title: "Trends Analytics & Sentiment Mining",
+    title: "Trends & Sentiment",
     description: "Gaming Applications sentiment analysis",
     tags: ["NLP", "Sentiment", "Analytics"],
     githubRepo: "lilswapnil/trends-analytics",
@@ -89,7 +89,7 @@ export const projects: Project[] = [
   },
   {
     id: "lung-cancer-detection",
-    title: "Lung Cancer Detection System",
+    title: "ML Cancer Detection",
     description: "End-to-end ML pipeline for lung cancer detection using medical imaging.",
     tags: ["Deep Learning", "Medical Imaging", "Healthcare"],
     githubRepo: "lilswapnil/lung-cancer-detection",
@@ -122,7 +122,7 @@ export const projects: Project[] = [
   },
   {
     id: "university-erp",
-    title: "University Recruitment ERP",
+    title: "Recruitment ERP",
     description: "Recruitment workflow and data management",
     tags: ["ERP", "Full-Stack"],
     githubRepo: "lilswapnil/university-erp",
@@ -138,7 +138,7 @@ export const projects: Project[] = [
   },
   {
     id: "cost-aware-AI-system",
-    title: "Cost-Aware AI System",
+    title: "Cost-Aware AI",
     description: "Research and implementation of scalable, resource-efficient AI models focused on cost optimization and real-world deployment.",
     tags: ["AI", "LLM", "Transformers", "Deep Learning"],
     githubRepo: "lilswapnil/cost-aware-AI-system",
@@ -153,7 +153,7 @@ export const projects: Project[] = [
   },
   {
     id: "lms-using-agenticai",
-    title: "LMS using Agentic AI",
+    title: "LMS Agentic AI",
     description: "Agentic AI–powered learning management system.",
     tags: ["Agentic AI", "LMS", "AI", "Full-Stack"],
     githubRepo: "lilswapnil/LMS-using-agenticAI",
