@@ -49,7 +49,7 @@ export default function Home() {
             <LenisProvider />
             <div className={`min-h-screen mt-16 ${isDark ? 'dark' : ''}`}>
                 {/* Background gradient blur effect with molecular animation - only render after mounted */}
-                <figure className="w-full" style={{ height: '83vh' }}>
+                <figure className="w-full" style={{ height: '93vh' }}>
                     <div className="w-full h-full">
                         <ScottModel />
                     </div>
