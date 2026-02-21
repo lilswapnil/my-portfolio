@@ -52,3 +52,4 @@ export const kdramaAnalyticsPreview = "/projects-previews/kdrama-analytics-previ
 export const lungCancerPreview = "/projects-previews/lung-cancer-preview.png";
 export const forestWatchPreview = "/projects-previews/forest-watch-preview.png";
 export const universityRecruitmentPreview = "/projects-previews/university-recruitment-preview.png";
+export const bookRecommenderPreview = "/projects-previews/book-recommender-preview.png";

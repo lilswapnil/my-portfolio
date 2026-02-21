@@ -345,6 +345,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
     "kdrama-analytics": images.kdramaAnalyticsPreview,
     "lung-cancer-detection": images.lungCancerPreview,
     "wildlife-monitoring": images.forestWatchPreview,
+    "book-recommender": images.bookRecommenderPreview,
     // "university-recruitment": images.universityRecruitmentPreview,
     // Add more mappings as needed, and ensure project.id matches these keys
   };
