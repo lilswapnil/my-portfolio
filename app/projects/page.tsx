@@ -165,12 +165,55 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
     return ["All", ...Array.from(set).sort()];
   }, [items]);
 
+  const techOptions = useMemo(() => {
+    const set = new Set<string>();
+    
+    // Define tech stack categories
+    const techStackCategories: Record<string, string[]> = {
+      "AI/ML": ["Python", "PyTorch", "TensorFlow", "LangChain", "OpenAI", "Transformers", "HuggingFace", "Scikit-learn"],
+      "Full-Stack": ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express", "FastAPI", "Flask", "Tailwind CSS", "Vercel"],
+      "Data Science": ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Plotly", "Jupyter", "Scikit-learn"],
+      "Databases": ["MongoDB", "PostgreSQL", "Pinecone", "Vector DB"],
+      "IoT/Embedded": ["C++", "ESP32", "Arduino", "MQTT", "AWS IoT Core"],
+    };
+
+    items.forEach(({ project }) => {
+      const techs = project.tech || [];
+      for (const [category, stackTechs] of Object.entries(techStackCategories)) {
+        if (techs.some((t) => stackTechs.includes(t))) {
+          set.add(category);
+        }
+      }
+    });
+    
+    return ["All", ...Array.from(set).sort()];
+  }, [items]);
+
   const [selectedRole, setSelectedRole] = useState<string>("All");
+  const [selectedTech, setSelectedTech] = useState<string>("All");
 
   const visible = useMemo(() => {
-    if (selectedRole === "All") return items;
-    return items.filter(({ roles }) => roles.includes(selectedRole));
-  }, [items, selectedRole]);
+    let filtered = items;
+    if (selectedRole !== "All") {
+      filtered = filtered.filter(({ roles }) => roles.includes(selectedRole));
+    }
+    if (selectedTech !== "All") {
+      // Define tech stack categories
+      const techStackCategories: Record<string, string[]> = {
+        "AI/ML": ["Python", "PyTorch", "TensorFlow", "LangChain", "OpenAI", "Transformers", "HuggingFace", "Scikit-learn"],
+        "Full-Stack": ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express", "FastAPI", "Flask", "Tailwind CSS", "Vercel"],
+        "Data Science": ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Plotly", "Jupyter", "Scikit-learn"],
+        "Databases": ["MongoDB", "PostgreSQL", "Pinecone", "Vector DB"],
+        "IoT/Embedded": ["C++", "ESP32", "Arduino", "MQTT", "AWS IoT Core"],
+      };
+      
+      const categoryTechs = techStackCategories[selectedTech] || [];
+      filtered = filtered.filter(({ project }) => 
+        project.tech?.some((t) => categoryTechs.includes(t))
+      );
+    }
+    return filtered;
+  }, [items, selectedRole, selectedTech]);
 
   useEffect(() => {
     let isMounted = true;
@@ -216,18 +259,19 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
         </div>
 
         {/* Filter Section */}
-        <div className="mb-12">
+        <div className="mb-12 space-y-6">
+          {/* Tech Filter */}
           <div className={`glass-container rounded-2xl p-4 md:p-6 ${isDark ? 'dark' : ''}`}>
             <h3 className={`text-sm font-semibold mb-4 text-secondary ${isDark ? 'dark' : ''} uppercase tracking-wider`}>
-              Filter by Role
+              Filter by Tech Stack
             </h3>
             <div className="flex flex-wrap gap-3">
-              {roleOptions.map((role) => {
-                const active = role === selectedRole;
+              {techOptions.map((tech) => {
+                const active = tech === selectedTech;
                 return (
                   <button
-                    key={role}
-                    onClick={() => setSelectedRole(role)}
+                    key={tech}
+                    onClick={() => setSelectedTech(tech)}
                     className={`
                       px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300
                       ${active
@@ -237,7 +281,7 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
                       }
                     `}
                   >
-                    {role}
+                    {tech}
                   </button>
                 );
               })}
@@ -245,9 +289,25 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
           </div>
         </div>
 
-        {/* Results Counter */}
-        <div className={`mb-8 text-sm text-tertiary ${isDark ? 'dark' : ''}`}>
-          Showing {visible.length} project{visible.length !== 1 ? 's' : ''}
+        {/* Results Counter and Clear Filters */}
+        <div className="mb-8 flex items-center justify-between flex-wrap gap-4">
+          <div className={`text-sm text-tertiary ${isDark ? 'dark' : ''}`}>
+            Showing {visible.length} project{visible.length !== 1 ? 's' : ''}
+          </div>
+          {(selectedRole !== "All" || selectedTech !== "All") && (
+            <button
+              onClick={() => {
+                setSelectedRole("All");
+                setSelectedTech("All");
+              }}
+              className={`
+                px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300
+                border ${isDark ? 'border-gray-700/50 text-secondary hover:border-red-500/50 hover:text-red-400' : 'border-white/40 text-secondary hover:border-red-500/50 hover:text-red-600'}
+              `}
+            >
+              Clear Filters
+            </button>
+          )}
         </div>
 
         {/* Cards Grid */}
@@ -324,12 +384,12 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
         .project-card-bg-${project.id}::after {
           content: '';
           position: absolute;
-          top: 55%;
+          top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
           z-index: 1;
-          width: 220px;
-          height: 165px;
+          width: 280px;
+          height: 185px;
           max-width: 85%;
           max-height: 65%;
           background: ${previewImg ? `url('${previewImg}') center center / contain no-repeat` : 'none'};
@@ -347,7 +407,7 @@ const ProjectCard = memo(function ProjectCard({ project, isDark }: { project: Pr
         <div className="mb-4">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className={`text-2xl font-bold mb-1 transition-colors duration-300 ${isDark ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}`}>
+              <h2 className={`text-lg font-bold mb-1 transition-colors duration-300 ${isDark ? 'text-white group-hover:text-blue-400' : 'text-gray-900 group-hover:text-blue-600'}`}>
                 {project.title}
               </h2>
               {project.category && (

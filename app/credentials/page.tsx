@@ -199,8 +199,8 @@ export default function Credentials() {
                           key={s} 
                           className={`text-xs px-3 py-1 rounded-full font-medium border transition-all duration-300 ${
                             isDark 
-                              ? 'bg-purple-900/30 text-white-300 border-purple-700/50 group-hover:bg-purple-800/50' 
-                              : 'bg-purple-100/40 text-white-700 border-purple-200/70 group-hover:bg-purple-100/60'
+                              ? 'bg-blue-900/30 text-blue-300 border-blue-700/50 group-hover:bg-blue-800/50' 
+                              : 'bg-blue-100/40 text-blue-700 border-blue-200/70 group-hover:bg-blue-100/60'
                           }`}
                         >
                           {s}

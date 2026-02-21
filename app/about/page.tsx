@@ -63,7 +63,7 @@ export default function Home() {
                     <div className="flex flex-col-reverse lg:grid lg:grid-cols-[30%_70%] lg:pt-28 gap-8 w-full h-full">
                         {/* Header Section - Left (30% width) */}
                         <div className="flex flex-col justify-center lg:mb-0">
-                            <h1 className={`text-3xl md:text-4xl font-semibold ${isDark ? 'text-primary' : 'text-gray-900'}`}>
+                            <h1 className={`text-5xl md:text-6xl font-bold ${isDark ? 'text-primary' : 'text-gray-900'}`}>
                                 Welcome to <br /> My WorkPlace
                             </h1>
                             <p className={`text-lg ${isDark ? 'text-secondary' : 'text-gray-700'}`}>
