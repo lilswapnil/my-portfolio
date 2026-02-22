@@ -59,10 +59,10 @@ export default function Home() {
 
                 {/* Hero Model - Right (70% width) */}
                 <div className="max-w-7xl mx-auto px-4" style={{ height: '95vh' }}>
-                    <div className="flex flex-col lg:grid lg:grid-cols-[30%_70%] lg:pt-8 gap-8 w-full h-full">
+                    <div className="flex flex-col lg:grid lg:grid-cols-[30%_70%] lg:pt-8 gap-4 w-full h-full">
                         {/* Header Section - Left (30% width) */}
-                        <div className="flex flex-col justify-center lg:mb-0 ">
-                            <h1 className={`text-5xl md:text-6xl font-bold ${isDark ? 'text-primary' : 'text-gray-900'}`}>
+                        <div className="flex flex-col justify-center items-start mt-[50px] mb-[50px] ">
+                            <h1 className={`text-4xl md:text-5xl font-bold ${isDark ? 'text-primary' : 'text-gray-900'}`}>
                                 Welcome to <br /> My WorkPlace
                             </h1>
                             <p className={`text-lg ${isDark ? 'text-secondary' : 'text-gray-700'}`}>

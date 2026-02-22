@@ -112,6 +112,16 @@
 	margin: calc(var(--space) / 1.35) 0;
 }
 
+.description {
+	line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+	.description {
+		font-size: 0.875rem;
+	}
+}
+
 .content {
   position: relative;
   margin: -50vh auto 0;
