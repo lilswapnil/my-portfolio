@@ -106,6 +106,7 @@ export default function Navbar() {
               className="rounded-full shadow-md"
               priority
               loading="eager"
+              fetchPriority="high"
             />
             <h3 className={`text-l font-medium select-none accent-hover transition ${isActive('') ? 'font-bold' : 'font-medium'} ${isDark ? 'dark' : 'text-black'}`}>AskScotty</h3>
           </Link>

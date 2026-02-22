@@ -70,6 +70,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preload" href="/logo.svg" as="image" />
+      </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <LoadingProvider>
