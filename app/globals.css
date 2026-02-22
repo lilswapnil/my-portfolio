@@ -301,6 +301,35 @@ button {
     animation: slideOutRight 0.3s ease-in forwards;
   }
 
+  /* Smaller character-info-panel on small devices */
+  @media (max-width: 640px) {
+    .character-info-panel {
+      width: min(280px, 90vw);
+      padding: 14px;
+    }
+
+    .character-info-panel .info-panel-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .character-info-panel .info-panel-divider {
+      margin: 8px 0;
+    }
+
+    .character-info-panel .info-panel-description {
+      font-size: 12px;
+      margin: 8px 0;
+      line-height: 1.5;
+    }
+
+    .character-info-panel .info-panel-details {
+      margin-top: 10px;
+      padding: 8px 10px;
+      font-size: 11px;
+    }
+  }
+
   .info-panel-title {
     margin: 0 0 12px 0;
     font-size: 24px;

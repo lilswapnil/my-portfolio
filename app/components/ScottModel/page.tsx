@@ -169,19 +169,17 @@ export default function ScottModel() {
             </div>
 
             <div
-                className={`glass-container character-info-panel ${animateIn ? 'animate-in' : 'animate-out'} ${isDark ? 'dark' : ''}`}
+                className={`glass-container character-info-panel top-48 sm:top-64 md:top-80 ${animateIn ? 'animate-in' : 'animate-out'} ${isDark ? 'dark' : ''}`}
                 style={{
                     position: 'absolute',
-                    top: '20rem',
-                    // Override glass-container border radius if needed, but rounded-2xl should be fine.
-                    // character-info-panel has rounded-12px (approx rounded-xl). rounded-2xl is 16px. Close enough.
+                    top: '350px',
                 }}
             >
                 <h2
                     className="info-panel-title"
                     style={{
-                        color: isDark ? 'rgba(255, 255, 255, 0.95)' : '#1A1A1A',
-                        textShadow: isDark ? '0 2px 4px rgba(0, 0, 0, 0.2)' : '0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.6)'
+                        color: 'rgb(255, 255, 255)',
+                        textShadow: '1px 1px 4px rgba(0,0,0,0.3), 1px 1px 8px rgba(0,0,0,0.5)'
                     }}
                 >
                     {content.title}
@@ -190,8 +188,8 @@ export default function ScottModel() {
                 <p
                     className="info-panel-description"
                     style={{
-                        color: isDark ? 'rgba(255, 255, 255, 0.85)' : '#1A1A1A',
-                        textShadow: isDark ? 'none' : '0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.6)'
+                        color: 'rgb(255, 255, 255)',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.3), 1px 1px 2px rgba(0,0,0,0.5)'
                     }}
                 >
                     {content.description}
@@ -200,8 +198,8 @@ export default function ScottModel() {
                     <div
                         className="info-panel-details"
                         style={{
-                            color: isDark ? 'rgba(255, 255, 255, 0.9)' : '#171717',
-                            textShadow: isDark ? 'none' : '0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.6)'
+                            color: 'rgb(255, 255, 255)',
+                            textShadow: '0 1px 2px rgba(0,0,0,0.3), 1px 1px 2px rgba(0,0,0,0.5)'
                         }}
                     >
                         {content.details}
