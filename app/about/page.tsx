@@ -1,5 +1,4 @@
 "use client";
-
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import HeroModel from './HeroModel/page';
@@ -50,7 +49,7 @@ export default function Home() {
             <div className={`min-h-screen mt-16 ${isDark ? 'dark' : ''}`}>
                 {/* Background gradient blur effect with molecular animation - only render after mounted */}
                 <figure className="w-full" style={{ height: '93vh' }}>
-                    <div className="w-full h-full">
+                    <div className="w-full h-full relative">
                         <ScottModel />
                     </div>
                 </figure>
@@ -60,9 +59,9 @@ export default function Home() {
 
                 {/* Hero Model - Right (70% width) */}
                 <div className="max-w-7xl mx-auto px-4" style={{ height: '95vh' }}>
-                    <div className="flex flex-col-reverse lg:grid lg:grid-cols-[30%_70%] lg:pt-28 gap-8 w-full h-full">
+                    <div className="flex flex-col lg:grid lg:grid-cols-[30%_70%] lg:pt-8 gap-8 w-full h-full">
                         {/* Header Section - Left (30% width) */}
-                        <div className="flex flex-col justify-center lg:mb-0">
+                        <div className="flex flex-col justify-center lg:mb-0 ">
                             <h1 className={`text-5xl md:text-6xl font-bold ${isDark ? 'text-primary' : 'text-gray-900'}`}>
                                 Welcome to <br /> My WorkPlace
                             </h1>

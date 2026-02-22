@@ -165,55 +165,29 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
     return ["All", ...Array.from(set).sort()];
   }, [items]);
 
-  const techOptions = useMemo(() => {
+  const sectionOptions = useMemo(() => {
     const set = new Set<string>();
-    
-    // Define tech stack categories
-    const techStackCategories: Record<string, string[]> = {
-      "AI/ML": ["Python", "PyTorch", "TensorFlow", "LangChain", "OpenAI", "Transformers", "HuggingFace", "Scikit-learn"],
-      "Full-Stack": ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express", "FastAPI", "Flask", "Tailwind CSS", "Vercel"],
-      "Data Science": ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Plotly", "Jupyter", "Scikit-learn"],
-      "Databases": ["MongoDB", "PostgreSQL", "Pinecone", "Vector DB"],
-      "IoT/Embedded": ["C++", "ESP32", "Arduino", "MQTT", "AWS IoT Core"],
-    };
-
     items.forEach(({ project }) => {
-      const techs = project.tech || [];
-      for (const [category, stackTechs] of Object.entries(techStackCategories)) {
-        if (techs.some((t) => stackTechs.includes(t))) {
-          set.add(category);
-        }
+      if (project.section) {
+        set.add(project.section);
       }
     });
-    
     return ["All", ...Array.from(set).sort()];
   }, [items]);
 
   const [selectedRole, setSelectedRole] = useState<string>("All");
-  const [selectedTech, setSelectedTech] = useState<string>("All");
+  const [selectedSection, setSelectedSection] = useState<string>("All");
 
   const visible = useMemo(() => {
     let filtered = items;
     if (selectedRole !== "All") {
       filtered = filtered.filter(({ roles }) => roles.includes(selectedRole));
     }
-    if (selectedTech !== "All") {
-      // Define tech stack categories
-      const techStackCategories: Record<string, string[]> = {
-        "AI/ML": ["Python", "PyTorch", "TensorFlow", "LangChain", "OpenAI", "Transformers", "HuggingFace", "Scikit-learn"],
-        "Full-Stack": ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express", "FastAPI", "Flask", "Tailwind CSS", "Vercel"],
-        "Data Science": ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Plotly", "Jupyter", "Scikit-learn"],
-        "Databases": ["MongoDB", "PostgreSQL", "Pinecone", "Vector DB"],
-        "IoT/Embedded": ["C++", "ESP32", "Arduino", "MQTT", "AWS IoT Core"],
-      };
-      
-      const categoryTechs = techStackCategories[selectedTech] || [];
-      filtered = filtered.filter(({ project }) => 
-        project.tech?.some((t) => categoryTechs.includes(t))
-      );
+    if (selectedSection !== "All") {
+      filtered = filtered.filter(({ project }) => project.section === selectedSection);
     }
     return filtered;
-  }, [items, selectedRole, selectedTech]);
+  }, [items, selectedRole, selectedSection]);
 
   useEffect(() => {
     let isMounted = true;
@@ -260,18 +234,18 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
 
         {/* Filter Section */}
         <div className="mb-12 space-y-6">
-          {/* Tech Filter */}
+          {/* Section Filter */}
           <div className={`glass-container rounded-2xl p-4 md:p-6 ${isDark ? 'dark' : ''}`}>
             <h3 className={`text-sm font-semibold mb-4 text-secondary ${isDark ? 'dark' : ''} uppercase tracking-wider`}>
-              Filter by Tech Stack
+              Filter by Category
             </h3>
             <div className="flex flex-wrap gap-3">
-              {techOptions.map((tech) => {
-                const active = tech === selectedTech;
+              {sectionOptions.map((section) => {
+                const active = section === selectedSection;
                 return (
                   <button
-                    key={tech}
-                    onClick={() => setSelectedTech(tech)}
+                    key={section}
+                    onClick={() => setSelectedSection(section)}
                     className={`
                       px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300
                       ${active
@@ -281,7 +255,7 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
                       }
                     `}
                   >
-                    {tech}
+                    {section}
                   </button>
                 );
               })}
@@ -294,11 +268,11 @@ function ProjectsClient({ items }: { items: Enriched[] }) {
           <div className={`text-sm text-tertiary ${isDark ? 'dark' : ''}`}>
             Showing {visible.length} project{visible.length !== 1 ? 's' : ''}
           </div>
-          {(selectedRole !== "All" || selectedTech !== "All") && (
+          {(selectedRole !== "All" || selectedSection !== "All") && (
             <button
               onClick={() => {
                 setSelectedRole("All");
-                setSelectedTech("All");
+                setSelectedSection("All");
               }}
               className={`
                 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300

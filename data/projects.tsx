@@ -38,7 +38,7 @@ export const projects: Project[] = [
   role: "Full-Stack",
   timeframe: "2024",
   category: "Full-Stack / AI / Recommender",
-  section: "Full-Stack & Systems",
+  section: "AI & ML",
 },
 {
   id: "moviz",
@@ -57,7 +57,7 @@ export const projects: Project[] = [
   role: "Full-Stack",
   timeframe: "2024",
   category: "Full-Stack / AI / Recommender",
-  section: "Full-Stack & Systems",
+  section: "AI & ML",
   notebookUrl: "https://github.com/lilswapnil/moviezzz/blob/main/notebook/imdb-scraper.ipynb",
 },
    {
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     emoji: "📚",
     description: "Semantic search engine using transformer embeddings, zero-shot learning, and FAISS indexing.",
     tags: ["Machine Learning", "NLP", "AI"],
-    githubRepo: "lilswapnil/book-recommendation-system",
+    githubRepo: "lilswapnil/book-recommender",
     tech: ["Python", "Transformers", "HuggingFace", "FAISS", "Scikit-learn", "NumPy", "Pandas", "Jupyter"],
     highlights: [
       "Leverages pre-trained transformer embeddings for semantic similarity.",
@@ -77,6 +77,7 @@ export const projects: Project[] = [
     timeframe: "2023",
     category: "AI / NLP / Recommender",
     section: "AI & ML",
+    notebookUrl: "https://github.com/lilswapnil/book-recommender/tree/main/notebook"
   },
   {
     id: "gaming-trends",

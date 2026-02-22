@@ -41,6 +41,7 @@ export default function Details() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
+  
   if (!mounted) return null; // prevents hydration mismatch (same pattern as Projects)
 
   const isDark = theme === "dark";
