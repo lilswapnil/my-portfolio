@@ -79,7 +79,7 @@ export default function Showcase() {
                                 alt={screenshotLabels[currentIndex] || 'screenshot'}
                                 fill
                                 className="object-contain transition-all duration-500"
-                                sizes="(min-width: 1024px) 700px, 90vw"
+                                sizes="(min-width: 1024px) 90vw"
                                 priority
                             />
                         </div>
