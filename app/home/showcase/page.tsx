@@ -67,13 +67,9 @@ export default function Showcase() {
                             className="w-full h-auto block"
                         />
                         <div
-                            className="absolute left-1/2 top-[1%] w-[70.8%] h-[90%] -translate-x-1/2 rounded-t-[88px] overflow-hidden flex items-center justify-center pointer-events-auto shadow-2xl"
-                            style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}
+                            className="absolute left-1/2 top-[1.5%] w-[70.8%] h-[90%] -translate-x-1/2 rounded-t-[50px] overflow-hidden flex items-center justify-center pointer-events-auto"
+                            
                         >
-                             {/* <div
-                        className="absolute left-1/2 top-1/2 w-[min(920px,70vw)] h-[min(590px,45vw)] -translate-x-1/2 -translate-y-[54%] rounded-t-[18px] overflow-hidden bg-[#18181b] z-2 flex items-center justify-center pointer-events-auto shadow-2xl"
-                        style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}
-                    ></div> */}
                             <Image
                                 src={screenshots[currentIndex]}
                                 alt={screenshotLabels[currentIndex] || 'screenshot'}

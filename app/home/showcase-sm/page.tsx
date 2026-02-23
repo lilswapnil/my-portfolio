@@ -39,7 +39,6 @@ export default function ShowcaseIpad() {
   }, []);
 
   const scrollToIndex = useCallback(
-    
     (idx: number) => {
       const ref = scrollRef.current;
       if (!ref) return;
@@ -102,69 +101,54 @@ export default function ShowcaseIpad() {
               {label}
             </button>
           ))}
-        </div>
-        <style jsx>{`
-          .custom-scrollbar-hide::-webkit-scrollbar {
-            display: none;
-          }
-          .custom-scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-        `}</style>
       </div>
+      <style jsx>{`
+        .custom-scrollbar-hide::-webkit-scrollbar,
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .custom-scrollbar-hide,
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
 
       {/* iPad */}
-      <div className="w-full md:mx-2 sm:p-2 flex items-center justify-center bg-[var(--background)]">
-        <div className="relative w-full h-full flex items-center justify-center max-w-4xl max-h-[60vh]">
-          {/* iPad frame */}
-          <Image
-            src="/ipad.png"
-            alt="iPad Frame"
-            width={768}
-            height={1024}
-            className="relative z-10"
-            priority
-          />
+      <div className="w-full px-4 sm:px-6 flex items-center justify-center bg-[var(--background)] overflow-x-hidden relative max-w-[min(768px,95vw)] flex-col">
+          {/* iPad frame - scales with container */}
+          <div className="relative w-full aspect-[768/1024] max-h-[60vh]">
+            <Image
+              src="/ipad.png"
+              alt="iPad Frame"
+              fill
+              className="object-contain"
+              sizes="(max-width: 640px) 95vw, (max-width: 878px) 90vw, 768px"
+              priority
+            />
 
-          {/* Screens */}
-          <div className="absolute rounded-2xl w-[88%] h-[95%] sm:w-[94%] sm:h-[90%] z-0 overflow-hidden">
+            {/* Screens - overlay positioned relative to iPad frame */}
             <div
               ref={scrollRef}
-              className="w-full h-full flex overflow-x-auto scrollbar-hide snap-x snap-mandatory"
+              className="absolute left-1/2 top-0 w-[98%] h-full -translate-x-1/2 overflow-x-auto overflow-y-hidden scrollbar-hide snap-x snap-mandatory flex"
               style={{ WebkitOverflowScrolling: "touch" }}
             >
               {screenshots.map((src, idx) => (
-                <div
-                  key={src}
-                  className="relative h-full flex-shrink-0 snap-center"
-                  style={{ minWidth: "100%", minHeight: "100%" }}
-                >
+                <div key={src} className="relative flex-shrink-0 snap-center min-w-full">
                   <Image
                     src={src}
                     alt={screenshotLabels[idx] ?? "screenshot"}
                     fill
-                    className="contain md:px-12"
+                    className="object-contain"
                     priority={idx === 0}
-                    sizes="(max-width: 768px) 90vw, 700px"
+                    sizes="(max-width: 640px) 100vw, (max-width: 878px) 100vw, 1000px"
                   />
                 </div>
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Hide scrollbar */}
-        <style jsx>{`
-          .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-          }
-          .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-        `}</style>
       </div>
+    </div>
     </div>
   );
 }
