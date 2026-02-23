@@ -55,7 +55,7 @@ export default function Showcase() {
                     ))}
                 </div>
             </div>
-            <div className="h-full w-full flex items-end justify-center relative overflow-visible z-1 min-h-[500px] lg:min-h-[700px] mt-0 mb-0">
+            <div className="h-full w-full flex items-end justify-center relative overflow-visible z-1 min-h-[500px] lg:min-h-[500px] mt-0 mb-0">
                 <div className="w-full max-w-[min(1300px,95vw)] flex flex-col items-center justify-center relative">
                     {/* Laptop frame - screenshot overlay uses % of this container so they scale together */}
                     <div className="relative w-full">
@@ -79,7 +79,7 @@ export default function Showcase() {
                                 alt={screenshotLabels[currentIndex] || 'screenshot'}
                                 fill
                                 className="object-contain transition-all duration-500"
-                                sizes="(min-width: 1024px) 90vw"
+                                sizes="(min-width: 1024px) 700px, 90vw"
                                 priority
                             />
                         </div>
