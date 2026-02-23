@@ -128,7 +128,7 @@ export default function ShowcaseIpad() {
           />
 
           {/* Screens */}
-          <div className="absolute rounded-2xl w-[88%] h-[95%] sm: w-[94%] h-[90%]  z-0 overflow-hidden">
+          <div className="absolute rounded-2xl w-[88%] h-[95%] sm:w-[94%] sm:h-[90%] z-0 overflow-hidden">
             <div
               ref={scrollRef}
               className="w-full h-full flex overflow-x-auto scrollbar-hide snap-x snap-mandatory"

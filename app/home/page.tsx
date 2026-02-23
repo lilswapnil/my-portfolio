@@ -74,9 +74,8 @@ export default function Home() {
                         </ScrollControls>
                     </Canvas>
                     <Texts />
-                    {/* Use ShowcaseMobile for mobile, ShowcaseIpad for tablet, Showcase for desktop */}
-                    
-                    <div className="hidden md:block lg:hidden">
+                    {/* ShowcaseIpad: phones & tablets (< 1024px). Showcase: desktop/laptop (>= 1024px) */}
+                    <div className="block lg:hidden">
                         <ShowcaseIpad />
                     </div>
                     <div className="hidden lg:block">
