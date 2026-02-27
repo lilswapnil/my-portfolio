@@ -70,7 +70,7 @@ export default function Home() {
             <div className="min-h-screen pt-16 smooth-scroll w-screen overflow-x-hidden bg-[var(--background)]">
                 <div className="text-[var(--foreground)] h-screen relative w-screen overflow-x-hidden">
                     <h1
-                        className="font-bold mt-6 mb-0 text-center text-5xl sm:text-6xl mx-3 font-px-4 text-left md:text-[4.5rem] md:text-center md:ml-0 md:mr-0 mr-0 text-[var(--foreground)]"
+                        className="font-bold m-6 mb-0 text-center text-5xl sm:text-6xl mx-3 font-px-4 text-left md:text-[4.5rem] md:text-center md:ml-0 md:mr-0 mr-0 text-[var(--foreground)]"
                         style={{
                             textShadow: '0 8px 24px rgba(0,0,0,0.18)'
                         }}

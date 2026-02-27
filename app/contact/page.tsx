@@ -82,9 +82,6 @@ function OrbitSection({
   );
 }
 
-
-
-
 export default function ContactPage() {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -93,9 +90,7 @@ export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [responseMessage, setResponseMessage] = useState<string>('');
   const [mounted, setMounted] = useState(false);
-
   const icons = useIconsConfig();
-
   const { theme } = useTheme();
   const isDark = mounted && theme === 'dark';
 
@@ -155,7 +150,7 @@ export default function ContactPage() {
       setIsSubmitting(false);
     }
   };
-
+  
   return (
     <>
     <div className="min-h-screen py-16">
