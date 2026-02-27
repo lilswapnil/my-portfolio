@@ -11,7 +11,7 @@ import { Lights } from './Lights.jsx';
 import Texts from './text/page';
 import Showcase from './showcase/page';
 import ImpactSection from './impactsection/page';
-import ProjectPanel from './panel/page';
+import ProjectPanel from '../components/ProjectPanel';
 import workexperience from '@/data/workexperience';
 import dynamic from 'next/dynamic';
 

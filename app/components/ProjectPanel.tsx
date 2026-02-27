@@ -1,3 +1,4 @@
+// Moved from app/home/panel/page.tsx
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
@@ -177,7 +178,6 @@ export default function ProjectPanel({
           >
             Key Features:
           </p>
-
           <ul style={{ margin: 0, paddingLeft: 16, listStyle: 'disc' }}>
             {project.highlights.slice(0, 2).map((highlight, idx) => (
               <li
