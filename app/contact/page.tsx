@@ -84,6 +84,7 @@ function OrbitSection({
 
 
 
+
 export default function ContactPage() {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -91,11 +92,16 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [responseMessage, setResponseMessage] = useState<string>('');
+  const [mounted, setMounted] = useState(false);
 
   const icons = useIconsConfig();
 
   const { theme } = useTheme();
-  const isDark = theme === 'dark';
+  const isDark = mounted && theme === 'dark';
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const colors = {
     primary: isDark ? 'bg-red-600' : 'bg-red-300',
