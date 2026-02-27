@@ -20,7 +20,7 @@
 .page {
   /* keeps it clean and prevents horizontal scrollbars */
   inline-size: 100%;
-  overflow-x: clip;
+  /* Remove overflow-x: clip to allow animation to be visible outside */
   margin: 0;
   min-height: max-content;
 }
@@ -30,6 +30,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100svh;
+  /* Remove overflow if present to allow animation outside */
 }
 
 /* Your sticky 4x4 grid */
@@ -46,7 +47,7 @@
   position: sticky;
   top: 0;
 
-  overflow: clip;
+  /* Remove overflow: clip to allow animation outside the grid */
 
   /* Responsive adjustments for mobile */
   @media (max-width: 600px) {

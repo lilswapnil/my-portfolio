@@ -117,7 +117,7 @@ export default function ShowcaseIpad() {
       {/* iPad */}
       <div className="w-full px-4 sm:px-6 flex items-center justify-center bg-[var(--background)] overflow-x-hidden relative max-w-[min(768px,95vw)] flex-col">
           {/* iPad frame - scales with container */}
-          <div className="relative w-full aspect-[768/1024] max-h-[60vh]">
+          <div className="relative w-full aspect-[768/1024] max-h-[75vh]">
             <Image
               src="/ipad.png"
               alt="iPad Frame"
@@ -139,9 +139,9 @@ export default function ShowcaseIpad() {
                     src={src}
                     alt={screenshotLabels[idx] ?? "screenshot"}
                     fill
-                    className="object-contain"
+                    className="object-contain object-center rounded-2xl"
                     priority={idx === 0}
-                    sizes="(max-width: 640px) 100vw, (max-width: 878px) 100vw, 1000px"
+                    sizes="(min-width: 1024px) 700px, 90vw"
                   />
                 </div>
               ))}
