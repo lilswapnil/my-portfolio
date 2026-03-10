@@ -73,7 +73,7 @@ export default function RootLayout({
       <head>
         <link rel="preload" href="/logo.svg" as="image" />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <LoadingProvider>
             <AskScottyProvider>

@@ -33,8 +33,8 @@ export default function Showcase() {
     return (
         <div className="max-h-screen bg-transparent mx-4 sm:mx-8 lg:mx-16 my-0 border-box overflow-x-hidden">
             {/* Tabs above laptop */}
-            <div className="mx-auto mt-8 mb-4 max-w-full">
-                <div className="flex justify-center space-x-4 mb-4 overflow-x-auto scrollbar-hide">
+            <div className="mx-auto mt-8 mb-0 max-w-full">
+                <div className="flex justify-center space-x-4 mb-0 overflow-x-auto scrollbar-hide">
                     {screenshotLabels.map((label, idx) => (
                         <button
                             key={label}
@@ -62,7 +62,7 @@ export default function Showcase() {
                         <Image
                             src="/laptop.svg"
                             alt="Showcase of Projects"
-                            width={1300}
+                            width={1200}
                             height={600}
                             className="w-full h-auto block"
                         />

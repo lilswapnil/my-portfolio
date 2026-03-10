@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useCallback, useContext, useMemo, useRef, useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 interface LoadingContextType {
@@ -8,7 +8,6 @@ interface LoadingContextType {
   setIsPageLoading: (isLoading: boolean) => void;
   isInitialLoad: boolean;
   setIsInitialLoad: (isInitial: boolean) => void;
-  isTransitioning: boolean;
   setIsTransitioning: (isTransitioning: boolean) => void;
 }
 
@@ -17,8 +16,15 @@ const LoadingContext = createContext<LoadingContextType | undefined>(undefined);
 export const LoadingProvider = ({ children }: { children: React.ReactNode }) => {
   const [isPageLoading, setIsPageLoading] = useState(true);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
+  const setIsTransitioning = useCallback((isTransitioning: boolean) => {
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+    overlay.classList.toggle('fade-in', isTransitioning);
+    overlay.classList.toggle('fade-out', !isTransitioning);
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -30,10 +36,15 @@ export const LoadingProvider = ({ children }: { children: React.ReactNode }) => 
     };
   }, [pathname]);
 
+  const contextValue = useMemo(
+    () => ({ isPageLoading, setIsPageLoading, isInitialLoad, setIsInitialLoad, setIsTransitioning }),
+    [isPageLoading, isInitialLoad, setIsTransitioning]
+  );
+
   return (
-    <LoadingContext.Provider value={{ isPageLoading, setIsPageLoading, isInitialLoad, setIsInitialLoad, isTransitioning, setIsTransitioning }}>
+    <LoadingContext.Provider value={contextValue}>
       {children}
-      <div className={`page-transition-overlay ${isTransitioning ? 'fade-in' : 'fade-out'}`} />
+      <div ref={overlayRef} className="page-transition-overlay fade-out" />
     </LoadingContext.Provider>
   );
 };

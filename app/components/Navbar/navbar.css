@@ -1,15 +1,21 @@
 @keyframes borderAnimation {
   0% {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15), inset 0 0 8px rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow:
+      0 0 8px rgba(255, 255, 255, 0.12),
+      inset 0 0 8px rgba(255, 255, 255, 0.04);
   }
   50% {
-    border-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 16px rgba(255, 255, 255, 0.3), inset 0 0 12px rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.32);
+    box-shadow:
+      0 0 14px rgba(255, 255, 255, 0.2),
+      inset 0 0 10px rgba(255, 255, 255, 0.08);
   }
   100% {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15), inset 0 0 8px rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow:
+      0 0 8px rgba(255, 255, 255, 0.12),
+      inset 0 0 8px rgba(255, 255, 255, 0.04);
   }
 }
 
@@ -41,6 +47,91 @@
   }
 }
 
+@keyframes navbarLightSweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .navbar-loading-skeleton {
   animation: borderAnimation 2s linear infinite;
+}
+
+.navbar-loading-light {
+  position: fixed;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* subtle permanent frame */
+.navbar-loading-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.25px;
+  pointer-events: none;
+  z-index: 1;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.26),
+    rgba(255, 255, 255, 0.08)
+  );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  opacity: 0.95;
+  box-shadow:
+    inset 0 0 10px rgba(255, 255, 255, 0.05),
+    0 0 10px rgba(121, 235, 255, 0.08);
+}
+
+/* rotating bright edge segment */
+.navbar-loading-light::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  z-index: 2;
+  pointer-events: none;
+
+  background: conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(255, 255, 255, 0) 285deg,
+    rgba(121, 235, 255, 0.18) 305deg,
+    rgba(121, 235, 255, 0.72) 322deg,
+    rgba(235, 255, 255, 1) 336deg,
+    rgba(121, 235, 255, 0.72) 348deg,
+    rgba(255, 255, 255, 0) 360deg
+  );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  filter:
+    blur(0.2px)
+    drop-shadow(0 0 6px rgba(220, 255, 255, 0.95))
+    drop-shadow(0 0 14px rgba(62, 205, 255, 0.8))
+    drop-shadow(0 0 24px rgba(62, 205, 255, 0.35));
+
+  animation: navbarLightSweep 1.7s linear infinite;
 }
