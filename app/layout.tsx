@@ -11,8 +11,8 @@ import Footer from "./components/Footer/page";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Swapnil's Portfolio",
-  description: "Explore the portfolio of Swapnil, a Full Stack Developer specializing in React, Next.js, and modern web technologies.",
+  title: "Scott's Portfolio",
+  description: "Explore the portfolio of Scott, a Full Stack Developer specializing in React, Next.js, and modern web technologies.",
   keywords: [
     "Swapnil",
     "Scott",
