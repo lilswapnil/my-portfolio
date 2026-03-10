@@ -46,23 +46,18 @@ export default function TwitterImage() {
             zIndex: 2,
           }}
         >
-          <div
+          <img
+            src="https://lilswapnil.me/logo.svg"
+            alt="AskScotty"
+            width={34}
+            height={34}
             style={{
-              width: 34,
-              height: 34,
               borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 14,
-              fontWeight: 700,
-              color: '#f8fafc',
-              background: 'linear-gradient(135deg, #e8a66c 0%, #8b5a2b 65%, #2d2d2d 100%)',
               border: '1px solid rgba(255,255,255,0.45)',
+              objectFit: 'cover',
+              background: '#111827',
             }}
-          >
-            S
-          </div>
+          />
           <div
             style={{
               display: 'flex',
