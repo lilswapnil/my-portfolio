@@ -11,8 +11,8 @@ import Footer from "./components/Footer/page";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Scott's Portfolio",
-  description: "Full Stack Developer Portfolio",
+  title: "Swapnil's Portfolio",
+  description: "Explore the portfolio of Swapnil, a Full Stack Developer specializing in React, Next.js, and modern web technologies.",
   keywords: [
     "Swapnil",
     "Scott",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "Swapnil's Portfolio",
     images: [
       {
-        url: "https://lilswapnil.me/og-image.png",
+        url: "https://lilswapnil.me/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Swapnil's Portfolio Open Graph Image"
@@ -46,10 +46,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scott's Portfolio",
-    description: "Explore the portfolio of Scott, a Full Stack Developer specializing in React, Next.js, and modern web technologies.",
+    title: "Swapnil's Portfolio",
+    description: "Explore the portfolio of Swapnil, a Full Stack Developer specializing in React, Next.js, and modern web technologies.",
     creator: "@swapnil_dev",
-    images: ["https://lilswapnil.me/og-image.png"]
+    images: ["https://lilswapnil.me/twitter-image"]
   },
   metadataBase: new URL("https://lilswapnil.me"),
   alternates: {
