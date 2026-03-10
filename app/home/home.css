@@ -20,11 +20,20 @@ body::-webkit-scrollbar {
 
 /* ===== @react-three/drei ScrollControls ===== */
 [data-scroll-controls] {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge */
 }
 
 [data-scroll-controls]::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari */
+}
+
+/* Hide scrollbars created by drei ScrollControls */
+[data-scroll-controls] > div {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+[data-scroll-controls] > div::-webkit-scrollbar {
   display: none;
 }

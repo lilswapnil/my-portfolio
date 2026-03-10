@@ -25,7 +25,7 @@ function ScrollCameraRig() {
 
     // Start / end camera values
     const startPos = new THREE.Vector3(0, 0.2, 0.9);
-    const endPos = new THREE.Vector3(0, 1.2, 0.75);
+    const endPos = new THREE.Vector3(0, 1.2, 0.9);
 
     // Optional: subtle tilt for cinematic feel
     const startRotX = 0.0;
@@ -55,7 +55,8 @@ function ScrollProgressUpdater({ progressRef }: { progressRef: React.RefObject<{
 
     useFrame(() => {
         if (progressRef.current) {
-            progressRef.current.value = scroll.offset;
+            // Finish panel animation a little before scroll reaches the end
+            progressRef.current.value = Math.min(scroll.offset / 0.82, 1);
         }
     });
 
@@ -88,13 +89,13 @@ export default function Home() {
                         Solve complex problems. Ship reliable systems.
                     </p>
                     <Canvas
-                    shadows
-                    camera={{ position: [0, 0.25, 1.1], fov: 40 }}
-                    style={{ height: '120%' }}
-                    >
+                        shadows
+                        camera={{ position: [0, 0.25, 1.1], fov: 40 }}
+                        style={{ height: '100vh', width: '100vw' }}
+                        >
                     <Lights />
                     
-                    <ScrollControls pages={3} damping={0.6}>
+                    <ScrollControls pages={1.5} damping={0.18}>
                         <ScrollCameraRig />
                         <ScrollProgressUpdater progressRef={scrollProgressRef} />
 

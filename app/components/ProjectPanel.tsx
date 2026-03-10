@@ -1,4 +1,3 @@
-// Moved from app/home/panel/page.tsx
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
@@ -36,41 +35,33 @@ export default function ProjectPanel({
     setMounted(true);
 
     let rafId = 0;
-    let prevX: number | null = null;
-    let prevOpacity: number | null = null;
 
     const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+    const easeInOut = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
-    // ✅ Faster / finishes earlier
-    const windowSize = 0.32; // bigger => completes sooner within your scroll section
-    const offset = isTopLeft ? 0.0 : 0.12; // start slightly later for bottom-right
-    const easeSpeed = 0.75; // higher => faster catch-up (snappier)
+    const start = isTopLeft ? 0.02 : 0.18;
+    const end = isTopLeft ? 0.42 : 0.62;
+    const hiddenX = isTopLeft ? -110 : 110;
 
     const animate = () => {
       const el = panelRef.current;
-      const sp = scrollProgressRef.current?.value;
+      const sp = scrollProgressRef.current?.value ?? 0;
 
-      if (!el || sp == null) {
+      if (!el) {
         rafId = requestAnimationFrame(animate);
         return;
       }
 
-      const p = clamp01((sp - offset) / windowSize);
+      const raw = clamp01((sp - start) / (end - start));
+      const eased = easeInOut(raw);
 
-      const targetX = isTopLeft ? (p - 1) * 100 : (1 - p) * 100;
-      const targetOpacity = p;
+      const x = hiddenX * (1 - eased);
+      const opacity = raw;
 
-      if (prevX === null) prevX = targetX;
-      if (prevOpacity === null) prevOpacity = targetOpacity;
-
-      // Smooth but fast
-      prevX = lerp(prevX, targetX, easeSpeed);
-      prevOpacity = lerp(prevOpacity, targetOpacity, easeSpeed);
-
-      el.style.opacity = String(prevOpacity);
-      el.style.transform = `translateX(${prevX}%)`;
-      el.style.pointerEvents = prevOpacity < 0.1 ? 'none' : 'auto';
+      el.style.opacity = String(opacity);
+      el.style.transform = `translate3d(${x}%, 0, 0)`;
+      el.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
 
       rafId = requestAnimationFrame(animate);
     };
@@ -82,22 +73,34 @@ export default function ProjectPanel({
   return (
     <div
       ref={panelRef}
-      className="glass-container project-panel max-w-sm"
+      className="glass-container project-panel"
       style={{
         position: 'absolute',
         ...(isTopLeft
-          ? { top: '80px', left: '80px', marginTop: '128px' }
-          : { bottom: '80px', right: '80px', marginBottom: '128px' }),
-        width: '350px',
+          ? {
+              top: '22%',
+              left: 'clamp(16px, 5vw, 80px)',
+            }
+          : {
+              top: '62%',
+              right: 'clamp(16px, 5vw, 80px)',
+            }),
+        width: 'clamp(280px, 28vw, 350px)',
+        maxWidth: 'calc(100vw - 32px)',
         padding: '16px',
         color: 'var(--foreground)',
         opacity: 0,
-        transform: isTopLeft ? 'translateX(-100%)' : 'translateX(100%)',
+        transform: isTopLeft
+          ? 'translate3d(-110%, 0, 0)'
+          : 'translate3d(110%, 0, 0)',
         zIndex: 20,
         pointerEvents: 'none',
+        willChange: 'transform, opacity',
+        transition: 'none',
+        backfaceVisibility: 'hidden',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
         {project.logo && (
           <img
             src={project.logo}
@@ -106,13 +109,13 @@ export default function ProjectPanel({
               width: project.logo === '/icons/ap.png' ? 80 : 64,
               height: project.logo === '/icons/ap.png' ? 80 : 64,
               borderRadius: 10,
-              marginRight: 18,
               objectFit: 'cover',
+              flexShrink: 0,
             }}
           />
         )}
 
-        <div>
+        <div style={{ minWidth: 0, flex: 1 }}>
           <div style={{ fontSize: 'clamp(13px,1.5vw,15px)' }}>
             {project.position}
           </div>
@@ -161,7 +164,9 @@ export default function ProjectPanel({
           style={{
             marginTop: 12,
             paddingTop: 12,
-            borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+            borderTop: isDark
+              ? '1px solid rgba(255, 255, 255, 0.2)'
+              : '1px solid rgba(0, 0, 0, 0.08)',
           }}
         >
           <p
