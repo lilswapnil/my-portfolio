@@ -2,11 +2,11 @@
 import React from 'react';
 import { Analytics } from "@vercel/analytics/next";
 import { Canvas } from '@react-three/fiber';
-// import { useTheme } from 'next-themes';
+import { useTheme } from 'next-themes';
 import { ScrollControls, useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { FormalScottModel } from '../components/ScottModel/Formal-scott.jsx';
+import { Model as FormalScottModel } from '../components/ScottModelV2/Formal-scott.jsx';
 import { Lights } from './Lights.jsx';
 import Texts from './text/page';
 import Showcase from './showcase/page';
@@ -14,6 +14,8 @@ import ImpactSection from './impactsection/page';
 import ProjectPanel from '../components/ProjectPanel';
 import workexperience from '@/data/workexperience';
 import dynamic from 'next/dynamic';
+import { AccumulativeShadows, RandomizedLight } from "@react-three/drei";
+import { ContactShadows } from '@react-three/drei';
 
 const ShowcaseIpad = dynamic(() => import('./showcase-sm/page'), { ssr: false });
 
@@ -61,13 +63,13 @@ function ScrollProgressUpdater({ progressRef }: { progressRef: React.RefObject<{
 }
 
 export default function Home() {
-    // const { theme } = useTheme();
-    // const isDark = theme === 'dark';
+    const { theme } = useTheme();
+    const isDark = theme === 'dark';
     const scrollProgressRef = React.useRef({ value: 0 });
 
     return (
         <>
-            <div className="min-h-screen pt-16 smooth-scroll w-screen overflow-x-hidden bg-[var(--background)]">
+            <div className="min-h-screen pt-20 smooth-scroll w-screen overflow-x-hidden bg-[var(--background)]">
                 <div className="text-[var(--foreground)] h-screen relative w-screen overflow-x-hidden">
                     <h1
                         className="font-bold m-6 mb-0 text-center text-5xl sm:text-6xl mx-3 font-px-4 text-left md:text-[4.5rem] md:text-center md:ml-0 md:mr-0 mr-0 text-[var(--foreground)]"
@@ -86,21 +88,33 @@ export default function Home() {
                         Solve complex problems. Ship reliable systems.
                     </p>
                     <Canvas
-                        camera={{ position: [0, 0.2, 1.0], fov: 50 }}
-                        style={{ background: 'transparent', overflowX: 'hidden' }}
-                        gl={{ preserveDrawingBuffer: true, alpha: true }}
+                    shadows
+                    camera={{ position: [0, 0.25, 1.1], fov: 40 }}
+                    style={{ height: '120%' }}
                     >
-                        <Lights />
-                        <ambientLight intensity={0.7} />
-                        <directionalLight position={[5, 5, 5]} intensity={1} />
-                        <ScrollControls pages={3} damping={0.6}>
-                            <ScrollCameraRig />
-                            <ScrollProgressUpdater progressRef={scrollProgressRef} />
-                            <FormalScottModel
-                                rotation={[0, -Math.PI / 2, 0]}
-                                position={[0, 0.25, 0]}
-                            />
-                        </ScrollControls>
+                    <Lights />
+                    
+                    <ScrollControls pages={3} damping={0.6}>
+                        <ScrollCameraRig />
+                        <ScrollProgressUpdater progressRef={scrollProgressRef} />
+
+                        <FormalScottModel
+                        rotation={[0, (4 * Math.PI) / 30, 0]}
+                        position={[0, 0.14, 0]}
+                        scale={0.55}
+                        />
+
+                        <ContactShadows
+                            position={[0, -0.3, 0]}
+                            opacity={0.42}
+                            scale={2.6}
+                            blur={2.2}
+                            far={1.8}
+                            resolution={1024}
+                            color={isDark ? "#ffffff" : "#000000"}
+                        />
+
+                    </ScrollControls>
                     </Canvas>
 
                     {/* Work Experience Panels - must be outside Canvas as DOM overlays */}
