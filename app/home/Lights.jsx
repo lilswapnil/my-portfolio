@@ -9,12 +9,12 @@ export function Lights() {
 
       {/* Main key light (front-right) */}
       <directionalLight
-  position={[0, 3, 5]}   // light in front
-  intensity={1.2}
-  castShadow
-  shadow-mapSize-width={2048}
-  shadow-mapSize-height={2048}
-/>
+        position={[0, 3, 5]}   // light in front
+        intensity={1.2}
+        castShadow
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+      />
 
       {/* Fill light from left to soften shadows */}
       <directionalLight

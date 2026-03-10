@@ -106,12 +106,12 @@ export default function Home() {
 
                         <ContactShadows
                             position={[0, -0.3, 0]}
-                            opacity={0.42}
+                            opacity={isDark ? 0.42 : 0.15}
                             scale={2.6}
                             blur={2.2}
                             far={1.8}
                             resolution={1024}
-                            color={isDark ? "#ffffff" : "#000000"}
+                            color="#656565"
                         />
 
                     </ScrollControls>
